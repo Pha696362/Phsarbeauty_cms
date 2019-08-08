@@ -1,15 +1,12 @@
-import { Statistic } from './../../stores/statistic.store';
 import { Pages } from './../../dummy/pages';
 import { Search } from './../../stores/search.store';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from './../../auth/auth.service';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Environment } from 'src/app/stores/environment.store';
 import { searchFilterBy } from 'src/app/services/data.service';
 import { switchMap, debounceTime, tap } from "rxjs/operators";
 import { AuthStore } from 'src/app/stores/auth.store';
-import { periodData } from 'src/app/dummy/report';
 
 @Component({
   selector: 'app-dashboard-nav',
@@ -30,7 +27,6 @@ export class DashboardNavComponent implements OnInit {
   constructor(private fb: FormBuilder,
     public auth: AuthStore,
     public env: Environment,
-    public statistic:Statistic,
     public store: Search,
     public route:ActivatedRoute,
     private router: Router) { }
@@ -43,16 +39,16 @@ export class DashboardNavComponent implements OnInit {
     this.search = this.form.controls["search"];
     this.searchType = this.form.controls["searchType"];
     this.store.fetchData(this.filterBy[0].key, null);
-    this.search.valueChanges
-      .pipe(
-        debounceTime(Pages.debounceTime),
-        tap(() => (this.loading = true)),
-        switchMap(value => this.store.search(this.searchType.value.key, value))
-      )
-      .subscribe(results => {
-        this.store.data = results;
-        this.loading = false;
-      });
+    // this.search.valueChanges
+    //   .pipe(
+    //     debounceTime(Pages.debounceTime),
+    //     tap(() => (this.loading = true)),
+    //     switchMap(value => this.store.search(this.searchType.value.key, value))
+    //   )
+    //   .subscribe(results => {
+    //     this.store.data = results;
+    //     this.loading = false;
+    //   });
   }
 
   displayItem(item: any): string {

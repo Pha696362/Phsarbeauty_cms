@@ -1,8 +1,6 @@
 import { MappingService } from "./../../services/mapping.service";
-import { Geo } from "./../../stores/geo.store";
 import { Environment } from "./../../stores/environment.store";
 import { AngularFirestore } from "@angular/fire/firestore";
-import { AuthService } from "../../auth/auth.service";
 import {
   Component,
   OnInit,
@@ -65,7 +63,6 @@ export class AddAccountUserComponent implements OnInit {
     private snackBar: MatSnackBar,
     private afs: AngularFirestore,
     public store: Environment,
-    public geo: Geo,
   ) { }
 
   buildForm(): void {
@@ -107,57 +104,57 @@ export class AddAccountUserComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
-    this.geo.fetchPositionToArray(p => {
-      this.positionList = p;
-      if (this.positionList.length > 0) {
-        this.position.patchValue(this.positionList[0])
-      }
-    })
-    this.geo.fetchTitleToArray(t => {
-      this.titleList = t;
-      if (this.titleList.length > 0) {
-        this.title.patchValue(this.titleList[0])
-      }
-    })
-    this.geo.fetchProvinceToArray(list => {
-      this.filteredStatesProvince = MappingService.autoComplete(
-        this.province,
-        list,
-        "name"
-      );
-    });
+    // this.geo.fetchPositionToArray(p => {
+    //   this.positionList = p;
+    //   if (this.positionList.length > 0) {
+    //     this.position.patchValue(this.positionList[0])
+    //   }
+    // })
+    // this.geo.fetchTitleToArray(t => {
+    //   this.titleList = t;
+    //   if (this.titleList.length > 0) {
+    //     this.title.patchValue(this.titleList[0])
+    //   }
+    // })
+    // this.geo.fetchProvinceToArray(list => {
+    //   this.filteredStatesProvince = MappingService.autoComplete(
+    //     this.province,
+    //     list,
+    //     "name"
+    //   );
+    // });
   }
 
   _onSelectedProvince(event) {
-    const { value } = event.option;
-    if (value) {
-      this.district.enable();
-      this.geo.fetchDistrictsToArray(value.key, list => {
-        this.filteredStatesDistrict = MappingService.autoComplete(
-          this.district,
-          list,
-          "name"
-        );
-      });
-    } else {
-      this.district.disable();
-    }
+    // const { value } = event.option;
+    // if (value) {
+    //   this.district.enable();
+    //   this.geo.fetchDistrictsToArray(value.key, list => {
+    //     this.filteredStatesDistrict = MappingService.autoComplete(
+    //       this.district,
+    //       list,
+    //       "name"
+    //     );
+    //   });
+    // } else {
+    //   this.district.disable();
+    // }
   }
 
   _onSelectedDistrict(event) {
-    const { value } = event.option;
-    if (value) {
-      this.commune.enable();
-      this.geo.fetchCommunesToArray(value.key, list => {
-        this.filteredStatesCommune = MappingService.autoComplete(
-          this.commune,
-          list,
-          "name"
-        );
-      });
-    } else {
-      this.commune.disable();
-    }
+    // const { value } = event.option;
+    // if (value) {
+    //   this.commune.enable();
+    //   this.geo.fetchCommunesToArray(value.key, list => {
+    //     this.filteredStatesCommune = MappingService.autoComplete(
+    //       this.commune,
+    //       list,
+    //       "name"
+    //     );
+    //   });
+    // } else {
+    //   this.commune.disable();
+    // }
   }
 
   compareObjects(o1: any, o2: any): boolean {

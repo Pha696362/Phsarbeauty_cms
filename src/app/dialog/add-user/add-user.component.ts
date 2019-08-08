@@ -1,10 +1,8 @@
 import { PhoneNumber } from "./../../services/phoneNumber.service";
 import { MappingService } from "./../../services/mapping.service";
-import { Geo } from "./../../stores/geo.store";
 import { Environment } from "./../../stores/environment.store";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { status } from "./../../dummy/stauts";
-import { AuthService } from "../../auth/auth.service";
 import {
   Component,
   OnInit,
@@ -63,7 +61,6 @@ export class AddUserComponent implements OnInit {
     private snackBar: MatSnackBar,
     private afs: AngularFirestore,
     public store: Environment,
-    public geo: Geo,
     private win: WindowService
   ) { }
 
@@ -113,26 +110,26 @@ export class AddUserComponent implements OnInit {
     this.windowRef = this.win.windowRef;
     // this.windowRef.recaptchaVerifier = this.auth.getRecaptchaVerifier();
     this.windowRef.recaptchaVerifier.render();
-    this.geo.fetchProvinceToArray(list => {
-      this.filteredStatesProvince = MappingService.autoComplete(
-        this.province,
-        list,
-        "name"
-      );
-    });
+    // this.geo.fetchProvinceToArray(list => {
+    //   this.filteredStatesProvince = MappingService.autoComplete(
+    //     this.province,
+    //     list,
+    //     "name"
+    //   );
+    // });
   }
 
   _onSelectedProvince(event) {
     const { value } = event.option;
     if (value) {
       this.district.enable();
-      this.geo.fetchDistrictsToArray(value.key, list => {
-        this.filteredStatesDistrict = MappingService.autoComplete(
-          this.district,
-          list,
-          "name"
-        );
-      });
+      // this.geo.fetchDistrictsToArray(value.key, list => {
+      //   this.filteredStatesDistrict = MappingService.autoComplete(
+      //     this.district,
+      //     list,
+      //     "name"
+      //   );
+      // });
     } else {
       this.district.disable();
     }
@@ -141,13 +138,13 @@ export class AddUserComponent implements OnInit {
     const { value } = event.option;
     if (value) {
       this.commune.enable();
-      this.geo.fetchCommunesToArray(value.key, list => {
-        this.filteredStatesCommune = MappingService.autoComplete(
-          this.commune,
-          list,
-          "name"
-        );
-      });
+      // this.geo.fetchCommunesToArray(value.key, list => {
+      //   this.filteredStatesCommune = MappingService.autoComplete(
+      //     this.commune,
+      //     list,
+      //     "name"
+      //   );
+      // });
     } else {
       this.commune.disable();
     }

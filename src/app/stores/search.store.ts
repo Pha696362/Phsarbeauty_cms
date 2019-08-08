@@ -14,15 +14,15 @@ export class Search {
   @action
   fetchData(field, value: any) {
     this.loading = true;
-    this.ds.searchRef(field, value).valueChanges().subscribe(docs => {
-      this.empty = docs.length === 0;
-      this.data = docs;
-      this.loading = false;
-    })
+    // this.ds.searchRef(field, value).valueChanges().subscribe(docs => {
+    //   this.empty = docs.length === 0;
+    //   this.data = docs;
+    //   this.loading = false;
+    // })
   }
 
   @action
   search(field, search) {
-    return this.ds.searchRef(field, search).valueChanges()
+    // return this.ds.searchRef(field, search).valueChanges()
   }
 }

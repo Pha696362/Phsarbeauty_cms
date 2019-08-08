@@ -1,8 +1,5 @@
 import { CONFIGS, Help } from './../../dummy/stauts';
-import { Pages } from "./../../dummy/pages";
-import { Search } from "./../../stores/search.store";
 import { Router, ActivatedRoute } from "@angular/router";
-import { AuthService } from "./../../auth/auth.service";
 import { Component, OnInit } from "@angular/core";
 import {
   trigger,
@@ -14,17 +11,13 @@ import {
   stagger
 } from "@angular/animations";
 import { Environment } from "../../stores/environment.store";
-import { MappingService } from "../../services/mapping.service";
 import { searchFilterBy } from "../../services/data.service";
-import { switchMap, debounceTime, tap } from "rxjs/operators";
 import {
   AbstractControl,
   FormBuilder,
   Validators,
   FormGroup
 } from "@angular/forms";
-import { roleObj } from 'src/app/dummy/roles';
-import { Statistic } from 'src/app/stores/statistic.store';
 import { ConvertService } from 'src/app/services/convert.service';
 import { AuthStore } from 'src/app/stores/auth.store';
 import { toNumber } from 'functions/src/mapping';
@@ -268,7 +261,6 @@ export class DashboardComponent implements OnInit {
     private auth: AuthStore,
     private router: Router,
     public env: Environment,
-    public store: Statistic,
     private fb: FormBuilder,
     public route: ActivatedRoute,
   ) { }
@@ -288,38 +280,38 @@ export class DashboardComponent implements OnInit {
   monthKey = ConvertService.toMonthKey(this.currentDate);
 
   async getList() {
-    this.env.fetchSysConfig((res) => {
-      const { endDayOfMonth } = this.env.sysConfig;
-      this.endDayOfMonth = endDayOfMonth;
-      this.route.params.forEach(param => {
-        if (param && param.fromDate && param.toDate) {
-          const { provinceId, categoryId, subCategoryId, fromDate, toDate } = param;
-          this.store.provinceFilter = toNumber(provinceId);
-          this.store.categoryFilter = toNumber(categoryId);
-          this.store.subCategoryFilter = toNumber(subCategoryId);
-          this.store.fromDateFilter = fromDate;
-          this.store.toDateFilter = toDate;
-        }
-        else {
-          this.store.provinceFilter = 0;
-          this.store.categoryFilter = 0;
-          this.store.subCategoryFilter = 0;
-          this.store.fromDateFilter = ConvertService.getDefaultDateReport(endDayOfMonth).form_date;
-          this.store.toDateFilter = ConvertService.getDefaultDateReport(endDayOfMonth).to_date;
-        }
-        this.store.fetchStatisticApi();
-        this.store.fetchRecent();
-      })
-    })
+    // this.env.fetchSysConfig((res) => {
+    //   const { endDayOfMonth } = this.env.sysConfig;
+    //   this.endDayOfMonth = endDayOfMonth;
+    //   this.route.params.forEach(param => {
+    //     if (param && param.fromDate && param.toDate) {
+    //       const { provinceId, categoryId, subCategoryId, fromDate, toDate } = param;
+    //       this.store.provinceFilter = toNumber(provinceId);
+    //       this.store.categoryFilter = toNumber(categoryId);
+    //       this.store.subCategoryFilter = toNumber(subCategoryId);
+    //       this.store.fromDateFilter = fromDate;
+    //       this.store.toDateFilter = toDate;
+    //     }
+    //     else {
+    //       this.store.provinceFilter = 0;
+    //       this.store.categoryFilter = 0;
+    //       this.store.subCategoryFilter = 0;
+    //       this.store.fromDateFilter = ConvertService.getDefaultDateReport(endDayOfMonth).form_date;
+    //       this.store.toDateFilter = ConvertService.getDefaultDateReport(endDayOfMonth).to_date;
+    //     }
+    //     this.store.fetchStatisticApi();
+    //     this.store.fetchRecent();
+    //   })
+    // })
     // await this.store.fetchStatistic(CONFIGS.YEAR, CONFIGS.FROM_YEAR, CONFIGS.TO_YEAR);
   }
 
   filterData() {
-    this.store.fetchStatistic(CONFIGS.YEAR, CONFIGS.FROM_YEAR, CONFIGS.TO_YEAR);
+    // this.store.fetchStatistic(CONFIGS.YEAR, CONFIGS.FROM_YEAR, CONFIGS.TO_YEAR);
   }
 
   ngOnInit() {
-    this.getList();
+    // this.getList();
     this.form = this.fb.group({
       searchType: [this.filterBy[0], [Validators.required]],
       search: [null]

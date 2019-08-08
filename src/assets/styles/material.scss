@@ -1176,16 +1176,20 @@ left: 100px;
   }
   .crime-card-line{
     padding: 40px;
-    border: solid 1px #dadce0;
     min-width: 450px;
     border-radius: 10px;
+    background-color: #fff;
+    transform: translate3d(0, 0, 0);
+    transition: box-shadow .2s linear,opacity .2s linear;
+    box-shadow: 0 0 36px rgba(0,0,0,0.1);
+    width: 450px;
     h2{
       color: $primary;
-      max-width: 816px;
-      font-family: 'Moul', Google Sans, Roboto, sans-serif;
+      font-family: $googleFont;
       font-size: 24px;
-      font-weight: 500;
+      font-weight: 700;
       margin-bottom: 30px;
+      text-align: center;
     }
   }
   .form-column{
