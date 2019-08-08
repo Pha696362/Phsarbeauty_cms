@@ -6,9 +6,6 @@ import { Environment } from 'src/app/stores/environment.store';
 import { Component, OnInit } from '@angular/core';
 import { tabs } from 'src/app/dummy/tabs';
 import { Router } from '@angular/router';
-import { IGeo } from 'src/app/interfaces/geo';
-import { EditUserComponent } from 'src/app/dialog/edit-user/edit-user.component';
-
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -39,13 +36,13 @@ export class UserComponent implements OnInit {
   }
 
   update(item) {
-    let dialogRef = this.dialog.open(EditUserComponent, {
-      data: item,
-      width: '35vw',
-      height: '100vh',
-      role: 'dialog',
-    });
-    dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
+    // let dialogRef = this.dialog.open(EditUserComponent, {
+    //   data: item,
+    //   width: '35vw',
+    //   height: '100vh',
+    //   role: 'dialog',
+    // });
+    // dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
   }
 
   delete(item) {

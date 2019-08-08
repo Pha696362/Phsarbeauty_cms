@@ -1,13 +1,11 @@
 <nav class="nav-header">
     <div class="app-container">
         <div class="brand-name" [routerLink]="['/app']">
-            <img src="../../../assets/images/cnp-logo.png" />
+            <img src="../../../assets/images/logo.jpg" />
         </div>
         <div class="d-flex" style="flex-direction: column; flex:1">
             <div class="d-flex">
-
-                <span class="brand-name">ប្រព័ន្ធទិន្នន័យបទល្មើសព្រហ្មទណ្ឌ</span>
-
+                <span class="brand-name" [routerLink]="['/app']">PHSAR TECH Billing System</span>
                 <div class="search-engine dashboard-nav" style="align-items: flex-start">
                     <form [formGroup]="form" class="search-nav" [ngClass]="{'active':formFocus}">
                         <div class="enroll-filter">
@@ -18,11 +16,11 @@
                             </mat-select>
                         </div>
                         <input type="text" formControlName="search" [matAutocomplete]="auto" (focus)="_onFocus(true)"
-                            (blur)="_onFocus(false)" appFocusSearch placeholder="ស្វែងរកបទល្មើស">
+                            (blur)="_onFocus(false)" appFocusSearch placeholder="What are you looking for...">
                         <mat-autocomplete [displayWith]="displayItem" #auto="matAutocomplete" class="mat-result-items">
                             <div class="mat-auto-header">
-                                <strong>បញ្ជីបទល្មើស</strong>
-                                <span>បទល្មើស</span>
+                                <strong>Search results</strong>
+                                <span>book(s)</span>
                             </div>
                             <mat-option (click)="_optionSelected(state)" *ngFor="let state of store?.data"
                                 [value]="state">
@@ -120,7 +118,7 @@
                     </div>
                 </mat-menu>
             </div>
-            <div class="d-flex">
+            <!-- <div class="d-flex">
                 <div class="nav-menu-wrap">
                     <a mat-button class="nav-menu-item" routerLinkActive="active" [routerLink]="['/home']">សង្ខេបបទល្មើស</a>
                     <a mat-button class="nav-menu-item" routerLinkActive="active" [routerLink]="['/crime']">បញ្ជីបទល្មើស</a>
@@ -131,7 +129,7 @@
                     <button mat-button class="nav-menu-item" routerLinkActive="active">របាយការណ៍</button>
                     <button mat-button class="nav-menu-item" routerLinkActive="active">ទំនាក់ទំនង</button>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
    

@@ -80,11 +80,13 @@ export class Environment {
   fetchUser(key) {
     this.loading = true;
     this.ds.userRef().doc<any>(key).valueChanges().subscribe(doc => {
-      const { role, province } = doc;
-      this.user = doc;
-      this.province = province;
-      this.role = role;
-      this.getRole(role.key)
+      if(doc){
+        const { role, province } = doc;
+        this.user = doc;
+        this.province = province;
+        this.role = role;
+        this.getRole(role.key)
+      }
       this.loading = false;
     });
   }

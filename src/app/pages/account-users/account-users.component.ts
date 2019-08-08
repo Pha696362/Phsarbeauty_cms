@@ -5,8 +5,6 @@ import { Environment } from 'src/app/stores/environment.store';
 import { Component, OnInit } from '@angular/core';
 import { tabs } from 'src/app/dummy/tabs';
 import { Router } from '@angular/router';
-import { AddAccountUserComponent } from 'src/app/dialog/add-account-user/add-account-user.component';
-import { EditAccountUserComponent } from 'src/app/dialog/edit-account-user/edit-account-user.component';
 
 @Component({
   selector: 'app-account-users',
@@ -27,24 +25,24 @@ export class AccountUsersComponent implements OnInit {
   }
 
   create() {
-    let dialogRef = this.dialog.open(AddAccountUserComponent, {
-      data: null,
-      width: '35vw',
-      height: '100vh',
-      role: 'dialog',
-      disableClose: true
-    });
-    dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
+    // let dialogRef = this.dialog.open(AddAccountUserComponent, {
+    //   data: null,
+    //   width: '35vw',
+    //   height: '100vh',
+    //   role: 'dialog',
+    //   disableClose: true
+    // });
+    // dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
   }
 
   update(item) {
-    let dialogRef = this.dialog.open(EditAccountUserComponent, {
-      data: item,
-      width: '35vw',
-      height: '100vh',
-      role: 'dialog',
-    });
-    dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
+    // let dialogRef = this.dialog.open(EditAccountUserComponent, {
+    //   data: item,
+    //   width: '35vw',
+    //   height: '100vh',
+    //   role: 'dialog',
+    // });
+    // dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
   }
 
   delete(item) {

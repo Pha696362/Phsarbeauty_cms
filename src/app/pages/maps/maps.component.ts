@@ -1,4 +1,3 @@
-import { Crime } from './../../stores/crime.store';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -17,10 +16,10 @@ export class MapsComponent implements OnInit {
   lng: number = 104.9285779;
 
   
-  constructor(public store:Crime) { }
+  constructor() { }
 
   ngOnInit() {
-    this.store.fetchData(null);
+    // this.store.fetchData(null);
   }
 
   mapReady($event: any) {
