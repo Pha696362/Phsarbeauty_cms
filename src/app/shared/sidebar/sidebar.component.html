@@ -1,0 +1,328 @@
+<aside class="sidebar">
+    <div class="sidebar-brand" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/']">
+        <div class="brand-logo">
+            <img [src]="logo" alt="PUC">
+        </div>
+        <div class="sbar-brand-name">
+            អគ្គស្នងការដ្ឋាននគរបាលជាតិ
+        </div>
+    </div>
+    <div class="sidebar-header">
+        <div class="header-content">
+            <div class="list-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                [routerLink]="['/app/overview']">
+                <div class="icon">
+                    <i class="material-icons">&#xE88A;</i>
+                </div>
+                <div class="item-name">
+                    សង្ខេបបទល្មើស
+                </div>
+            </div>
+            <div class="sitting" [matMenuTriggerFor]="menusitting">
+                <i class="material-icons">&#xE8B8;</i>
+            </div>
+            <mat-menu #menusitting="matMenu" class="cs-position flr">
+                <div class="menu-content">
+                    <button mat-menu-item>
+                        <mat-icon>dialpad</mat-icon>
+                        <span>Redial</span>
+                    </button>
+                    <button mat-menu-item disabled>
+                        <mat-icon>voicemail</mat-icon>
+                        <span>Check voicemail</span>
+                    </button>
+                    <button mat-menu-item>
+                        <mat-icon>notifications_off</mat-icon>
+                        <span>Disable alerts</span>
+                    </button>
+                </div>
+            </mat-menu>
+        </div>
+    </div>
+    <div class="sidebar-list-wrapper">
+        <mat-accordion [multi]="true">
+            <mat-expansion-panel [expanded]="expansions.apo" (closed)="onClosed(3)" (opened)="onOpened(3)">
+                <mat-expansion-panel-header expandedHeight="58px" collapsedHeight="78px"
+                    [class.active]="expansions?.apo">
+                    <mat-panel-title>
+                        បញ្ជីបទល្មើស
+                    </mat-panel-title>
+                    <mat-panel-description *ngIf="!expansions?.apo">Teaching Assignment, Grade Sheets and
+                        Students</mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="list-content">
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/crime']">
+                            <div class="icon">
+                                <i class="material-icons">credit_card</i>
+                            </div>
+                            <div class="item-name">
+                                បញ្ជីបទល្មើស
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/grade-sheets']">
+                            <div class="icon">
+                                <i class="material-icons">how_to_vote</i>
+                            </div>
+                            <div class="item-name">
+                                Grade Sheets
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/attendances']">
+                            <div class="icon">
+                                <i class="material-icons">timer</i>
+                            </div>
+                            <div class="item-name">
+                                Attendances
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/classroom/']">
+                            <div class="icon">
+                                <i class="material-icons">class</i>
+                            </div>
+                            <div class="item-name">
+                                Classroom
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/salary/']">
+                            <div class="icon">
+                                <i class="material-icons">attach_money</i>
+                            </div>
+                            <div class="item-name">
+                                Salary
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel [expanded]="expansions.epo" (closed)="onClosed(5)" (opened)="onOpened(5)">
+                <mat-expansion-panel-header expandedHeight="58px" collapsedHeight="78px"
+                    [class.active]="expansions?.epo">
+                    <mat-panel-title>
+                        សាលក្រម/ដីការ
+                    </mat-panel-title>
+                    <mat-panel-description *ngIf="!expansions?.epo">Teaching Assignment, Grade Sheets and
+                        Students</mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="list-content">
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active"
+                            [routerLink]="['/app/verdict-declaration']">
+                            <div class="icon">
+                                <i class="material-icons">how_to_vote</i>
+                            </div>
+                            <div class="item-name">
+                                សាលក្រម
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/grade-sheets']">
+                            <div class="icon">
+                                <i class="material-icons">credit_card</i>
+                            </div>
+                            <div class="item-name">
+                                Grade Sheets
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/attendances']">
+                            <div class="icon">
+                                <i class="material-icons">timer</i>
+                            </div>
+                            <div class="item-name">
+                                Attendances
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/classroom/']">
+                            <div class="icon">
+                                <i class="material-icons">class</i>
+                            </div>
+                            <div class="item-name">
+                                Classroom
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/salary/']">
+                            <div class="icon">
+                                <i class="material-icons">attach_money</i>
+                            </div>
+                            <div class="item-name">
+                                Salary
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel [expanded]="expansions.hr" (closed)="onClosed(7)" (opened)="onOpened(7)">
+                <mat-expansion-panel-header expandedHeight="58px" collapsedHeight="78px"
+                    [class.active]="expansions?.hr">
+                    <mat-panel-title>
+                        បញ្ជីប្រជាពលរដ្ឋ
+                    </mat-panel-title>
+                    <mat-panel-description *ngIf="!expansions?.hr">Teaching Assignment, Grade Sheets and
+                        Students</mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="list-content">
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/victim']">
+                            <div class="icon">
+                                <i class="material-icons">credit_card</i>
+                            </div>
+                            <div class="item-name">
+                                ជនរងគ្រោះ
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/suspect']">
+                            <div class="icon">
+                                <i class="material-icons">how_to_vote</i>
+                            </div>
+                            <div class="item-name">
+                                ជនសង្ស័យ
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/suspect-arrested']">
+                            <div class="icon">
+                                <i class="material-icons">timer</i>
+                            </div>
+                            <div class="item-name">
+                                ជនសង្ស័យចាប់ខ្លួន
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/judgment-writer/']">
+                            <div class="icon">
+                                <i class="material-icons">class</i>
+                            </div>
+                            <div class="item-name">
+                                ក្រទ្បាបញ្ជី
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/judge/']">
+                            <div class="icon">
+                                <i class="material-icons">accessibility_new</i>
+                            </div>
+                            <div class="item-name">
+                                ចៅក្រម
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel [expanded]="expansions.enrollment" (closed)="onClosed(1)" (opened)="onOpened(1)">
+                <mat-expansion-panel-header expandedHeight="58px" collapsedHeight="78px"
+                    [class.active]="expansions?.enrollment">
+                    <mat-panel-title>
+                        ផែនទី
+                    </mat-panel-title>
+                    <mat-panel-description *ngIf="!expansions?.enrollment">Teaching Assignment, Grade Sheets and
+                        Students</mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="list-content">
+
+                </div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel [expanded]="expansions.testcenter" (closed)="onClosed(0)" (opened)="onOpened(0)">
+                <mat-expansion-panel-header expandedHeight="58px" collapsedHeight="78px"
+                    [class.active]="expansions?.testcenter">
+                    <mat-panel-title>
+                        គ្រប់គ្រងប្រព័ន្ធ
+                    </mat-panel-title>
+                    <mat-panel-description *ngIf="!expansions?.testcenter">Approval, Admission, Schedules, Members and
+                        Major</mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="list-content">
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/officer']">
+                            <div class="icon">
+                                <i class="material-icons">account_circle</i>
+                            </div>
+                            <div class="item-name">
+                                មន្ត្រីស៊ើបអង្កេត
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="list-item" *ngFor="let item of management">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/data/'+ item.key]">
+                            <div class="icon">
+                                <i class="material-icons">{{item.icon}}</i>
+                            </div>
+                            <div class="item-name">
+                                {{item.name}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/cases']">
+                            <div class="icon">
+                                <i class="material-icons">category</i>
+                            </div>
+                            <div class="item-name">
+                                ប្រភេទបទល្មើស
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/geo']">
+                            <div class="icon">
+                                <i class="material-icons">map</i>
+                            </div>
+                            <div class="item-name">
+                                ភូមិសាស្ត្រតំបន់
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/users']">
+                            <div class="icon">
+                                <i class="material-icons">assignment_ind</i>
+                            </div>
+                            <div class="item-name">
+                                គណនីប៉ូលីស
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/account-users']">
+                            <div class="icon">
+                                <i class="material-icons">assignment_ind</i>
+                            </div>
+                            <div class="item-name">
+                                គណនី​អ្នកប្រើប្រាស់
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+    <div class="sidebar-footer">
+        <div class="sidebar-toggle-button" (click)="togglesidebar()">
+            <div class="arrow-icon"></div>
+        </div>
+    </div>
+</aside>

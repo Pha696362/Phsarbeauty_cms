@@ -1,0 +1,109 @@
+<form [formGroup]="form" class="dialog-wrapper">
+  <div class="dialog-header">
+    <div class="title">
+      កែប្រែទិន្នន័យ
+    </div>
+    <div class="flex1"></div>
+    <a mat-dialog-close class="close-dialog" (click)="dialogRef.close('no')">
+      <i class="material-icons">&#xE14C;</i>
+    </a>
+  </div>
+
+  <div class="dialog-content">
+    <div class="form-wrapper">
+      <div class="ui form">
+        <div class="f-two field">
+          <div class="field">
+            <label>នាមត្រកូល
+              <span class="rq-sign">*</span>
+            </label>
+            <input #focusInput type="text" placeholder="បញ្ចូលនាមត្រកូល" required formControlName="last_name">
+            <div *ngIf="form.controls['last_name'].hasError('required') && form.controls['last_name'].touched"
+              class="error-message">ចន្លោះ​នេះ​ត្រូវតែ​បំពេញ</div>
+          </div>
+          <div class="field">
+            <label>នាមខ្លួន
+              <span class="rq-sign">*</span>
+            </label>
+            <input type="text" placeholder="បញ្ចូលនាមខ្លួន" required formControlName="first_name">
+            <div *ngIf="form.controls['first_name'].hasError('required') && form.controls['first_name'].touched"
+              class="error-message">ចន្លោះ​នេះ​ត្រូវតែ​បំពេញ</div>
+          </div>
+        </div>
+        <div class="f-two field">
+          <div class="field">
+            <label>នាមត្រកូល ជាភាសាខ្មែរ
+            </label>
+            <input type="text" placeholder="បញ្ចូលនាមត្រកូលជាភាសាខ្មែរ" required formControlName="khmer_last_name">
+          </div>
+          <div class="field">
+            <label>នាមខ្លួន ជាភាសាខ្មែរ
+            </label>
+            <input type="text" placeholder="បញ្ចូលនាមខ្លួនជាភាសាខ្មែរ" required formControlName="khmer_first_name">
+          </div>
+        </div>
+        <div class="f-two field">
+          <div class="field">
+            <label>លេខអត្ថ​សញ្ញាណ​ប​ណ្ណ​ជាតិ
+            </label>
+            <input type="text" placeholder="បញ្ចូល លេខអត្ថ​សញ្ញាណ​ប​ណ្ណ​ជាតិ" required formControlName="unique_id">
+          </div>
+          <div class="field">
+            <label>លេខទូរស័ព្ទ
+            </label>
+            <input type="text" placeholder="បញ្ចូល លេខទូរស័ព្ទ" required formControlName="phone">
+          </div>
+        </div>
+
+        <div class="f-two field">
+          <div class="field">
+            <label>ភេទ<span class="rq-sign">*</span></label>
+            <mat-select formControlName="gender" [compareWith]="compareObjects">
+              <mat-option *ngFor="let pro of genderList;" [value]="pro">
+                {{ pro.text }}
+              </mat-option>
+            </mat-select>
+            <div *ngIf="form.controls['gender'].hasError('required') && form.controls['gender'].touched"
+              class="error-message">ចន្លោះ​នេះ​ត្រូវតែ​បំពេញ</div>
+          </div>
+          <div class="field">
+            <label>ថ្ងៃ ខែ ឆ្នាំ កំណើត<span class="rq-sign">*</span></label>
+            <div class="mixfeild">
+              <input type="text" date="true" (click)="dobpicker2.open()" formControlName="dob"
+                [matDatepicker]="dobpicker2" placeholder="Choose a date">
+              <mat-datepicker-toggle matSuffix [for]="dobpicker2"></mat-datepicker-toggle>
+              <mat-datepicker #dobpicker2></mat-datepicker>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>អាសយដ្ឋាន</label>
+          <textarea formControlName="address" cols="30" rows="5"></textarea>
+        </div>
+        <div class="field">
+          <mat-radio-group formControlName="arrested" class="radio-groups">
+            <mat-radio-button *ngFor="let item of arrestList" [value]="item">
+              {{item?.text}}
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="field">
+          <label>បញ្ចូលរូបភាព
+          </label>
+          <input type="file" placeholder="បញ្ចូលរូបភាព" accept='image/*' #file formControlName="file" multiple
+            (change)="onSelectedFile(file.files)">
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="dialog-footer">
+    <div class="flex1"></div>
+    <a mat-dialog-close class="enbutton cancel m-r16" (click)="dialogRef.close('no')">បោះបង់</a>
+    <button type="submit" class="enbutton primary m-r16" [disabled]="!form.valid || process"
+      (click)="create(form.value)">រក្សាទុក</button>
+  </div>
+  <app-spinner *ngIf="process"></app-spinner>
+</form>

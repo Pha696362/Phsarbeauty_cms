@@ -1,0 +1,54 @@
+<div class="crime-action-bar">
+  <button mat-button color="primary" class="add-crime-bnt"
+    (click)="create()">បន្ថែមទិន្នន័យថ្មី</button>
+</div>
+
+<div class="crime-listing-card">
+  <table class="crime-table-listing" *ngIf="store?.judgment?.length>0 && !store?.loading">
+    <tr>
+      <th>ល.រ</th>
+      <th>លេខបទល្មើស</th>
+      <th>លេខ សាលក្រម/ដីការ</th>
+      <th>ចៅក្រម</th>
+      <th>ចៅក្រម ថ្ងៃស៊ើបសួរ</th>
+      <th>ក្រទ្បាបញ្ចី</th>
+      <th>ក្រទ្បាបញ្ចី ថ្ងៃធ្វើ</th>
+      <th>ស្ថានភាព</th>
+      <th></th>
+    </tr>
+    <ng-container *ngFor="let item of store?.judgment ;let i=index">
+      <tr>
+        <td>{{i+1}}</td>
+        <td>{{item?.crime?.crime_no}}</td>
+        <td>{{item?.verdict_no}}</td>
+        <td>{{item?.judge?.full_name}}</td>
+        <td>{{item?.judge_ask_date?.toDate() | date:'short'}}</td>
+        <td>{{item?.judgment_writer?.full_name}}</td>
+        <td>{{item?.judgment_writer_date?.toDate() | date:'short'}}</td>
+        <td>{{item?.judgment_status?.text}}</td>
+        <td>
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+
+            <button mat-menu-item (click)="confirmDone(item)">
+              <mat-icon>done_all</mat-icon>
+              <span>Complete</span>
+            </button>
+            <button mat-menu-item (click)="update(item)">
+              <mat-icon>edit</mat-icon>
+              <span>Edit</span>
+            </button>
+            <button mat-menu-item (click)="delete(store?.selectedCrime?.key, item)">
+              <mat-icon>delete</mat-icon>
+              <span>Delete</span>
+            </button>
+          </mat-menu>
+        </td>
+
+      </tr>
+    </ng-container>
+
+  </table>
+</div>

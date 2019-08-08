@@ -1,0 +1,13 @@
+<div class="crime-summary n-p">
+  <div class="c-person">
+    <div class="avatar-status" [ngClass]="iconCss">
+      <i class="material-icons">book</i>
+    </div>
+    <span class="text">{{title}}</span>
+  </div>
+  <div class="c-judgment-img" *ngIf="data">
+    <span *ngFor="let item of data">
+      <img src="{{item?.url}}">
+    </span>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="crime-action-bar">
+  <button mat-button color="primary" class="add-crime-bnt"
+    (click)="create(store?.selectedCrime)">បន្ថែមទិន្នន័យថ្មី</button>
+</div>
+
+<div class="crime-listing-card">
+  <table class="crime-table-listing" *ngIf="store?.crimeData?.length>0 && !store?.loading">
+    <tr>
+      <th>ល.រ</th>
+      <th>ឈ្មោះ​ពេញ</th>
+      <th>លេខអត្ថ​សញ្ញាណ​ប​ណ្ណ​ជាតិ</th>
+      <th>ភេទ</th>
+      <th>ថ្ងៃខែ​ឆ្នាំ​កំណើត</th>
+      <th>មុខរបរ</th>
+      <th>អាយុ</th>
+      <th></th>
+
+    </tr>
+    <ng-container *ngFor="let item of store?.crimeData ;let i=index">
+      <tr>
+        <td>{{i+1}}</td>
+        <td>{{item?.citizen?.first_name}} {{item?.citizen?.last_name}}</td>
+        <td>{{item?.citizen?.identity_card_type?.text}}</td>
+        <td>{{item?.citizen?.gender?.text}}</td>
+        <td> {{item?.dob?.toDate() | date:'short'}}</td>
+        <td> {{item?.occupation?.name}}</td>
+        <td>
+          {{item?.age}}
+        </td>
+        <td>
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <!-- <button mat-menu-item (click)="update(item)">
+              <mat-icon>edit</mat-icon>
+              <span>Edit</span>
+            </button>
+            <button mat-menu-item (click)="delete(store?.selectedCrime?.key, item)">
+              <mat-icon>delete</mat-icon>
+              <span>Delete</span>
+            </button> -->
+          </mat-menu>
+        </td>
+
+      </tr>
+    </ng-container>
+
+  </table>
+</div>

@@ -1,0 +1,14 @@
+<div class="crime-profile-card">
+  <div class="card-bar d-flex" style="justify-content: space-between">
+    <h3>ទិដ្ឋភាពទូទៅ</h3>
+    <button mat-button [routerLink]="['/crime-form/' + store?.selectedCrime?.key + '/cr-siuation' ]">
+        <mat-icon class="mat-18">print</mat-icon>    
+    </button>
+  </div>
+  <div class="card-content">
+  
+    <div class="tab-side-content">
+        <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

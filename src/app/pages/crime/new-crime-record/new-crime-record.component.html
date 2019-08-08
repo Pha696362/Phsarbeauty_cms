@@ -1,0 +1,50 @@
+<ng-container *mobxAutorun>
+  <div class="dashboard-wrapper">
+    <div class="form-container">
+        <div class="nav-tools">
+          <mat-list role="list" class="list-nav-bar">
+            <a mat-list-item role="listitem" [routerLink]="['/crime/' +communeId +'/'+ crimeId +'/general']" routerLinkActive="active">
+              <i class="material-icons">add</i>
+              ព័ត៍មានស្ដីពីហេតុការណ៏
+            </a>
+            <a mat-list-item role="listitem" [routerLink]="['/crime/' + communeId+'/'+ crimeId +'/properties']" routerLinkActive="active">
+              <i class="material-icons">add</i>
+              ព័ត៌មានស្ដីពី​សម្ភារ
+            </a>
+            <a mat-list-item role="listitem" [routerLink]="['/crime/' + communeId+'/'+ crimeId +'/exhibit']" routerLinkActive="active">
+              <i class="material-icons">add</i>
+              ព័ត៌មានស្ដីពីវត្ថុតាង
+            </a>
+            <a mat-list-item role="listitem" [routerLink]="['/crime/' + communeId+'/'+ crimeId +'/victim']" routerLinkActive="active">
+              <i class="material-icons">add</i>
+              ព័តមានស្ដីពីជនរងគ្រោះ
+            </a>
+            <a mat-list-item role="listitem" [routerLink]="['/crime/' + communeId+'/'+ crimeId +'/suspect']" routerLinkActive="active">
+              <i class="material-icons">add</i>
+              ព័តមានស្ដីពីជនសង្ស័យ
+            </a>
+            <a mat-list-item role="listitem" [routerLink]="['/crime/' + communeId+'/'+ crimeId +'/additional-information']" routerLinkActive="active">
+              <i class="material-icons">add</i>
+              សកម្មភាព និងព័តមានបន្ថែម
+            </a>
+            <a mat-list-item role="listitem" [routerLink]="['/crime/' + communeId+'/'+ crimeId +'/crime-status']" routerLinkActive="active">
+              <i class="material-icons">add</i>
+              បច្ចុប្បន្នភាពបទល្មើស
+            </a>
+            <a mat-list-item role="listitem" [routerLink]="['/crime/' + communeId+'/'+ crimeId +'/suspect-status']" routerLinkActive="active">
+              <i class="material-icons">add</i>
+              បច្ចុប្បន្នភាពឃាត់ខ្លួនជនសង្ស័យ
+            </a>
+            <a mat-list-item role="listitem" [routerLink]="['/crime/' + communeId+'/'+ crimeId +'/print']" routerLinkActive="active">
+              <i class="material-icons">add</i>
+              បោះពុម្ពបទល្មើសព្រហ្មទណ្ឌ
+            </a>
+          </mat-list>
+        </div>
+      <div class="form-groups-detail">
+          <router-outlet></router-outlet>
+      </div>
+     
+    </div>
+  </div>
+</ng-container>

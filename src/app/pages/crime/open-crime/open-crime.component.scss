@@ -1,0 +1,13 @@
+.mat-option-case{
+  &.mat-selection-list{
+    .mat-list-item{
+      width: 100%;
+      background-color: #fff;
+      height: 34px;
+      font-family: "Google Sans",-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif,'Hanuman','Battambang','Siemreap','Moul', cursive;
+    }
+    .mat-list-item-disabled{
+      color:#5f6368;
+    }
+  }
+}

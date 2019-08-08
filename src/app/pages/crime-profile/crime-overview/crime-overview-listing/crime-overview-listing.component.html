@@ -1,0 +1,56 @@
+<div class="overview-header">
+  <h3>មជ្ឈឹម បំពានខាងផ្លូវភេទដទៃទៀត</h3>
+  <p>លេខរៀង 0203012019039</p>
+</div>
+
+<div class="overview-body">
+  <div class="d-info">ព័ត៌មានឧក្រិដ្ឋកម្ម</div>
+  <ul>
+    <li>
+      <span class="title">កើតហេតុនៅ</span>
+      <span class="des">ភូមិ{{store?.selectedCrime?.village?.name}} ឃុំ{{store?.selectedCrime?.village?.commune?.name}}
+        ស្រុក{{store?.selectedCrime?.village?.district?.name}}
+        ខេត្ត{{store?.selectedCrime?.village.province?.name}}</span>
+    </li>
+    <li>
+      <span class="title">ថ្ងៃខែកើតហេតុ</span>
+      <span class="des">{{store?.selectedCrime?.case_happen_date?.toDate()|date:'short'}}</span>
+    </li>
+    <li>
+      <span class="title">ថ្ងៃខែទទួលព័ត៌មាន</span>
+      <span class="des">{{store?.selectedCrime?.case_receive_date?.toDate()|date:'short'}}</span>
+    </li>
+    <li>
+      <span class="title">ពីប្រភព</span>
+      <span class="des">{{store?.selectedCrime?.location?.name}}</span>
+    </li>
+    <li>
+      <span class="title">ទីតាំងកើតហេតុ</span>
+      <span class="des">{{store?.selectedCrime?.location_scene?.name}}</span>
+    </li>
+    <li>
+      <span class="title">មូលហេតុបង្ក</span>
+      <span class="des">{{store?.selectedCrime?.case_reason?.name}}</span>
+    </li>
+    <li>
+      <span class="title">មធ្យោបាយបង្កហេតុ</span>
+      <span class="des">{{store?.selectedCrime?.case_reason_other}}</span>
+    </li>
+    <!-- <li>
+      <span class="title">មធ្យោបាយធ្វើដំណើរ</span>
+      <span class="des" *ngFor="let item of data?.selectedCrime?.weapon">{{item?.name}},</span>
+    </li>
+    <li>
+      <span class="title">អាវុធជាតិផ្ទុះ</span>
+      <span class="des" *ngFor="let item of data?.selectedCrime?.weapon_other">{{item?.name}},</span>
+    </li> -->
+    <li>
+      <span class="title">មធ្យោបាយធ្វើដំណើរ</span>
+      <span class="des">{{store?.selectedCrime?.transportation?.name}}</span>
+    </li>
+    <li>
+      <span class="title">មធ្យោបាយធ្វើដំណើរផ្សេងទៀត</span>
+      <span class="des">{{store?.selectedCrime?.transportation_other}}</span>
+    </li>
+  </ul>
+</div>

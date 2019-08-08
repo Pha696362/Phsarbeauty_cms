@@ -1,0 +1,44 @@
+<div class="crime-summary">
+    <div class="rows header-summary">
+        <div class="avatar-status ic-1">
+            <i class="material-icons">dns</i>
+        </div>
+        <span>បទល្មើស</span>
+    </div>
+    <div class="row-info">
+        <span class="info-title">ហេតុការណ៍</span>
+        <span class="info-text"><strong>{{data?.crime_no}}</strong></span>
+    </div>
+    <div class="row-info">
+        <span class="info-title">កើតហេតុនៅ</span>
+        <span class="info-text">ភូមិ{{data?.village?.name}} ឃុំ{{data?.village?.commune?.name}} ស្រុក{{data?.village?.district?.name}} ខេត្ត{{data?.village.province?.name}}</span>
+    </div>
+    <div class="row-info">
+        <span class="info-title">ប្រភេទបទល្មើស</span>
+        <span class="info-text">{{data?.category?.name}}/{{data?.sub_category?.name}}</span>
+    </div>
+    <div class="row-info">
+        <span class="info-title">ថ្ងៃខែកើតហេតុ</span>
+        <span class="info-text">{{data?.case_happen_date?.toDate()|date:'short'}}</span>
+    </div>
+    <div class="row-info">
+        <span class="info-title">ភូមិសាស្ត្រ</span>
+        <span class="info-text">{{data?.location?.name}}</span>
+    </div>
+    <div class="row-info">
+        <span class="info-title">ទីតាំងកើតហេតុ</span>
+        <span class="info-text">{{data?.location_scene?.name}}</span>
+    </div>
+    <div class="row-info">
+        <span class="info-title">មូលហេតុបង្ក</span>
+        <span class="info-text">{{data?.case_reason?.name}}</span>
+    </div>
+    <div class="row-info">
+        <span class="info-title">អាវុធជាតិផ្ទុះ</span>
+        <span class="info-text" *ngFor="let item of data?.weapon_other">{{item?.name}},</span>
+    </div>
+    <div class="row-info">
+        <span class="info-title">មធ្យោបាយធ្វើដំណើរ</span>
+        <span class="info-text">{{data?.transportation?.name}}</span>
+    </div>
+</div>

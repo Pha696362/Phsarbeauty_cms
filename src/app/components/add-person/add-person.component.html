@@ -1,0 +1,429 @@
+<div class="dialog-wrapper" *mobxAutorun>
+  <div class="dialog-header">
+    <div class="title">
+      បន្ថែមទិន្នន័យថ្មី
+    </div>
+    <div class="flex1"></div>
+    <a mat-dialog-close class="close-dialog" (click)="dialogRef.close('no')">
+      <i class="material-icons">&#xE14C;</i>
+    </a>
+  </div>
+
+  <div class="dialog-content">
+    <div class="form-wrapper">
+      <div class="ui form">
+
+        <mat-horizontal-stepper [linear]="isLinear" #stepper>
+          <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+              <ng-template matStepLabel>ពត័មានផ្ទាល់ខ្លួន</ng-template>
+              <div class="f-two field">
+                <div class="field">
+                  <label>នាមត្រកូល
+                    <span class="rq-sign">*</span>
+                  </label>
+                  <input #focusInput type="text"  placeholder="បញ្ចូល នាមត្រកូល" required
+                    formControlName="last_name">
+                  <div
+                    *ngIf="firstFormGroup.controls['last_name'].hasError('required') && firstFormGroup.controls['last_name'].touched"
+                    class="error-message">This field is required.</div>
+                </div>
+                <div class="field">
+                  <label>នាមខ្លួន
+                    <span class="rq-sign">*</span>
+                  </label>
+                  <input #focusInput type="text" placeholder="បញ្ចូល នាមខ្លួន" required
+                    formControlName="first_name">
+                  <div
+                    *ngIf="firstFormGroup.controls['first_name'].hasError('required') && firstFormGroup.controls['first_name'].touched"
+                    class="error-message">This field is required.</div>
+                </div>
+              </div>
+              <div class="f-two field">
+                <div class="field">
+                  <label>ឈ្មោះហៅក្រៅ
+                  </label>
+                  <input type="text" placeholder="បញ្ចូល ឈ្មោះហៅក្រៅ"  formControlName="nick_name">
+                </div>
+      
+                <div class="field">
+                    <label>ភេទ<span class="rq-sign">*</span></label>
+                    <mat-select formControlName="gender" [compareWith]="compareObjects">
+                      <mat-option *ngFor="let pro of genderList;" [value]="pro">
+                        {{ pro.text }}
+                      </mat-option>
+                    </mat-select>
+                    <div
+                      *ngIf="firstFormGroup.controls['gender'].hasError('required') && firstFormGroup.controls['gender'].touched"
+                      class="error-message">This field is required.</div>
+                  </div>
+              </div>
+
+              <div class="f-two field">
+                  <div class="field">
+                      <label>ថ្ងៃ ខែ ឆ្នាំ កំណើត<span class="rq-sign">*</span></label>
+                      <div class="mixfeild">
+                        <input type="text" date="true" (click)="dobpicker2.open()" formControlName="dob"
+                          [matDatepicker]="dobpicker2" placeholder="Choose a date">
+                        <mat-datepicker-toggle matSuffix [for]="dobpicker2"></mat-datepicker-toggle>
+                        <mat-datepicker #dobpicker2></mat-datepicker>
+                      </div>
+                      <div *ngIf="firstFormGroup.controls['dob'].hasError('required') && firstFormGroup.controls['dob'].touched"
+                      class="error-message">Date
+                      of birth is required.</div>
+                    </div>
+
+              
+                <div class="field">
+                  <label>សញ្ជាតិ<span class="rq-sign">*</span></label>
+                  <mat-select formControlName="nationality" [compareWith]="compareObjects">
+                      <mat-option *ngFor="let country of countryList;" [value]="country">
+                        {{ country.text }}
+                      </mat-option>
+                    </mat-select>
+                  <div
+                    *ngIf="firstFormGroup.controls['nationality'].hasError('required') && firstFormGroup.controls['nationality'].touched"
+                    class="error-message">This field is required.</div>
+                </div>
+              </div>
+              <div class="f-two field">
+                <div class="field">
+                  <label>សាសនា
+                    <span class="rq-sign">*</span>
+                  </label>
+                  <mat-select [compareWith]="compareObjects" formControlName="religion">
+                      <mat-option *ngFor="let data of religionList" [value]="data">
+                          {{data.text}}
+                      </mat-option>
+                  </mat-select>                  <div
+                    *ngIf="firstFormGroup.controls['religion'].hasError('required') && firstFormGroup.controls['religion'].touched"
+                    class="error-message">This field is required.</div>
+                </div>
+                <div class="field">
+                  <label>កម្រិតវប្បធម៌
+                    <span class="rq-sign">*</span>
+                  </label>
+                  <input type="text" placeholder="បញ្ចូល កម្រិតវប្បធម៌" required formControlName="education">
+                  <div
+                    *ngIf="firstFormGroup.controls['education'].hasError('required') && firstFormGroup.controls['education'].touched"
+                    class="error-message">This field is required.</div>
+                </div>
+              </div>
+              <div class="field">
+                <label>លេខទូរស័ព្ទ
+                  <span class="rq-sign">*</span>
+                </label>
+                <input type="text" placeholder="បញ្ចូល លេខទូរស័ព្ទ" required formControlName="phone">
+                <div
+                  *ngIf="firstFormGroup.controls['phone'].hasError('required') && firstFormGroup.controls['phone'].touched"
+                  class="error-message">This field is required.</div>
+              </div>
+
+              <div class="field">
+                <label>អាសយដ្ឋាន</label>
+                <textarea formControlName="address" cols="30" rows="5"></textarea>
+              </div>
+              <div class="field">
+                <label>បញ្ចូលរូបភាព
+                </label>
+                <input type="file" placeholder="បញ្ចូលរូបភាព" accept='image/*' #file formControlName="file" multiple
+                  (change)="onSelectedFile(file.files)">
+                <div
+                  *ngIf="firstFormGroup.controls['file'].hasError('required') && firstFormGroup.controls['file'].touched"
+                  class="error-message">This field is required.</div>
+              </div>
+              <div>
+                
+                  <button mat-button matStepperNext class="enbutton primary" [disabled]="!firstFormGroup.valid">Next</button>
+              </div>
+            </form>
+          </mat-step>
+
+          <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup">
+              <ng-template matStepLabel>បណ្ណសំគាល់ និង ទីកន្លែងកំណើត</ng-template>
+              <div class="f-two field">
+                <div class="field">
+                  <label>បណ្ណសំគាល់<span class="rq-sign">*</span></label>
+                  <mat-select formControlName="id_passport" [compareWith]="compareObjects">
+                    <mat-option *ngFor="let id of idList;" [value]="id">
+                      {{ id.text }}
+                    </mat-option>
+                  </mat-select>
+                  <div
+                    *ngIf="secondFormGroup.controls['id_passport'].hasError('required') && secondFormGroup.controls['id_passport'].touched"
+                    class="error-message">This field is required.</div>
+                </div>
+                <div class="field">
+                  <label>លេខបណ្ណសំគាល់
+                    <span class="rq-sign">*</span>
+                  </label>
+                  <input type="text" placeholder="បញ្ចូល លេខបណ្ណសំគាល់" required
+                    formControlName="unique_id">
+                  <div
+                    *ngIf="secondFormGroup.controls['unique_id'].hasError('required') && secondFormGroup.controls['unique_id'].touched"
+                    class="error-message">This field is required.</div>
+                </div>
+              </div>
+              <div class="field">
+                <label>ផុតកំណត់<span class="rq-sign">*</span></label>
+                <div class="mixfeild">
+                  <input type="text" date="true" (click)="dobpicker.open()" formControlName="id_expire"
+                    [matDatepicker]="dobpicker" placeholder="Choose a date">
+                  <mat-datepicker-toggle matSuffix [for]="dobpicker"></mat-datepicker-toggle>
+                  <mat-datepicker #dobpicker></mat-datepicker>
+                </div>
+                <div
+                *ngIf="secondFormGroup.controls['id_expire'].hasError('required') && secondFormGroup.controls['id_expire'].touched"
+                class="error-message">This field is required.</div>
+              </div>
+
+              <b>ទីកន្លែងកំណើត</b>
+              <div class="field">
+                <label>ប្រទេស
+                  <span class="rq-sign">*</span>
+                </label>
+                <mat-select formControlName="country" [compareWith]="compareObjects">
+                    <mat-option *ngFor="let country of countryList;" [value]="country">
+                      {{ country.text }}
+                    </mat-option>
+                  </mat-select>
+                <div
+                  *ngIf="secondFormGroup.controls['country'].hasError('required') && secondFormGroup.controls['country'].touched"
+                  class="error-message">This field is required.</div>
+              </div> 
+              <div class="f-two field">
+                <div class="field">
+                  <label>រាជធានី​/ខេត្ត </label>
+                  <input type="text"  [matAutocomplete]="autoProvince" placeholder="ជ្រើសរើស រាជធានី​/ខេត្ត" formControlName="province">
+                  <mat-autocomplete (optionSelected)="_onSelectedProvince($event)" #autoProvince="matAutocomplete" [displayWith]="displayItem">
+                      <mat-option *ngFor="let state of filteredStatesProvince | async" [value]="state">
+                          {{state?.name }}
+                      </mat-option>
+                  </mat-autocomplete>
+                  <!-- <div class="error-message" *ngIf="province.hasError('validKey')">
+                      <div>You can only select province from list.</div>
+                  </div> -->
+                  <!-- <div *ngIf="secondFormGroup.controls['province'].hasError('required') && secondFormGroup.controls['province'].touched"
+                              class="error-message">Province is required.</div> -->
+              </div>
+                <div class="field">
+                  <label>ក្រុង/ស្រុក </label>
+                  <input type="text"  [matAutocomplete]="autoDistrict" placeholder="បញ្ចូល ក្រុង/ស្រុក" formControlName="district">
+                  <mat-autocomplete (optionSelected)="_onSelectedDistrict($event)" #autoDistrict="matAutocomplete" [displayWith]="displayItem">
+                      <mat-option *ngFor="let state of filteredStatesDistrict | async" [value]="state">
+                          {{state?.name }}
+                      </mat-option>
+                  </mat-autocomplete>
+                  <!-- <div class="error-message" *ngIf="district.hasError('validKey')">
+                      <div>You can only select district from list.</div>
+                  </div> -->
+                  <!-- <div *ngIf="secondFormGroup.controls['district'].hasError('required') && secondFormGroup.controls['district'].touched"
+                              class="error-message">District is required.</div> -->
+              </div>
+              </div>
+              <div class="f-two field">
+
+                  <div class="field">
+                      <label>ឃុំ/សង្កាត់ </label>
+                      <input type="text"  [matAutocomplete]="autoCommune" placeholder="បញ្ចូល ឃុំ/សង្កាត់" formControlName="commune">
+                      <mat-autocomplete  #autoCommune="matAutocomplete" [displayWith]="displayItem">
+                          <mat-option *ngFor="let state of filteredStatesCommune | async" [value]="state">
+                              {{state?.name }}
+                          </mat-option>
+                      </mat-autocomplete>
+                      <!-- <div class="error-message" *ngIf="commune.hasError('validKey')">
+                          <div>You can only select commune from list.</div>
+                      </div> -->
+                      <!-- <div *ngIf="secondFormGroup.controls['commune'].hasError('required') && secondFormGroup.controls['commune'].touched"
+                                  class="error-message">Commune is required.</div> -->
+                  </div>
+
+                <div class="field">
+                    <label>មណ្ឌល/ភូមិ </label>
+                    <input type="text"  [matAutocomplete]="autoVillage" placeholder="បញ្ចូល មណ្ឌល/ភូមិ" formControlName="village">
+                    <mat-autocomplete  #autoVillage="matAutocomplete" [displayWith]="displayItem">
+                        <mat-option *ngFor="let state of filteredStatesVillage | async" [value]="state">
+                            {{state?.name }}
+                        </mat-option>
+                    </mat-autocomplete>
+                    <!-- <div class="error-message" *ngIf="village.hasError('validKey')">
+                        <div>You can only select village from list.</div>
+                    </div> -->
+                    <!-- <div *ngIf="secondFormGroup.controls['village'].hasError('required') && secondFormGroup.controls['village'].touched"
+                                class="error-message">village is required.</div> -->
+                </div>
+              
+              </div>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext class="enbutton primary" [disabled]="!secondFormGroup.valid">Next</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step>
+            <form [formGroup]="thirdFormGroup">
+            <ng-template matStepLabel>ចំណុចសំគាល់ពិសេស</ng-template>
+            <div class="f-two field">
+              <div class="field">
+                <label>កំពស់
+                </label>
+                <input type="text" placeholder="បញ្ចូល កំពស់"  formControlName="height">
+              </div>
+
+              <div class="field">
+                <label>ទំងន់
+                </label>
+                <input type="text" placeholder="បញ្ចូល ទំងន់"  formControlName="weight">
+              </div>
+            </div>
+            <div class="f-two field">
+              <div class="field">
+                <label>សម្បុរ
+                </label>
+                <input type="text" placeholder="បញ្ចូល សម្បុរ"  formControlName="color">
+              </div>
+              <div class="field">
+                <label>សក់
+                </label>
+                <input type="text" placeholder="បញ្ចូល សក់"  formControlName="hair">
+              </div>
+            </div>
+
+            <div class="f-two field">
+
+              <div class="field">
+                <label>ច្រមុះ
+                </label>
+                <input type="text" placeholder="បញ្ចូល ច្រមុះ"  formControlName="nose">
+              </div>
+              <div class="field">
+                <label>ត្រចៀក
+                </label>
+                <input type="text" placeholder="បញ្ចូល ត្រចៀក"  formControlName="ear">
+              </div>
+            </div>
+
+            <div class="f-two field">
+              <div class="field">
+                <label>ចិញ្ចើម
+                </label>
+                <input type="text" placeholder="បញ្ចូល ចិញ្ចើម"  formControlName="eyebrow">
+              </div>
+              <div class="field">
+                <label>ភ្នែក
+                </label>
+                <input type="text" placeholder="បញ្ចូល ភ្នែក"  formControlName="eye">
+              </div>
+            </div>
+
+
+            <div class="f-two field">
+              <div class="field">
+                <label>មុខ
+                </label>
+                <input type="text" placeholder="បញ្ចូល មុខ"  formControlName="face">
+              </div>
+              <div class="field">
+                <label>មាត់
+                </label>
+                <input type="text" placeholder="បញ្ចូល មាត់"  formControlName="mouth">
+              </div>
+            </div>
+
+            <div class="f-two field">
+              <div class="field">
+                <label>ចង្ការ
+                </label>
+                <input type="text" placeholder="បញ្ចូល ចង្ការ"  formControlName="chin">
+              </div>
+              <div class="field">
+                <label>សំលាក
+                </label>
+                <input type="text" placeholder="បញ្ចូល សំលាក"  formControlName="mark">
+              </div>
+            </div>
+
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext class="enbutton primary" [disabled]="!thirdFormGroup.valid">Next</button>
+              </div>
+           
+          </form>
+          </mat-step>
+
+
+
+          <mat-step>
+              <form [formGroup]="forthFormGroup">
+              <ng-template matStepLabel>អាណាព្យាបាល</ng-template>
+                <b>ឪពុកឈ្មោះ</b>
+              <div class="f-two field">
+                <div class="field">
+                  <label>គោត្តនាម
+                  </label>
+                  <input type="text" placeholder="បញ្ចូល គោត្តនាម"  formControlName="father_last_name">
+                </div>
+  
+                <div class="field">
+                  <label>នាម
+                  </label>
+                  <input type="text" placeholder="បញ្ចូល នាម"  formControlName="father_first_name">
+                </div>
+              </div>
+                <div class="field">
+                  <label>ឈ្មោះហៅក្រៅ
+                  </label>
+                  <input type="text" placeholder="បញ្ចូល ឈ្មោះហៅក្រៅ"  formControlName="father_nick_name">
+                </div>
+
+              <b>ម្តាយឈ្មោះ</b>
+              <div class="f-two field">
+                <div class="field">
+                  <label>គោត្តនាម
+                  </label>
+                  <input type="text" placeholder="បញ្ចូល គោត្តនាម"  formControlName="mother_last_name">
+                </div>
+  
+                <div class="field">
+                  <label>នាម
+                  </label>
+                  <input type="text" placeholder="បញ្ចូល នាម"  formControlName="mother_first_name">
+                </div>
+              </div>
+                <div class="field">
+                  <label>ឈ្មោះហៅក្រៅ
+                  </label>
+                  <input type="text" placeholder="បញ្ចូល ឈ្មោះហៅក្រៅ"  formControlName="mother_nick_name">
+                </div>
+  
+             
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+              </div>
+            </form>
+            </mat-step>
+        </mat-horizontal-stepper>
+
+
+      </div>
+    </div>
+
+  </div>
+  <div class="dialog-footer">
+    <div class="flex1"></div>
+    <a mat-dialog-close class="enbutton cancel m-r16" (click)="dialogRef.close('no')">បោះបង់</a>
+    <!-- <button type="submit" class="enbutton primary m-r16" [disabled]="!forthFormGroup.valid || process"
+      (click)="create(form.value)">រក្សាទុក</button> -->
+
+      <button mat-button (click)="create(true)" [disabled]="!secondFormGroup.valid || process"
+      class="enbutton primary mr-4">save new</button>
+  <button mat-button (click)="create(false)" [disabled]="!secondFormGroup.valid || process"
+      class="enbutton primary  mr-4">save
+      close</button>
+
+      
+  </div>
+  <app-spinner *ngIf="fs?.process"></app-spinner>
+</div>

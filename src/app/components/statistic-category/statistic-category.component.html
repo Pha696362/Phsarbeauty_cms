@@ -1,0 +1,14 @@
+<div class="filter-penal">
+  <h4>របាយការណ៍សង្ខេបតាមបទល្មើស</h4>
+  <div class="filter-box">
+    <button mat-button (click)="defaultPeriod()" class="filter-panel-item">
+      បទល្មើសទាំងអស់
+    </button>
+  </div>
+  <h4>ជ្រើសរើសបទល្មើស</h4>
+  <mat-radio-group (change)="changePeriod($event)" class="example-radio-group">
+    <mat-radio-button [value]="item" class="option-category" *ngFor="let item of data">
+      {{item?.name}}
+    </mat-radio-button>
+  </mat-radio-group>
+</div>

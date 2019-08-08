@@ -1,0 +1,84 @@
+<div class="group-pcover">
+  <div class="crime-pcover">
+    <!-- <div class="bg-path"
+      style="background-image: url('https://www.gstatic.com/mobilesdk/180530_mobilesdk/zerostates/in-app_messaging_back@2x.png')">
+    </div> -->
+    <div class="container">
+      <div class="up-profile" routerLinkActive="active" [routerLink]="['/app/crime/all']">
+        <img src="../../../assets/images/cnp-logo.png" alt="" />
+      </div>
+      <div class="up-info">
+        <h1 class="name">
+          {{store?.selectedCrime?.category?.name}}
+          <span class="alternate_name">{{store?.selectedCrime?.sub_category?.name}} </span>
+        </h1>
+      </div>
+      <div class="timeLineHeadLine">
+        <button mat-flat-button class="up-btn" [disabled]="store?.selectedCrime?.crime_status?.key===3"
+          [routerLink]="['/new-case/hold/' + crimeKey]">
+          កែសម្រួល
+        </button>
+        <button mat-flat-button class="up-btn" [disabled]="store?.selectedCrime?.crime_status?.key===3"
+          (click)="closeCrime()">
+          បិទករណី
+        </button>
+      </div>
+    </div>
+
+  </div>
+  <div class="crime-pnav">
+    <nav mat-tab-nav-bar class="container">
+      <a mat-tab-link *ngFor="let link of crimeTabs" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
+        [active]="rla.isActive">{{ link.label }}</a>
+    </nav>
+  </div>
+
+</div>
+<div class="container">
+  <div class="timeline-tab-content">
+    <div class="timeline-summary">
+      <div class="crime-summary p-1">
+        <div class="rows header-summary">
+          <div class="avatar-status" [ngClass]="store?.selectedCrime?.crime_status?.key === 1? 'ic-4': 'ic-5'">
+            <i class="material-icons">grade</i>
+          </div>
+          <span class="s-text"
+            [ngClass]="store?.selectedCrime?.crime_status?.key === 1? 'r2': 'r1'">{{store?.selectedCrime?.crime_status?.text}}</span>
+        </div>
+      </div>
+      <div class="crime-summary">
+        <div class="rows header-summary">
+          <div class="avatar-status">
+            <i class="material-icons">public</i>
+          </div>
+          <span>ចំនួនជនរងគ្រោះនិងជនសង្ស័យ</span>
+        </div>
+        <div class="row-info">
+          <i class="material-icons">supervised_user_circle</i>
+          <span class="m-l">ជនរងគ្រោះ <strong>{{store?.victimImg?.length}} /
+              {{store?.selectedCrime?.victim_total?store?.selectedCrime?.victim_total:0}} </strong></span>
+          <span *ngIf="store?.selectedCrime?.victim_female_total">ស្រី<strong>
+              {{store?.selectedCrime?.victim_female_total}}</strong></span>
+        </div>
+        <div class="row-info">
+          <i class="material-icons">directions_walk</i>
+          <span class="m-l">ជនសង្ស័យ <strong>{{store?.suspectImg?.length}} /
+              {{store?.selectedCrime?.suspect_total?store?.selectedCrime?.suspect_total:0}} </strong></span>
+          <span *ngIf="store?.selectedCrime?.suspect_female_total">ស្រី<strong>
+              {{store?.selectedCrime?.suspect_female_total}}</strong></span>
+        </div>
+      </div>
+      <!-- <app-crime-general [data]="store?.selectedCrime"></app-crime-general> -->
+      <app-crime-person iconCss="ic-1" title="ជនរងគ្រោះ" [data]="store?.victimImg" *ngIf="store?.victimImg?.length>0">
+      </app-crime-person>
+      <app-crime-person iconCss="ic-2" title="ជនសង្ស័យ" [data]="store?.suspectImg" *ngIf="store?.suspectImg?.length>0">
+      </app-crime-person>
+      <app-crime-judgment-display iconCss="ic-4" title="សាលដីកា" [data]="store?.judgmentImg"
+        *ngIf="store?.judgmentImg?.length>0">
+      </app-crime-judgment-display>
+    </div>
+    <div class="timeline-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

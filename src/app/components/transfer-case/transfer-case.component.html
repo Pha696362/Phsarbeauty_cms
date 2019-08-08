@@ -1,0 +1,117 @@
+<form [formGroup]="form" class="dialog-wrapper">
+  <div class="dialog-header">
+    <div class="title">
+      ផ្ទេរឧក្រិដ្ឋកម្ម
+    </div>
+    <div class="flex1"></div>
+    <a mat-dialog-close class="close-dialog" (click)="dialogRef.close('no')">
+      <i class="material-icons">&#xE14C;</i>
+    </a>
+  </div>
+
+  <div class="dialog-content">
+    <div class="form-wrapper">
+      <div class="ui form">
+
+        <div class="f-two field">
+          <div class="field">
+            <label>ខេត្ត <span class="rq-sign">*</span></label>
+            <input type="text" [matAutocomplete]="autoProvince" placeholder="ជ្រើសរើសខេត្ត" formControlName="province">
+            <mat-autocomplete (optionSelected)="_onSelectedProvince($event)" #autoProvince="matAutocomplete"
+              [displayWith]="displayItem">
+              <mat-option *ngFor="let state of filteredStatesProvince | async" [value]="state">
+                {{state?.name }}
+              </mat-option>
+            </mat-autocomplete>
+            <div class="error-message" *ngIf="province.hasError('validKey')">
+              <div>អ្នកអាចជ្រើសរើសបាននៅក្នុងទិន្នន័យនេះតែប៉ុណ្ណោះ</div>
+            </div>
+            <div *ngIf="form.controls['province'].hasError('required') && form.controls['province'].touched"
+              class="error-message">ចន្លោះ​នេះ​ត្រូវតែ​បំពេញ</div>
+          </div>
+          <div class="field">
+            <label>ស្រុក<span class="rq-sign">*</span></label>
+            <input type="text" [matAutocomplete]="autoDistrict" placeholder="ជ្រើសរើសស្រុក" formControlName="district">
+            <mat-autocomplete (optionSelected)="_onSelectedDistrict($event)" #autoDistrict="matAutocomplete"
+              [displayWith]="displayItem">
+              <mat-option *ngFor="let state of filteredStatesDistrict | async" [value]="state">
+                {{state?.name }}
+              </mat-option>
+            </mat-autocomplete>
+            <div class="error-message" *ngIf="province.hasError('validKey')">
+              <div>អ្នកអាចជ្រើសរើសបាននៅក្នុងទិន្នន័យនេះតែប៉ុណ្ណោះ</div>
+            </div>
+            <div *ngIf="form.controls['province'].hasError('required') && form.controls['province'].touched"
+              class="error-message">ចន្លោះ​នេះ​ត្រូវតែ​បំពេញ</div>
+          </div>
+        </div>
+
+        <div class="f-two field">
+          <div class="field">
+            <label>ឃុំ <span class="rq-sign">*</span></label>
+            <input type="text" [matAutocomplete]="autoCommune" placeholder="ជ្រើសរើសឃុំ" formControlName="commune">
+            <mat-autocomplete (optionSelected)="_onSelectedCommune($event)" #autoCommune="matAutocomplete"
+              [displayWith]="displayItem">
+              <mat-option *ngFor="let state of filteredStatesCommune | async" [value]="state">
+                {{state?.name }}
+              </mat-option>
+            </mat-autocomplete>
+            <div class="error-message" *ngIf="province.hasError('validKey')">
+              <div>អ្នកអាចជ្រើសរើសបាននៅក្នុងទិន្នន័យនេះតែប៉ុណ្ណោះ</div>
+            </div>
+            <div *ngIf="form.controls['province'].hasError('required') && form.controls['province'].touched"
+              class="error-message">ចន្លោះ​នេះ​ត្រូវតែ​បំពេញ</div>
+          </div>
+          <div class="field">
+            <label>ភូមិ <span class="rq-sign">*</span></label>
+            <input type="text" [matAutocomplete]="autoVillage" placeholder="ជ្រើសរើសភូមិ" formControlName="village">
+            <mat-autocomplete #autoVillage="matAutocomplete" [displayWith]="displayItem">
+              <mat-option *ngFor="let state of filteredStatesVillage | async" [value]="state">
+                {{state?.name }}
+              </mat-option>
+            </mat-autocomplete>
+            <div class="error-message" *ngIf="village.hasError('validKey')">
+              <div>អ្នកអាចជ្រើសរើសបាននៅក្នុងទិន្នន័យនេះតែប៉ុណ្ណោះ</div>
+            </div>
+            <div *ngIf="form.controls['village'].hasError('required') && form.controls['village'].touched"
+              class="error-message">ចន្លោះ​នេះ​ត្រូវតែ​បំពេញ</div>
+          </div>
+        </div>
+        <div class="field">
+          <label>អ្នកប្រើបន្ទាប់ <span class="rq-sign">*</span></label>
+          <input type="text" [matAutocomplete]="autoUser" placeholder="ជ្រើសរើសអ្នកប្រើបន្ទាប់" formControlName="user">
+          <mat-autocomplete #autoUser="matAutocomplete" [displayWith]="displayNameItem">
+            <mat-option *ngFor="let state of filteredStatesUser | async" [value]="state">
+              {{state?.displayName }}
+            </mat-option>
+          </mat-autocomplete>
+          <div class="error-message" *ngIf="user.hasError('validKey')">
+            <div>អ្នកអាចជ្រើសរើសបាននៅក្នុងទិន្នន័យនេះតែប៉ុណ្ណោះ</div>
+          </div>
+          <div *ngIf="form.controls['user'].hasError('required') && form.controls['user'].touched"
+            class="error-message">ចន្លោះ​នេះ​ត្រូវតែ​បំពេញ</div>
+        </div>
+        <div class="field">
+          <label>ថ្ងៃ ខែ ឆ្នាំ ផ្ទេរ<span class="rq-sign">*</span></label>
+          <div class="mixfeild">
+            <input type="text" date="true" (click)="dobpicker2.open()" formControlName="transfer_date"
+              [matDatepicker]="dobpicker2" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="dobpicker2"></mat-datepicker-toggle>
+            <mat-datepicker #dobpicker2></mat-datepicker>
+          </div>
+        </div>
+        <div class="field">
+          <label>ការពិពណ៌នាខ្លី</label>
+          <textarea formControlName="note" placeholder="បញ្ចូលការពិពណ៌នា" cols="30" rows="5"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dialog-footer">
+    <div class="flex1"></div>
+    <a mat-dialog-close class="enbutton cancel m-r16" (click)="dialogRef.close('no')">បោះបង់</a>
+    <button class="enbutton primary m-r16" [disabled]="!form.valid || store?.process"
+      (click)="create(form.value)">រក្សាទុក</button>
+  </div>
+  <app-spinner *ngIf="store?.process || geo?.process"></app-spinner>
+</form>

@@ -1,0 +1,68 @@
+
+<div class="crime-action-bar">
+    <button mat-button color="primary" class="add-crime-bnt" (click)="create(store?.selectedCrime)">បន្ថែមទិន្នន័យថ្មី</button>
+    <!-- កត់ត្រាយានជំនិះ -->
+  </div>
+  
+  <div class="crime-listing-card" *ngIf="store?.crimeData?.length>0 && !store?.loading">
+    <table class="crime-table-listing">
+  
+   
+      <tr>
+        <th>ល.រ</th>
+        <th>ប្រភេទ</th>      
+        <ng-container *ngIf="listType?.key == 1 || listType?.key == 4">
+            <th>ម៉ាក</th>
+            <th>ស្លាកលេខ</th>
+            <th>សេរី</th>
+            <th>ពណ៌</th>
+            <th>លេខតួ</th>
+            <th>លេខម៉ាស៊ីន</th>
+        </ng-container>
+        <ng-container *ngIf="listType?.key == 2 || listType?.key == 3">
+            <th>ចំនួនបាត់បង</th>
+            <th>រកឃើញ</th>
+        </ng-container>
+        <th>កំណត់សម្គាល់</th>
+        <th></th>
+      </tr>
+      <ng-container *ngFor="let item of store?.crimeData ;let i=index">
+        <tr>
+          <td>{{i+1}}</td>
+          <td>{{item?.category}}</td>
+        
+          <ng-container *ngIf="listType?.key == 1 || listType?.key == 4">
+              <td>{{item?.brand}}</td>
+              <td>{{item?.number_plates}}</td>
+              <td>{{item?.series}}</td>
+              <td>{{item?.v_color}}</td>
+              <td>{{item?.body_number}}</td>
+              <td>{{item?.host_number}}</td>
+          </ng-container>
+          <ng-container *ngIf="listType?.key == 2 || listType?.key == 3">
+              <td>{{item?.missing_number}}</td>
+              <td>{{item?.found}}</td>
+          </ng-container>
+          <td>{{item?.note}}</td>
+          <td>
+              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="delete(store?.selectedCrime?.key, item)">
+                    <mat-icon>delete</mat-icon>
+                    <span>Delete</span>
+                  </button>
+            
+                  <button mat-menu-item (click)="update(item)">
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit</span>
+                  </button>
+            
+                </mat-menu>
+          </td>
+        </tr>
+      </ng-container>
+      
+    </table>
+  </div>

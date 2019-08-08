@@ -1,0 +1,380 @@
+<form [formGroup]="form" class="dialog-wrapper" *mobxAutorun>
+  <div class="training-dialog-wrapper">
+    <div class="training-content">
+      <div class="app-onboarding-sidebar l-45">
+        <div class="app-onboarding-header">
+          <a mat-icon-button mat-button (click)="_goBack()">
+            <mat-icon aria-label="clear">arrow_back</mat-icon>
+          </a>
+          <div class="app-onboarding-title">បញ្ជូលព័ត៌មានបទល្មើសថ្មី</div>
+        </div>
+        <div class="app-onboarding-wide-content fix-ml">
+          <div class="dialog-content">
+            <div class="form-wrapper">
+              <div class="ui form">
+                <div class="field">
+                  <label class="no-m">លេខករណី</label>
+                </div>
+                <div class="f-three field">
+                  <div class="field dis">
+                    <div class="form-controls">
+                      <input type="text" formControlName="crime_commune_no" />
+                    </div>
+                  </div>
+                  <div class="field dis">
+                    <div class="form-controls">
+                      <input type="text" formControlName="crime_year_no" />
+                    </div>
+                  </div>
+                  <div class="field dis">
+                    <div class="form-controls">
+                      <input type="text" formControlName="crime_index" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="no-m">ប្រភេទបទល្មើស</label>
+                </div>
+                <div class="f-two field">
+                  <div class="field">
+                    <input type="text" [matAutocomplete]="autoCategory" placeholder="ជ្រើសរើស ប្រភេទបទល្មើស"
+                      formControlName="category">
+                    <mat-autocomplete (optionSelected)="categorySelected($event)" #autoCategory="matAutocomplete"
+                      [displayWith]="displayName">
+                      <mat-option *ngFor="let data of filteredCategoriesStates | async" [value]="data">
+                        <div class="flex-box">
+                          <span class="start-flex">{{data?.name}}</span>
+                        </div>
+                      </mat-option>
+                    </mat-autocomplete>
+                    <div class="error-message" *ngIf="category.hasError('validKey')">
+                      <div>You can only select category from list.</div>
+                    </div>
+                    <div
+                      *ngIf="!form.get('category').valid && form.get('category').touched && !category.hasError('validKey')"
+                      class="error-message">
+                      This field is required.
+                    </div>
+                  </div>
+                  <div class="field">
+                    <input type="text" [matAutocomplete]="autoSubCategory" placeholder="ជ្រើសរើស បទល្មើស"
+                      formControlName="sub_category">
+                    <mat-autocomplete #autoSubCategory="matAutocomplete" [displayWith]="displayName">
+                      <mat-option *ngFor="let data of filteredSubCategoriesStates | async" [value]="data">
+                        <div class="flex-box">
+                          <span class="start-flex">{{data?.name}}</span>
+                        </div>
+                      </mat-option>
+                    </mat-autocomplete>
+                    <div class="error-message" *ngIf="sub_category.hasError('validKey')">
+                      <div>You can only select province from list.</div>
+                    </div>
+                    <div
+                      *ngIf="!form.get('sub_category').valid && form.get('sub_category').touched && !sub_category.hasError('validKey')"
+                      class="error-message">
+                      This field is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="f-two field">
+                  <div class="field">
+                    <label>ថ្ងៃ ខែ ឆ្នាំ ទទួលព័ត៍មាន</label>
+                    <div class="mixfeild">
+                      <input type="text" date="true" (click)="dobpicker1.open()" formControlName="case_receive_date"
+                        [matDatepicker]="dobpicker1" placeholder="Choose a date">
+                      <mat-datepicker-toggle matSuffix [for]="dobpicker1"></mat-datepicker-toggle>
+                      <mat-datepicker #dobpicker1></mat-datepicker>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label>ម៉ោង ទទួលព័ត៍មាន</label>
+                    <input type="text" formControlName="case_receive_date_time" placeholder="បញ្ចូល ម៉ោងទទួលព័ត៍មាន">
+                  </div>
+                </div>
+
+                <div class="f-two field">
+                  <div class="field">
+                    <label>ថ្ងៃ ខែ ឆ្នាំ កើតហេតុ</label>
+                    <div class="mixfeild">
+                      <input type="text" date="true" (click)="dobpicker2.open()" formControlName="case_happen_date"
+                        [matDatepicker]="dobpicker2" placeholder="Choose a date">
+                      <mat-datepicker-toggle matSuffix [for]="dobpicker2"></mat-datepicker-toggle>
+                      <mat-datepicker #dobpicker2></mat-datepicker>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label>ម៉ោង កើតហេតុ</label>
+                    <input type="text" formControlName="case_happen_date_time" placeholder="បញ្ចូល ម៉ោងកើតហេតុ">
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label>ពីប្រភព</label>
+                  <div class="form-controls">
+                    <textarea formControlName="case_receive_from" cols="30" rows="3"></textarea>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label>ភូមិ<span class="rq-sign">*</span></label>
+                  <input type="text" [matAutocomplete]="autoVillage" placeholder="ជ្រើសរើស ភូមិ"
+                    formControlName="village">
+                  <mat-autocomplete #autoVillage="matAutocomplete" [displayWith]="displayName">
+                    <mat-option *ngFor="let data of filteredVillageStates | async" [value]="data">
+                      <div class="flex-box">
+                        <span class="start-flex">{{data?.name}}</span>
+                      </div>
+                    </mat-option>
+                  </mat-autocomplete>
+                  <div class="error-message" *ngIf="village.hasError('validKey')">
+                    <div>You can only select category from list.</div>
+                  </div>
+                  <div
+                    *ngIf="!form.get('village').valid && form.get('village').touched && !village.hasError('validKey')"
+                    class="error-message">
+                    This field is required.
+                  </div>
+                </div>
+
+                <div class="f-two field">
+                  <div class="field">
+                    <label>ផ្លូវ</label>
+                    <div class="form-controls">
+                      <input type="text" formControlName="road" />
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label>ផ្ទះលេខ</label>
+                    <div class="form-controls">
+                      <input type="text" formControlName="house_no" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="f-two field">
+                  <div class="field">
+                    <label>ភូមិសាស្ត្រ<span class="rq-sign">*</span></label>
+                    <input type="text" [matAutocomplete]="autoLocation" placeholder="ជ្រើសរើស ភូមិសាស្ត្រ"
+                      formControlName="location">
+                    <mat-autocomplete #autoLocation="matAutocomplete" [displayWith]="displayName">
+                      <mat-option *ngFor="let data of filteredLocationsStates | async" [value]="data">
+                        <div class="flex-box">
+                          <span class="start-flex">{{data?.name}}</span>
+                        </div>
+                      </mat-option>
+                    </mat-autocomplete>
+                    <div class="error-message" *ngIf="location.hasError('validKey')">
+                      <div>You can only select category from list.</div>
+                    </div>
+                    <div
+                      *ngIf="!form.get('location').valid && form.get('location').touched && !location.hasError('validKey')"
+                      class="error-message">
+                      This field is required.
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label>ទីតាំងកើតហេតុ<span class="rq-sign">*</span></label>
+                    <input type="text" [matAutocomplete]="autoLocationScene" placeholder="ជ្រើសរើស ទីតាំងកើតហេតុ"
+                      formControlName="location_scene">
+                    <mat-autocomplete #autoLocationScene="matAutocomplete" [displayWith]="displayName">
+                      <mat-option *ngFor="let data of filteredLocationScenesStates | async" [value]="data">
+                        <div class="flex-box">
+                          <span class="start-flex">{{data?.name}}</span>
+                        </div>
+                      </mat-option>
+                    </mat-autocomplete>
+                    <div class="error-message" *ngIf="location_scene.hasError('validKey')">
+                      <div>You can only select category from list.</div>
+                    </div>
+                    <div
+                      *ngIf="!form.get('location_scene').valid && form.get('location_scene').touched && !location_scene.hasError('validKey')"
+                      class="error-message">
+                      This field is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="f-two field">
+                  <div class="field">
+                    <label>ឈ្មោះទីតាំង</label>
+                    <div class="form-controls">
+                      <input type="text" placeholder="ឈ្មោះទីតាំង" formControlName="location_name" />
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label>មូលហេតុបង្ករ<span class="rq-sign">*</span></label>
+                    <input type="text" [matAutocomplete]="autoReason" placeholder="ជ្រើសរើស មូលហេតុបង្ករ"
+                      formControlName="case_reason">
+                    <mat-autocomplete #autoReason="matAutocomplete" [displayWith]="displayName">
+                      <mat-option *ngFor="let data of filteredCaseReasonsStates | async" [value]="data">
+                        <div class="flex-box">
+                          <span class="start-flex">{{data?.name}}</span>
+                        </div>
+                      </mat-option>
+                    </mat-autocomplete>
+                    <div class="error-message" *ngIf="case_reason.hasError('validKey')">
+                      <div>You can only select category from list.</div>
+                    </div>
+                    <div
+                      *ngIf="!form.get('case_reason').valid && form.get('case_reason').touched && !case_reason.hasError('validKey')"
+                      class="error-message">
+                      This field is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label>មូលហេតុបង្ករផ្សេងទៀត</label>
+                  <div class="form-controls">
+                    <textarea formControlName="case_reason_other" cols="30" rows="3"></textarea>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label>មធ្យោបាយបង្ករហេតុ អាវុធ ជាតិផ្ទុះ</label>
+                  <mat-selection-list class="m-b40 list" formControlName="weapon">
+                    <mat-list-option [selected]="crimeDoc?.weapon|selectedItemByKey:item?.key" class="child"
+                      checkboxPosition="before" [value]="item" *ngFor="let item of weaponList">
+                      {{item?.name}}
+                    </mat-list-option>
+                  </mat-selection-list>
+                </div>
+
+                <div class="field">
+                  <label>មធ្យោបាយផ្សេងទៀត</label>
+                  <mat-selection-list class="m-b40 list" formControlName="weapon_other">
+                    <mat-list-option [selected]="crimeDoc?.weapon_other|selectedItemByKey:item?.key" class="child"
+                      [value]="item" *ngFor="let item of weaponOtherList">
+                      {{item?.name}}
+                    </mat-list-option>
+                  </mat-selection-list>
+                </div>
+
+                <div class="field">
+                  <label>មធ្យោបាយធ្វើដំណើរ<span class="rq-sign">*</span></label>
+                  <input type="text" [matAutocomplete]="autoTransportation" placeholder="ជ្រើសរើស មធ្យោបាយធ្វើដំណើរ"
+                    formControlName="transportation">
+                  <mat-autocomplete #autoTransportation="matAutocomplete" [displayWith]="displayName">
+                    <mat-option *ngFor="let data of filteredTransportationStates | async" [value]="data">
+                      <div class="flex-box">
+                        <span class="start-flex">{{data?.name}}</span>
+                      </div>
+                    </mat-option>
+                  </mat-autocomplete>
+                  <div class="error-message" *ngIf="transportation.hasError('validKey')">
+                    <div>You can only select category from list.</div>
+                  </div>
+                  <div
+                    *ngIf="!form.get('transportation').valid && form.get('transportation').touched && !transportation.hasError('validKey')"
+                    class="error-message">
+                    This field is required.
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label>មធ្យោបាយធ្វើដំណើរផ្សេងទៀត</label>
+                  <div class="form-controls">
+                    <textarea formControlName="transportation_other" cols="30" rows="3"></textarea>
+                  </div>
+                </div>
+
+                <div class="f-two field">
+                  <div class="field">
+                    <label>ចំនួនជនរងគ្រោះ</label>
+                    <div class="form-controls">
+                      <input type="number" formControlName="victim_total" />
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label>ស្រី</label>
+                    <div class="form-controls">
+                      <input type="number" formControlName="victim_female_total" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="f-two field">
+                  <div class="field">
+                    <label>ចំនួនជនសង្ស័យ</label>
+                    <div class="form-controls">
+                      <input type="number" formControlName="suspect_total" />
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label>ស្រី</label>
+                    <div class="form-controls">
+                      <input type="number" formControlName="suspect_female_total" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="f-two field">
+                  <div class="field">
+                    <label>ជនសង្ស័យចាប់ខ្លួនបាន</label>
+                    <div class="form-controls">
+                      <input type="number" formControlName="suspect_arrested_total" />
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label>ស្រី</label>
+                    <div class="form-controls">
+                      <input type="number" formControlName="suspect_arrested_female_total" />
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="app-onboarding-content-container">
+        <h4>ទីតាំងកើតហេតុ</h4>
+        <div class="small-form">
+          <div class="map-card">
+            <agm-map [latitude]="currentLat" [usePanning]='true' [zoom]="zoom" (mapReady)="mapReady($event)"
+              (mapClick)="onMaker($event)" [longitude]="currentLong">
+              <agm-marker [latitude]="currentLat" [longitude]="currentLong"></agm-marker>
+            </agm-map>
+          </div>
+          <div class="form-wrapper">
+            <div class="ui form">
+              <div class="field">
+                <label>Latitude
+                  <span class="rq-sign">*</span>
+                </label>
+                <input type="text" autocomplete="off" class="lg-input" placeholder="Enter a valid code" required
+                  formControlName="latitude">
+                <div *ngIf="form.controls['latitude'].hasError('required') && form.controls['latitude'].touched"
+                  class="error-message">
+                  This field is required.
+                </div>
+              </div>
+              <div class="field">
+                <label>Longitude
+                  <span class="rq-sign">*</span>
+                </label>
+                <input type="text" autocomplete="off" class="lg-input" placeholder="Enter a valid code" required
+                  formControlName="longitude">
+                <div *ngIf="form.controls['longitude'].hasError('required') && form.controls['longitude'].touched"
+                  class="error-message">
+                  This field is required.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dialog-footer f-btn-page">
+    <a mat-button class="enbutton cancel m-r16" (click)="_goBack()">Cancel</a>
+    <button mat-button color="primary" class="enbutton cancel m-r16" [disabled]="!form.valid"
+      (click)="create(form.value)">Save</button>
+  </div>
+  <app-spinner *ngIf="store?.process"></app-spinner>
+</form>

@@ -1,0 +1,138 @@
+<nav class="nav-header">
+    <div class="app-container">
+        <div class="brand-name" [routerLink]="['/app']">
+            <img src="../../../assets/images/cnp-logo.png" />
+        </div>
+        <div class="d-flex" style="flex-direction: column; flex:1">
+            <div class="d-flex">
+
+                <span class="brand-name">ប្រព័ន្ធទិន្នន័យបទល្មើសព្រហ្មទណ្ឌ</span>
+
+                <div class="search-engine dashboard-nav" style="align-items: flex-start">
+                    <form [formGroup]="form" class="search-nav" [ngClass]="{'active':formFocus}">
+                        <div class="enroll-filter">
+                            <mat-select formControlName="searchType" [compareWith]="compareObjects">
+                                <mat-option *ngFor="let item of filterBy;" [value]="item">
+                                    {{ item.text }}
+                                </mat-option>
+                            </mat-select>
+                        </div>
+                        <input type="text" formControlName="search" [matAutocomplete]="auto" (focus)="_onFocus(true)"
+                            (blur)="_onFocus(false)" appFocusSearch placeholder="ស្វែងរកបទល្មើស">
+                        <mat-autocomplete [displayWith]="displayItem" #auto="matAutocomplete" class="mat-result-items">
+                            <div class="mat-auto-header">
+                                <strong>បញ្ជីបទល្មើស</strong>
+                                <span>បទល្មើស</span>
+                            </div>
+                            <mat-option (click)="_optionSelected(state)" *ngFor="let state of store?.data"
+                                [value]="state">
+                                <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false"
+                                    style="height: 32px; width: 32px; display: block; fill: rgb(255, 180, 0);">
+                                    <path
+                                        d="m17.61 13.4-2.49-.68c-2.76-.75-.51-2.87-2.88-3.51l-2.88-.78a.9.9 0 0 0 -1.1.62l-1.27 4.54 3.81 1.04c2.37.64.13 2.76 2.88 3.51l2.72.74 3.26.89z">
+                                    </path>
+                                    <path
+                                        d="m1.5 22a .52.52 0 0 1 -.13-.02.5.5 0 0 1 -.35-.61l5.21-19.02a.5.5 0 0 1 .61-.35l6.92 1.88a2.02 2.02 0 0 1 1.65 2.06c.08.69.13 1.15 1.23 1.45l5.98 1.63a.5.5 0 0 1 .2.86l-4.55 4.04 1.86 5.78a.5.5 0 0 1 -.61.64l-5.98-1.63a2.29 2.29 0 0 1 -1.96-2.3c-.07-.66-.11-.99-.92-1.21l-3.82-1.04a.5.5 0 1 1 .25-.97h.01l3.82 1.04a2.03 2.03 0 0 1 1.65 2.07c.08.69.13 1.15 1.23 1.45l5.1 1.39-1.67-5.22a.5.5 0 0 1 .14-.53l4.11-3.64-5.09-1.39a2.29 2.29 0 0 1 -1.96-2.3c-.07-.66-.11-.99-.92-1.21l-6.44-1.75-5.08 18.54a.5.5 0 0 1 -.48.37z"
+                                        fill="#484848"></path>
+                                </svg>
+                                <span class="flex1 mat-space">{{state?.crime_no}}, {{state?.category?.name}} /
+                                    {{state?.sub_category?.name}}</span>
+                                <!-- <small>{{state?.case_receive_date?.toDate()|date:'medium'}}</small> -->
+                            </mat-option>
+                            <mat-option disabled class="mat-empty-result" *ngIf="!loading && store?.data?.length===0">
+                                <img
+                                    src="https://mobilecenter.azureedge.net/generated/img/no-filtered-apps-5e1a9c8b30813a99f20a80479de65977.svg">
+                                <h3>No data found with current keyword.</h3>
+                            </mat-option>
+                        </mat-autocomplete>
+                        <button mat-icon-button (click)="_onSearch(form.value)">
+                            <mat-icon aria-label="search">search</mat-icon>
+                        </button>
+                    </form>
+                </div>
+
+                <button mat-button mat-icon-button [matMenuTriggerFor]="menumsg" class="cs-mat-menu-item">
+                    <mat-icon>mail</mat-icon>
+                </button>
+                <mat-menu #menumsg="matMenu" class="cs-matmenu-content" backdropClass="cs-matmenu-backdrop">
+                    <div class="mat-menu-bar" (click)="$event.stopPropagation();">
+                        <h3 class="m-title">Memo</h3>
+
+                    </div>
+                    <div class="mat-menu-body">
+                        <mat-list>
+
+                        </mat-list>
+                    </div>
+                </mat-menu>
+
+                <button mat-button mat-icon-button [matMenuTriggerFor]="menunoti" class="cs-mat-menu-item">
+                    <mat-icon>notifications</mat-icon>
+                </button>
+
+                <mat-menu #menunoti="matMenu" class="cs-matmenu-content" backdropClass="cs-matmenu-backdrop">
+                    <div class="mat-menu-bar" (click)="$event.stopPropagation();">
+                        <h3 class="m-title">Notifications</h3>
+                        <button mat-icon-button>
+                            <mat-icon aria-label="settings">settings</mat-icon>
+                        </button>
+                    </div>
+                    <div class="mat-menu-body">
+
+                        <p class="text-center p-4">No Notifications</p>
+
+                    </div>
+                </mat-menu>
+
+
+                <button mat-icon-button [matMenuTriggerFor]="menuuser" class="cs-mat-menu-item"
+                    style="margin-right:0 !important">
+
+                    <div class="click-avatar">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/puconline-c176c.appspot.com/o/avata%2Fphoto-1512904384.jpeg?alt=media&token=de1dd163-40e2-4117-8a6e-522b66f85e95"
+                            alt="">
+                    </div>
+                </button>
+                <mat-menu #menuuser="matMenu" class="cs-matmenu-content auto user-menu-content"
+                    backdropClass="cs-matmenu-backdrop">
+                    <div class="mat-menu-bar" (click)="$event.stopPropagation();">
+                        <div class="d-flex">
+                            <div class="mat-user-avatar">
+                                <img src="https://firebasestorage.googleapis.com/v0/b/puconline-c176c.appspot.com/o/avata%2Fphoto-1512904384.jpeg?alt=media&token=de1dd163-40e2-4117-8a6e-522b66f85e95"
+                                    alt="">
+                            </div>
+                            <div class="mat-user-info">
+                                <h3>{{env?.user?.full_name}}</h3>
+                                <p>{{env?.user?.email}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mat-menu-body">
+                        <mat-list>
+                            <mat-list-item (click)="logOut()">
+                                <mat-icon mat-list-icon class="app-icon black">input</mat-icon>
+                                <div mat-line class="d-flex">
+                                    Sign Out
+                                </div>
+                            </mat-list-item>
+
+                        </mat-list>
+                    </div>
+                </mat-menu>
+            </div>
+            <div class="d-flex">
+                <div class="nav-menu-wrap">
+                    <a mat-button class="nav-menu-item" routerLinkActive="active" [routerLink]="['/home']">សង្ខេបបទល្មើស</a>
+                    <a mat-button class="nav-menu-item" routerLinkActive="active" [routerLink]="['/crime']">បញ្ជីបទល្មើស</a>
+                    <a mat-button class="nav-menu-item" routerLinkActive="active" [routerLink]="['/judgement']">បញ្ជីសាលដីកា</a>
+                    <button mat-button class="nav-menu-item" routerLinkActive="active">បញ្ជីប្រជាពលរដ្ឋ</button>
+                    <button mat-button class="nav-menu-item" routerLinkActive="active">ភ្នាក់ងារស៊ើបអង្កេត</button>
+                    <button mat-button class="nav-menu-item" routerLinkActive="active">គ្រប់គ្រងប្រព័ន្ធ</button>
+                    <button mat-button class="nav-menu-item" routerLinkActive="active">របាយការណ៍</button>
+                    <button mat-button class="nav-menu-item" routerLinkActive="active">ទំនាក់ទំនង</button>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</nav>

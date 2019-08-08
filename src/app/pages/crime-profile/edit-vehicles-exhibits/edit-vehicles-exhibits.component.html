@@ -1,0 +1,141 @@
+<form [formGroup]="form" class="dialog-wrapper">
+  <div class="dialog-header">
+    <div class="title">
+      កែប្រែទិន្នន័យ
+    </div>
+    <div class="flex1"></div>
+    <a mat-dialog-close class="close-dialog" (click)="dialogRef.close('no')">
+      <i class="material-icons">&#xE14C;</i>
+    </a>
+  </div>
+
+  <div class="dialog-content">
+    <div class="form-wrapper">
+      <div class="ui form">
+          <ng-container *ngIf="data?.type?.key != 2">
+              <div class="field">
+                  <label>ប្រភេទ
+                    <span class="rq-sign">*</span>
+                  </label>
+                  <input type="text" placeholder="បញ្ចូល ប្រភេទ" required formControlName="category">
+                  <div *ngIf="form.controls['category'].hasError('required') && form.controls['category'].touched"
+                    class="error-message">This field is required.</div>
+                </div>
+                <div class="field">
+                  <label>ម៉ាក
+                    <span class="rq-sign">*</span>
+                  </label>
+                  <input type="text" placeholder="បញ្ចូល ម៉ាក" required formControlName="brand">
+                  <div *ngIf="form.controls['brand'].hasError('required') && form.controls['brand'].touched"
+                    class="error-message">This field is required.</div>
+                </div>
+                <div class="field">
+                  <label>ស្លាកលេខ
+                    <!-- <span class="rq-sign">*</span> -->
+                  </label>
+                  <input type="text" placeholder="បញ្ចូល ស្លាកលេខ" formControlName="number_plates">
+                  <div *ngIf="form.controls['number_plates'].hasError('required') && form.controls['number_plates'].touched"
+                    class="error-message">This field is required.</div>
+                </div>
+        
+                <div class="field">
+                  <label>សេរី
+                    <!-- <span class="rq-sign">*</span> -->
+                  </label>
+                  <input type="text" placeholder="បញ្ចូល សេរី" formControlName="series">
+                  <div *ngIf="form.controls['series'].hasError('required') && form.controls['series'].touched"
+                    class="error-message">This field is required.</div>
+                </div>
+                <div class="field">
+                  <label>ពណ៌
+                    <!-- <span class="rq-sign">*</span> -->
+                  </label>
+                  <input type="text" placeholder="បញ្ចូល ពណ៌" formControlName="v_color">
+                  <div *ngIf="form.controls['v_color'].hasError('required') && form.controls['v_color'].touched"
+                    class="error-message">This field is required.</div>
+                </div>
+                <div class="field">
+                  <label>លេខតួ
+                    <!-- <span class="rq-sign">*</span> -->
+                  </label>
+                  <input type="text" placeholder="បញ្ចូល លេខតួ" formControlName="body_number">
+                  <div *ngIf="form.controls['body_number'].hasError('required') && form.controls['body_number'].touched"
+                    class="error-message">This field is required.</div>
+                </div>
+                <div class="field">
+                  <label>លេខម៉ាស៊ីន
+                    <!-- <span class="rq-sign">*</span> -->
+                  </label>
+                  <input type="text" placeholder="បញ្ចូល លេខម៉ាស៊ីន" formControlName="host_number">
+                  <div *ngIf="form.controls['host_number'].hasError('required') && form.controls['host_number'].touched"
+                    class="error-message">This field is required.</div>
+                </div>
+                <div class="field">
+                  <label>កំណត់សម្គាល់
+                    <!-- <span class="rq-sign">*</span> -->
+                  </label>
+                  <textarea placeholder="បញ្ចូល កំណត់សម្គាល់" formControlName="note"></textarea>
+
+                  <div *ngIf="form.controls['note'].hasError('required') && form.controls['note'].touched"
+                    class="error-message">This field is required.</div>
+                </div>
+          </ng-container>
+          <ng-container *ngIf="data?.type?.key == 2">
+              <div class="field">
+                <label>ប្រភេទ
+                  <span class="rq-sign">*</span>
+                </label>
+                <input type="text" placeholder="បញ្ចូល ប្រភេទ" required formControlName="category">
+                <div *ngIf="form.controls['category'].hasError('required') && form.controls['category'].touched"
+                  class="error-message">This field is required.</div>
+              </div>
+              <div class="field">
+                <label>ម៉ាក
+                  <span class="rq-sign">*</span>
+                </label>
+                <input type="text" placeholder="បញ្ចូល ម៉ាក" required formControlName="brand">
+                <div *ngIf="form.controls['brand'].hasError('required') && form.controls['brand'].touched"
+                  class="error-message">This field is required.</div>
+              </div>
+              <div class="field">
+                <label>លេខកូដ
+                  <!-- <span class="rq-sign">*</span> -->
+                </label>
+                <input type="text" placeholder="បញ្ចូល លេខកូដ" formControlName="code">
+                <div *ngIf="form.controls['code'].hasError('required') && form.controls['code'].touched"
+                  class="error-message">This field is required.</div>
+              </div>
+      
+              <div class="field">
+                <label>ឆ្នាំផលិត
+                  <!-- <span class="rq-sign">*</span> -->
+                </label>
+                <input type="text" placeholder="បញ្ចូល ឆ្នាំផលិត" formControlName="year_manufacture">
+                <div *ngIf="form.controls['year_manufacture'].hasError('required') && form.controls['year_manufacture'].touched"
+                  class="error-message">This field is required.</div>
+              </div>
+            
+              <div class="field">
+                <label>កំណត់សម្គាល់
+                  <!-- <span class="rq-sign">*</span> -->
+                </label>
+                <textarea placeholder="បញ្ចូល កំណត់សម្គាល់" formControlName="note"></textarea>
+               
+                <div *ngIf="form.controls['note'].hasError('required') && form.controls['note'].touched"
+                  class="error-message">This field is required.</div>
+              </div>
+            </ng-container>
+
+        
+      </div>
+    </div>
+
+  </div>
+  <div class="dialog-footer">
+    <div class="flex1"></div>
+    <a mat-dialog-close class="enbutton cancel m-r16" (click)="dialogRef.close('no')">បោះបង់</a>
+    <button type="submit" class="enbutton primary m-r16" [disabled]="!form.valid || process"
+      (click)="create(form.value)">រក្សាទុក</button>
+  </div>
+  <app-spinner *ngIf="process"></app-spinner>
+</form>

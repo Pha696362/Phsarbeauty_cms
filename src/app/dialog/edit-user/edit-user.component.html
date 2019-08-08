@@ -1,0 +1,58 @@
+<p>
+  edit-user works!
+</p>
+<form [formGroup]="form" class="dialog-wrapper">
+  <div class="dialog-header">
+    <div class="title">
+      Add New Account
+    </div>
+    <div class="flex1"></div>
+    <a mat-dialog-close class="close-dialog" (click)="dialogRef.close('no')">
+      <i class="material-icons">&#xE14C;</i>
+    </a>
+  </div>
+
+  <div class="dialog-content">
+    <div class="form-wrapper">
+      <div class="ui form">
+        <div class="field">
+          <label>Name
+            <span class="rq-sign">*</span>
+          </label>
+          <input #focusInput type="text" class="lg-input" placeholder="Enter full name" required formControlName="name">
+          <div *ngIf="form.controls['name'].hasError('required') && form.controls['name'].touched" class="error-message">This field is required.</div>
+          <div *ngIf="form.controls['name'].hasError('nameAvailable')" class="error-message">This code is taken. Try another.</div>
+        </div>
+        <div class="field">
+          <label>Email
+            <span class="rq-sign">*</span>
+          </label>
+          <input type="text" class="lg-input" placeholder="Enter a valid email" required formControlName="shortName">
+          <div *ngIf="form.controls['shortName'].hasError('required') && form.controls['shortName'].touched" class="error-message">This field is required.</div>
+        </div>
+        <div class="field">
+          <label>Phone number
+            <span class="rq-sign">*</span>
+          </label>
+          <input type="number" class="lg-input" placeholder="Enter a valid phone number" required formControlName="shortName">
+          <div *ngIf="form.controls['shortName'].hasError('required') && form.controls['shortName'].touched" class="error-message">This field is required.</div>
+        </div>
+        <div class="field">
+          <mat-checkbox [formControl]="isPhone">Sign in app by phone number</mat-checkbox>
+        </div>
+        <div class="field">
+          <label>Description</label>
+          <textarea formControlName="description" cols="30" rows="5"></textarea>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="dialog-footer">
+    <div class="flex1"></div>
+    <a mat-dialog-close class="enbutton cancel m-r16" (click)="dialogRef.close('no')">Cancel</a>
+    <button type="submit" class="enbutton primary m-r16" [disabled]="!form.valid || process" (click)="create(form.value)">Save New</button>
+    <button class="enbutton primary m-r16" [disabled]="!form.valid || process" (click)="create(form.value)">Save Close</button>
+  </div>
+  <app-spinner *ngIf="store?.process"></app-spinner>
+</form>

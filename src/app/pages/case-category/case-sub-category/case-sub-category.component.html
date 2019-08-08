@@ -1,0 +1,124 @@
+<div class="page-section full-page" *mobxAutorun>
+  <ng-container *ngIf="!store.selectedCategory && !store.loading">
+    <app-not-found></app-not-found>
+  </ng-container>
+
+    <div class="panel-secondary">
+      <div class="navigation">
+        <div class="header">
+          <div class="top-title">
+            <h1>ប្រភេទបទល្មើស</h1>
+            <span>Create district, commune and village here.</span>
+          </div>
+        </div>
+        <div class="grid-header">
+          <div class="header-icon">
+            <div class="app-icon-app">
+              <span>{{store?.selectedCategory?.name?.trim().substring(0,1)}}</span>
+            </div>
+          </div>
+          <h1>{{store?.selectedCategory?.name}}</h1>
+        </div>
+        <div class="list-items">
+          <button [routerLink]="['/app/cases/category/' + item?.Id]" [ngClass]="{active:item.Id===store.selectedCategory?.Id}"
+            mat-button *ngFor="let item of store.data">
+            {{item.name}}
+          </button>
+        </div>
+      </div>
+
+      <div class="page-page">
+        <div class="page-content">
+          <div class="top-bar">
+            <h1>{{store?.selectedCategory?.name}}</h1>
+            <div class="flex1"></div>
+            <button mat-icon-button [routerLink]="['/app/store/provinces']">
+              <mat-icon aria-label="close">close</mat-icon>
+            </button>
+          </div>
+          <div class="page-page-content">
+            <div class="do-more">
+              <div class="grid-col-xs column">
+                <h4>Create District of {{store?.selectedCategory?.name}} Province</h4>
+                <div class="sub-title">Set up continuous exports of your data to Oxswot Core service for further analysis or extended retention.</div>
+              </div>
+              <div class="grid-col-xs">
+                <img alt="puccloud" role="presentation" src="https://mobilecenter.azureedge.net/generated/img/analytics-export-illustration-14813f2e8490f4d729bbd79998bd51a6.svg">
+              </div>
+            </div>
+            <div class="new-data">
+              <button mat-raised-button (click)="create()">
+                <i class="material-icons">add</i>New Sub Category</button>
+            </div>
+
+            <div class="page-section" *ngIf="store.subCategory?.length>0 && !store.loading">
+              <div class="card-wrapper tab">
+                <div class="tb-content overview">
+                  <div class="card-header">
+                    <div class="card-item">
+                      <div class="card-col10">
+                        <div class="flex-block">
+                          No
+                        </div>
+                      </div>
+                      <div class="card-col30">
+                        <div class="flex-block">
+                          Name
+                        </div>
+                      </div>
+                      <div class="card-col50">
+                        <div class="flex-block">
+                          Description
+                        </div>
+                      </div>
+                      <div class="card-col10"></div>
+                    </div>
+                  </div>
+
+                  <div class="card-content">
+                    <ng-container *ngFor="let item of store.subCategory;let i=index">
+                      <div class="card-item">
+                        <div class="card-col10">
+                          <div class="flex-block">
+                            {{i+1}}
+                          </div>
+                        </div>
+                        <div class="card-col30">
+                          <div class="flex-block">
+                            <strong>{{item?.name}}</strong>
+                          </div>
+                        </div>
+                        <div class="card-col50">
+                          <div class="flex-block">
+                            {{item?.description}}
+                          </div>
+                        </div>
+                        <div class="card-col10">
+                          <div class="card-list-action">
+                            <button mat-icon-button [matMenuTriggerFor]="menu">
+                              <i class="material-icons">more_vert</i>
+                            </button>
+                            <mat-menu #menu="matMenu">
+                              <button mat-menu-item (click)="delete(item)">
+                                <mat-icon>delete</mat-icon>
+                                <span>Delete</span>
+                              </button>
+                              <button mat-menu-item (click)="update(item)">
+                                <mat-icon>edit</mat-icon>
+                                <span>Edit</span>
+                              </button>
+                            </mat-menu>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <app-spinner *ngIf="store?.loading"></app-spinner>
+</div>
