@@ -46,6 +46,7 @@ export class AddCoverSlideComponent implements OnInit {
       this.store.updateFileUrl(this.ds.slideRef(), this.data, this.fileName, file, (success, error) => {
         if (success) {
           this.snackBar.open('Cover has been updated.', 'done', { duration: 2500 });
+          this.dialogRef.close();
         }
         else {
           alert(error)

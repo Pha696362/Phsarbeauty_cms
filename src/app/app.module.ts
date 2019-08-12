@@ -103,6 +103,7 @@ import { BookComponent } from './pages/book/book.component';
 import { AddNewBookComponent } from './pages/book/add-new-book/add-new-book.component';
 import { AddCoverSlideComponent } from './pages/slide/add-cover-slide/add-cover-slide.component';
 import { AddNewCoverBookComponent } from './pages/book/add-new-cover-book/add-new-cover-book.component';
+import { AddNewPdfBookComponent } from './pages/book/add-new-pdf-book/add-new-pdf-book.component';
 
 @NgModule({
   declarations: [
@@ -172,6 +173,7 @@ import { AddNewCoverBookComponent } from './pages/book/add-new-cover-book/add-ne
     AddNewBookComponent,
     AddCoverSlideComponent,
     AddNewCoverBookComponent,
+    AddNewPdfBookComponent,
   ],
   entryComponents: [
     ModalWarningComponent,

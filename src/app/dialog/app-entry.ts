@@ -5,6 +5,7 @@ import { AddNewSlideComponent } from './../pages/slide/add-new-slide/add-new-sli
 import { AddNewGenreComponent } from './../pages/genre/add-new-genre/add-new-genre.component';
 import { AddNewTagComponent } from './../pages/tags/add-new-tag/add-new-tag.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { AddNewPdfBookComponent } from '../pages/book/add-new-pdf-book/add-new-pdf-book.component';
 
 export const APP_ENTRY_COMPONENTS=[
   AddUserComponent,
@@ -13,5 +14,6 @@ export const APP_ENTRY_COMPONENTS=[
   AddNewSlideComponent,
   AddNewBookComponent,
   AddCoverSlideComponent,
-  AddNewCoverBookComponent
+  AddNewCoverBookComponent,
+  AddNewPdfBookComponent,
 ]

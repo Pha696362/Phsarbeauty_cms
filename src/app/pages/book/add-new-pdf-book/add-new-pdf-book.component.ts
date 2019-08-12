@@ -8,17 +8,17 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-add-new-cover-book',
-  templateUrl: './add-new-cover-book.component.html',
-  styleUrls: ['./add-new-cover-book.component.scss']
+  selector: 'app-add-new-pdf-book',
+  templateUrl: './add-new-pdf-book.component.html',
+  styleUrls: ['./add-new-pdf-book.component.scss']
 })
-export class AddNewCoverBookComponent implements OnInit {
+export class AddNewPdfBookComponent implements OnInit {
   uploadPercent: Observable<number>;
   downloadURL: Observable<string>;
   fileName: string;
 
   constructor(
-    public dialogRef: MatDialogRef<AddNewCoverBookComponent>,
+    public dialogRef: MatDialogRef<AddNewPdfBookComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private storage: AngularFireStorage,
     public env: Environment,
@@ -42,9 +42,9 @@ export class AddNewCoverBookComponent implements OnInit {
 
   update() {
     this.downloadURL.subscribe(file => {
-      this.store.updateFileUrl(this.ds.bookRef(), this.data, this.fileName, file, (success, error) => {
+      this.store.updateDocUrl(this.ds.bookRef(), this.data, this.fileName, file, (success, error) => {
         if (success) {
-          this.snackBar.open('Cover has been updated.', 'done', { duration: 2500 });
+          this.snackBar.open('Doc has been updated.', 'done', { duration: 2500 });
           this.dialogRef.close();
         }
         else {

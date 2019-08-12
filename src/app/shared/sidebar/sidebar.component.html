@@ -94,122 +94,122 @@
 
                 </div>
             </mat-expansion-panel>
-            <mat-expansion-panel [expanded]="expansions.scholarship" (closed)="onClosed(6)" (opened)="onOpened(6)">
-                    <mat-expansion-panel-header expandedHeight="58px" collapsedHeight="78px"
-                        [class.active]="expansions?.scholarship">
-                        <mat-panel-title>
-                            Billing
-                        </mat-panel-title>
-                        <mat-panel-description *ngIf="!expansions?.scholarship">Store, Books, Slides, Genres and Tags
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <div class="list-content">
-                        <div class="list-item">
-                            <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/books']">
-                                <div class="icon">
-                                    <i class="material-icons">local_library</i>
-                                </div>
-                                <div class="item-name">
-                                    Books
-                                </div>
+            <!-- <mat-expansion-panel [expanded]="expansions.scholarship" (closed)="onClosed(6)" (opened)="onOpened(6)">
+                <mat-expansion-panel-header expandedHeight="58px" collapsedHeight="78px"
+                    [class.active]="expansions?.scholarship">
+                    <mat-panel-title>
+                        Billing
+                    </mat-panel-title>
+                    <mat-panel-description *ngIf="!expansions?.scholarship">Store, Books, Slides, Genres and Tags
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="list-content">
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/books']">
+                            <div class="icon">
+                                <i class="material-icons">local_library</i>
+                            </div>
+                            <div class="item-name">
+                                Books
                             </div>
                         </div>
-                        <div class="list-item">
-                            <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/slides']">
-                                <div class="icon">
-                                    <i class="material-icons">slideshow</i>
-                                </div>
-                                <div class="item-name">
-                                    Slides
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list-item">
-                            <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/genres']">
-                                <div class="icon">
-                                    <i class="material-icons">supervised_user_circle</i>
-                                </div>
-                                <div class="item-name">
-                                    Genres
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list-item">
-                            <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/tags']">
-                                <div class="icon">
-                                    <i class="material-icons">visibility</i>
-                                </div>
-                                <div class="item-name">
-                                    Tags
-                                </div>
-                            </div>
-                        </div>
-    
                     </div>
-                </mat-expansion-panel>
-                <mat-expansion-panel [expanded]="expansions.hr" (closed)="onClosed(7)" (opened)="onOpened(7)">
-                        <mat-expansion-panel-header expandedHeight="58px" collapsedHeight="78px"
-                            [class.active]="expansions?.hr">
-                            <mat-panel-title>
-                                Reports
-                            </mat-panel-title>
-                            <mat-panel-description *ngIf="!expansions?.hr">Store, Books, Slides, Genres and Tags
-                            </mat-panel-description>
-                        </mat-expansion-panel-header>
-                        <div class="list-content">
-                            <div class="list-item">
-                                <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/store']">
-                                    <div class="icon">
-                                        <i class="material-icons">shopping_basket</i>
-                                    </div>
-                                    <div class="item-name">
-                                        App
-                                    </div>
-                                </div>
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/slides']">
+                            <div class="icon">
+                                <i class="material-icons">slideshow</i>
                             </div>
-                            <div class="list-item">
-                                <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/books']">
-                                    <div class="icon">
-                                        <i class="material-icons">local_library</i>
-                                    </div>
-                                    <div class="item-name">
-                                        Books
-                                    </div>
-                                </div>
+                            <div class="item-name">
+                                Slides
                             </div>
-                            <div class="list-item">
-                                <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/slides']">
-                                    <div class="icon">
-                                        <i class="material-icons">slideshow</i>
-                                    </div>
-                                    <div class="item-name">
-                                        Slides
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-item">
-                                <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/genres']">
-                                    <div class="icon">
-                                        <i class="material-icons">supervised_user_circle</i>
-                                    </div>
-                                    <div class="item-name">
-                                        Genres
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-item">
-                                <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/tags']">
-                                    <div class="icon">
-                                        <i class="material-icons">visibility</i>
-                                    </div>
-                                    <div class="item-name">
-                                        Tags
-                                    </div>
-                                </div>
-                            </div>
-        
                         </div>
-                    </mat-expansion-panel>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/genres']">
+                            <div class="icon">
+                                <i class="material-icons">supervised_user_circle</i>
+                            </div>
+                            <div class="item-name">
+                                Genres
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/tags']">
+                            <div class="icon">
+                                <i class="material-icons">visibility</i>
+                            </div>
+                            <div class="item-name">
+                                Tags
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel [expanded]="expansions.hr" (closed)="onClosed(7)" (opened)="onOpened(7)">
+                <mat-expansion-panel-header expandedHeight="58px" collapsedHeight="78px"
+                    [class.active]="expansions?.hr">
+                    <mat-panel-title>
+                        Reports
+                    </mat-panel-title>
+                    <mat-panel-description *ngIf="!expansions?.hr">Store, Books, Slides, Genres and Tags
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="list-content">
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/store']">
+                            <div class="icon">
+                                <i class="material-icons">shopping_basket</i>
+                            </div>
+                            <div class="item-name">
+                                App
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/books']">
+                            <div class="icon">
+                                <i class="material-icons">local_library</i>
+                            </div>
+                            <div class="item-name">
+                                Books
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/slides']">
+                            <div class="icon">
+                                <i class="material-icons">slideshow</i>
+                            </div>
+                            <div class="item-name">
+                                Slides
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/genres']">
+                            <div class="icon">
+                                <i class="material-icons">supervised_user_circle</i>
+                            </div>
+                            <div class="item-name">
+                                Genres
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/tags']">
+                            <div class="icon">
+                                <i class="material-icons">visibility</i>
+                            </div>
+                            <div class="item-name">
+                                Tags
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </mat-expansion-panel> -->
         </mat-accordion>
     </div>
     <div class="sidebar-footer">

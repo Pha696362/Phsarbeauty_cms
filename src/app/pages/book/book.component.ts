@@ -8,6 +8,7 @@ import { Bookstore } from './../../stores/bookstore';
 import { tabs } from './../../dummy/tabs';
 import { Component, OnInit } from '@angular/core';
 import { IGenre, IBook } from 'src/app/interfaces/bookstore';
+import { AddNewPdfBookComponent } from './add-new-pdf-book/add-new-pdf-book.component';
 
 @Component({
   selector: 'app-book',
@@ -31,6 +32,8 @@ export class BookComponent implements OnInit {
     this.store.fetchData(this.ds.bookRef());
   }
 
+  
+
   create() {
     let dialogRef = this.dialog.open(AddNewBookComponent, {
       data: null,
@@ -42,8 +45,19 @@ export class BookComponent implements OnInit {
     dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
   }
 
-  cover(item) {
+  cover_upload(item) {
     let dialogRef = this.dialog.open(AddNewCoverBookComponent, {
+      data: item,
+      width: '35vw',
+      height: '100vh',
+      role: 'dialog',
+      disableClose: true,
+    });
+    dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
+  }
+
+  pdf_upload(item) {
+    let dialogRef = this.dialog.open(AddNewPdfBookComponent, {
       data: item,
       width: '35vw',
       height: '100vh',

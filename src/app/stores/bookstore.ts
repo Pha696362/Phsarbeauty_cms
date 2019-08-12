@@ -33,6 +33,7 @@ export class Bookstore {
   fetchData(ref: AngularFirestoreCollection) {
     this.loading = true;
     ref.valueChanges().subscribe(docs => {
+      console.log(docs)
       this.data = docs;
       this.empty = docs.length === 0;
       this.loading = false;
@@ -87,4 +88,20 @@ export class Bookstore {
       callback(false, error)
     });
   }
+
+  @action
+  updateDocUrl(ref, item: any, docName, docUrl, callback) {
+    this.process = true;
+    ref.doc(item.key).update({
+      docName: docName,
+      docUrl: docUrl
+    }).then(() => {
+      this.process = false;
+      callback(true, item)
+    }).catch(error => {
+      this.process = false;
+      callback(false, error)
+    });
+  }
+
 }
