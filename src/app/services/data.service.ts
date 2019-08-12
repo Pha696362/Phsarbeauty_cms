@@ -8,6 +8,10 @@ import { Injectable } from "@angular/core";
 export class DataService {
   constructor(private db: AngularFirestore) { }
 
+  baseDocRef(col: string) {
+    return this.db.collection(`${col}`);
+  }
+
   userRef() {
     return this.db.collection("users");
   }
