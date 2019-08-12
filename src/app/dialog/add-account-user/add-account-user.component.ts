@@ -17,8 +17,6 @@ import {
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from "@angular/material";
 import { IUser } from "src/app/interfaces/user";
 import { ConvertService } from 'src/app/services/convert.service';
-import { genderArray, status } from 'src/app/dummy/stauts';
-import { roleArray } from 'src/app/dummy/roles';
 
 @Component({
   selector: 'app-add-account-user',
@@ -51,8 +49,8 @@ export class AddAccountUserComponent implements OnInit {
   filteredStatesCommune: any;
 
   url = 'https://firebasestorage.googleapis.com/v0/b/ecrime-6aadb.appspot.com/o/userpic.svg?alt=media&token=57515eb6-b254-4689-91a5-16dde7947f79';
-  genderList = genderArray;
-  roleList = roleArray;
+  genderList:any;
+  roleList:any;
   positionList = [];
   titleList = [];
 

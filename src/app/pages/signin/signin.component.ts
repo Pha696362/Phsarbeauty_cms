@@ -1,11 +1,9 @@
 import { ForgotPasswordComponent } from './../../components/forgot-password/forgot-password.component';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
-import { AuthService } from './../../auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, AbstractControl, Validators, FormBuilder } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
-import { roleObj } from 'src/app/dummy/roles';
 import { AuthStore } from 'src/app/stores/auth.store';
 
 @Component({

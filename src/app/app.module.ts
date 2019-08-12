@@ -93,6 +93,16 @@ import { HttpModule } from '@angular/http';
 import { ApiService } from './services/api.service';
 import { DateStringPipe } from './pipes/date-string.pipe';
 import { DateResolveDatePipe } from './pipes/date-resolve-date.pipe';
+import { TagsComponent } from './pages/tags/tags.component';
+import { AddNewTagComponent } from './pages/tags/add-new-tag/add-new-tag.component';
+import { GenreComponent } from './pages/genre/genre.component';
+import { AddNewGenreComponent } from './pages/genre/add-new-genre/add-new-genre.component';
+import { SlideComponent } from './pages/slide/slide.component';
+import { AddNewSlideComponent } from './pages/slide/add-new-slide/add-new-slide.component';
+import { BookComponent } from './pages/book/book.component';
+import { AddNewBookComponent } from './pages/book/add-new-book/add-new-book.component';
+import { AddCoverSlideComponent } from './pages/slide/add-cover-slide/add-cover-slide.component';
+import { AddNewCoverBookComponent } from './pages/book/add-new-cover-book/add-new-cover-book.component';
 
 @NgModule({
   declarations: [
@@ -152,6 +162,16 @@ import { DateResolveDatePipe } from './pipes/date-resolve-date.pipe';
     DisableModalComponent,
     DateStringPipe,
     DateResolveDatePipe,
+    TagsComponent,
+    AddNewTagComponent,
+    GenreComponent,
+    AddNewGenreComponent,
+    SlideComponent,
+    AddNewSlideComponent,
+    BookComponent,
+    AddNewBookComponent,
+    AddCoverSlideComponent,
+    AddNewCoverBookComponent,
   ],
   entryComponents: [
     ModalWarningComponent,

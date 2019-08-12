@@ -1,6 +1,5 @@
 import { AddUserComponent } from './../../dialog/add-user/add-user.component';
 import { DeleteComponent } from './../../components/delete/delete.component';
-import { userLabels } from './../../dummy/label';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { Environment } from 'src/app/stores/environment.store';
 import { Component, OnInit } from '@angular/core';
@@ -12,8 +11,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  tabs = tabs.users;
-  labels = userLabels;
   constructor(
     public router: Router,
     public store: Environment,

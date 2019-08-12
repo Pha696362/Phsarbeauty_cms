@@ -1,3 +1,4 @@
+import { BookComponent } from './pages/book/book.component';
 import { MapsComponent } from './pages/maps/maps.component';
 import { HomeComponent } from "./pages/home/home.component";
 import { AppLayoutComponent } from "./shared/app-layout/app-layout.component";
@@ -11,6 +12,9 @@ import { SigninComponent } from "./pages/signin/signin.component";
 import { TabLayoutComponent } from "./shared/tab-layout/tab-layout.component";
 import { UserComponent } from './pages/user/user.component';
 import { AccountUsersComponent } from './pages/account-users/account-users.component';
+import { TagsComponent } from './pages/tags/tags.component';
+import { GenreComponent } from './pages/genre/genre.component';
+import { SlideComponent } from './pages/slide/slide.component';
 const routes: Routes = [
   {
     path: "auth",
@@ -24,7 +28,6 @@ const routes: Routes = [
     children: [
       { path: "", component: DashboardComponent },
       { path: "home", component: DashboardComponent },
-      { path: ":fromDate/:toDate/:provinceId/:categoryId/:subCategoryId", component: DashboardComponent },
     ]
   },
   {
@@ -44,10 +47,35 @@ const routes: Routes = [
       { path: "", redirectTo: "overview", pathMatch: "full" },
       { path: "overview", component: HomeComponent },
       {
-        path: "cases",
+        path: "tags",
         component: TabLayoutComponent,
         children: [
-          { path: "", redirectTo: "category", pathMatch: "full" },
+          { path: "", redirectTo: "data", pathMatch: "full" },
+          { path: "data", component: TagsComponent },
+        ]
+      },
+      {
+        path: "slides",
+        component: TabLayoutComponent,
+        children: [
+          { path: "", redirectTo: "data", pathMatch: "full" },
+          { path: "data", component: SlideComponent },
+        ]
+      },
+      {
+        path: "genres",
+        component: TabLayoutComponent,
+        children: [
+          { path: "", redirectTo: "data", pathMatch: "full" },
+          { path: "data", component: GenreComponent },
+        ]
+      },
+      {
+        path: "books",
+        component: TabLayoutComponent,
+        children: [
+          { path: "", redirectTo: "data", pathMatch: "full" },
+          { path: ":id", component: BookComponent },
         ]
       },
       {

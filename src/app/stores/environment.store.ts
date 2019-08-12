@@ -3,8 +3,6 @@ import { observable, computed, action, autorun, toJS } from "mobx";
 import { Injectable } from "@angular/core";
 import { AuthService } from '../auth/auth.service';
 import { IUser } from '../interfaces/user';
-import { roleObj } from '../dummy/roles';
-import { AuthStore } from './auth.store';
 
 @Injectable()
 export class Environment {
@@ -27,7 +25,6 @@ export class Environment {
     private auth: AuthService
   ) {
     this.fetchCanActive();
-    this.fetchEnvironment();
   }
 
   @action
@@ -57,25 +54,6 @@ export class Environment {
     });
   }
 
-  getRole(roleKey) {
-    this.isAdmin = false;
-    this.isReadOnly = false;
-    this.isReadWrite = false;
-    switch (roleKey) {
-      case roleObj.administrator.key:
-        this.isAdmin = true;
-        break;
-      case roleObj.readOnly.key:
-        this.isReadOnly = true;
-        break;
-      case roleObj.readWrite.key:
-        this.isReadWrite = true;
-        break;
-      default:
-        break;
-    }
-  }
-
   @action
   fetchUser(key) {
     this.loading = true;
@@ -85,7 +63,6 @@ export class Environment {
         this.user = doc;
         this.province = province;
         this.role = role;
-        this.getRole(role.key)
       }
       this.loading = false;
     });
@@ -99,7 +76,7 @@ export class Environment {
       if (user) {
         this.user = {
           key: user.uid,
-          name: user.displayName,
+          name: user.displayName?user.displayName:"Unknown",
           email: user.email,
         }
 
@@ -109,7 +86,6 @@ export class Environment {
           this.user = doc;
           this.province = province;
           this.role = role;
-          this.getRole(role.key)
           this.loading = false;
           callback(this.user)
         });
@@ -124,12 +100,9 @@ export class Environment {
       if (user) {
         this.user = {
           key: user.uid,
-          name: user.displayName,
+          name: user.displayName?user.displayName:"Unknown",
           email: user.email,
         }
-
-        const { uid } = user;
-        this.fetchUser(uid);
       }
       this.loading = false;
     })

@@ -4,7 +4,6 @@ import { LocalStorage, JSONSchema } from "@ngx-pwa/local-storage";
 import { Utils } from "../../services/utils.lib";
 import { ActivatedRoute } from "@angular/router";
 import { Pages } from 'src/app/dummy/pages';
-import { managementItems, managementItemsApi } from 'src/app/dummy/management';
 
 @Component({
   selector: "app-sidebar",
@@ -16,7 +15,7 @@ export class SidebarComponent implements OnInit {
   @Output() onPress=new EventEmitter();
   id:string;
   logo=Pages.logo;
-  management=managementItemsApi
+  management:any
   
   expansions = {
     hr: false,

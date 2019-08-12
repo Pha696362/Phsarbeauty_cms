@@ -1,4 +1,4 @@
-import { CONFIGS, Help } from './../../dummy/stauts';
+import { FILTER_OPTIONS } from './../../dummy/status';
 import { Router, ActivatedRoute } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
 import {
@@ -11,7 +11,6 @@ import {
   stagger
 } from "@angular/animations";
 import { Environment } from "../../stores/environment.store";
-import { searchFilterBy } from "../../services/data.service";
 import {
   AbstractControl,
   FormBuilder,
@@ -20,7 +19,6 @@ import {
 } from "@angular/forms";
 import { ConvertService } from 'src/app/services/convert.service';
 import { AuthStore } from 'src/app/stores/auth.store';
-import { toNumber } from 'functions/src/mapping';
 
 @Component({
   selector: "app-dashboard",
@@ -49,10 +47,10 @@ export class DashboardComponent implements OnInit {
   form: FormGroup;
   search: AbstractControl;
   searchType: AbstractControl;
-  filterBy = searchFilterBy;
+  filterBy=FILTER_OPTIONS;
   loading: boolean = false;
-  CONFIG = CONFIGS
-  HELPER = Help
+  CONFIG:any
+  HELPER:any
   endDayOfMonth: any;
   user: any;
   barChart = [
