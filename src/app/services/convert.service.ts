@@ -1,4 +1,4 @@
-import { months, periodData } from './../dummy/report';
+import { months } from './../dummy/report';
 import { AbstractControl } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
@@ -314,41 +314,41 @@ export function sum(data: Array<any>, field: string) {
   return data.reduce((a, b) => a + Number(b[field]), 0)
 }
 
-export function getDateReport(optionKey, endDayOfMonth) {
-  const items = periodData.filter(m => m.key === optionKey)[0];
-  switch (items.key) {
-    case 1:
-      const day1 = ConvertService.getDefaultDateReport(endDayOfMonth).form_date
-      const day2 = ConvertService.getDefaultDateReport(endDayOfMonth).to_date
-      return {
-        fromDate: day1,
-        toDate: day2
-      }
-    case 2:
-      const day12 = ConvertService.getDateOfMonth(endDayOfMonth, 1).form_date
-      const day22 = ConvertService.getDateOfMonth(endDayOfMonth, 1).to_date
-      return {
-        fromDate: day12,
-        toDate: day22
-      }
-    case 3:
-      const day13 = ConvertService.getDateOfMonth(endDayOfMonth, 6).form_date
-      const day23 = ConvertService.getDateOfMonth(endDayOfMonth, 6).to_date
-      return {
-        fromDate: day13,
-        toDate: day23
-      }
-    case 4:
-      const day14 = ConvertService.getDateOfYear(endDayOfMonth).form_date
-      const day24 = ConvertService.getDateOfYear(endDayOfMonth).to_date
-      return {
-        fromDate: day14,
-        toDate: day24
-      }
-    default:
-      break;
-  }
-}
+// export function getDateReport(optionKey, endDayOfMonth) {
+//   const items = periodData.filter(m => m.key === optionKey)[0];
+//   switch (items.key) {
+//     case 1:
+//       const day1 = ConvertService.getDefaultDateReport(endDayOfMonth).form_date
+//       const day2 = ConvertService.getDefaultDateReport(endDayOfMonth).to_date
+//       return {
+//         fromDate: day1,
+//         toDate: day2
+//       }
+//     case 2:
+//       const day12 = ConvertService.getDateOfMonth(endDayOfMonth, 1).form_date
+//       const day22 = ConvertService.getDateOfMonth(endDayOfMonth, 1).to_date
+//       return {
+//         fromDate: day12,
+//         toDate: day22
+//       }
+//     case 3:
+//       const day13 = ConvertService.getDateOfMonth(endDayOfMonth, 6).form_date
+//       const day23 = ConvertService.getDateOfMonth(endDayOfMonth, 6).to_date
+//       return {
+//         fromDate: day13,
+//         toDate: day23
+//       }
+//     case 4:
+//       const day14 = ConvertService.getDateOfYear(endDayOfMonth).form_date
+//       const day24 = ConvertService.getDateOfYear(endDayOfMonth).to_date
+//       return {
+//         fromDate: day14,
+//         toDate: day24
+//       }
+//     default:
+//       break;
+//   }
+// }
 
 
 export function toClassDate(date:Date){

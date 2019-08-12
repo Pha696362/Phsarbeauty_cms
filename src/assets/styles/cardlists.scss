@@ -338,6 +338,11 @@ $cartfooterbgcolor: #19212b;
   align-items: center;
   margin-left: 16px;
   font-family: $googleFont;
+  img{
+    width: 100px;
+    border-radius: 4px;
+    margin-right: 12px;
+  }
   &.ls-action {
     display: flex;
     align-items: center;

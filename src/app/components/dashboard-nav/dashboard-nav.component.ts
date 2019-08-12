@@ -1,10 +1,9 @@
-import { Pages } from './../../dummy/pages';
+import { FILTER_OPTIONS } from './../../dummy/status';
 import { Search } from './../../stores/search.store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Environment } from 'src/app/stores/environment.store';
-import { searchFilterBy } from 'src/app/services/data.service';
 import { switchMap, debounceTime, tap } from "rxjs/operators";
 import { AuthStore } from 'src/app/stores/auth.store';
 
@@ -19,7 +18,7 @@ export class DashboardNavComponent implements OnInit {
   search: AbstractControl;
   searchType: AbstractControl;
 
-  filterBy = searchFilterBy;
+  filterBy = FILTER_OPTIONS;
   loading: boolean = false;
   filter: string[] = ['name', 'year', 'month'];
 

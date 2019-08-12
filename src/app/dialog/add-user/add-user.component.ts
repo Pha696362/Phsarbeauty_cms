@@ -2,7 +2,6 @@ import { PhoneNumber } from "./../../services/phoneNumber.service";
 import { MappingService } from "./../../services/mapping.service";
 import { Environment } from "./../../stores/environment.store";
 import { AngularFirestore } from "@angular/fire/firestore";
-import { status } from "./../../dummy/stauts";
 import {
   Component,
   OnInit,
@@ -20,7 +19,6 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from "@angular/material";
 import { FireValidatorsService } from "../../services/fire-validators.service";
 import { IUser } from "src/app/interfaces/user";
 import { WindowService } from "src/app/services/window.service";
-import { roleObj } from 'src/app/dummy/roles';
 
 @Component({
   selector: "app-add-user",
@@ -86,7 +84,7 @@ export class AddUserComponent implements OnInit {
         Validators.compose([Validators.required])
       ],
       recaptcha: [null],
-      role: [roleObj.administrator]
+      role: null
     });
     this.name = this.form.controls["name"];
     this.description = this.form.controls["description"];

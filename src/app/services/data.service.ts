@@ -1,3 +1,4 @@
+import { ITag, IGenre, ISlide, IBook } from './../interfaces/bookstore';
 import { AngularFirestore } from "@angular/fire/firestore";
 import { Injectable } from "@angular/core";
 
@@ -23,9 +24,31 @@ export class DataService {
     return this.db.collection("sys_config").doc("settings");
   }
 
-  environmentFireRef() {
-    return this.firestore().collection("crime_environment").doc("crime_environment");
+  tagRef() {
+    return this.db.collection<ITag>("tags",ref=>ref.orderBy("name"));
   }
+
+  tagValidRef(keyword:string) {
+    return this.db.collection<ITag>("tags",ref=>ref.where("name","==",keyword));
+  }
+
+  genreRef() {
+    return this.db.collection<IGenre>("genres",ref=>ref.orderBy("name"));
+  }
+  
+  genreValidRef(keyword:string) {
+    return this.db.collection<IGenre>("genres",ref=>ref.where("name","==",keyword));
+  }
+
+
+  slideRef() {
+    return this.db.collection<ISlide>("slides",ref=>ref.orderBy("order"));
+  }
+  
+  bookRef() {
+    return this.db.collection<IBook>("books",ref=>ref.orderBy("title"));
+  }
+  
 
   batch() {
     return this.db.firestore.batch();
@@ -39,14 +62,3 @@ export class DataService {
     return this.db.createId();
   }
 }
-
-export const reportFilterBy = [
-  { key: 1, text: "Custom" },
-  { key: 2, text: "Today" },
-  { key: 3, text: "This Month" },
-  { key: 4, text: "This Year" }
-];
-
-export const searchFilterBy = [
-  { key: "crime_no", text: "Books" },
-];

@@ -93,9 +93,9 @@ hr {
   min-height: 55px;
   h3 {
     color: #fff;
-    font-family:"Moul" ,"Google Sans", sans-serif;
-    font-size: 16px;
-    font-weight: 500;
+    font-family:$googleFont;
+    font-size: 24px;
+    font-weight: 600;
     line-height: normal;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1203,3 +1203,9 @@ left: 100px;
   .days-total{
     margin: 0 6px;
   }
+  .mat-book{
+    &.mat-selection-list{
+      border: solid 1px #ebebeb;
+    }
+  }
+  
