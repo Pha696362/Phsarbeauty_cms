@@ -64,6 +64,7 @@ export interface IBook{
   trending:any;
   publicDate:Date;
   docUrl?:string;
+  docName?:string;
   fileName?:string;
   fileUrl?:string;
   paymentType:any;
