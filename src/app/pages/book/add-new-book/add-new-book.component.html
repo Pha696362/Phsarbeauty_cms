@@ -19,6 +19,14 @@
           <div *ngIf="form.controls['name'].hasError('required') && form.controls['name'].touched"
             class="error-message">This field is required.</div>
         </div>
+        <div class="field">
+          <label>Price
+            <span class="rq-sign">*</span>
+          </label>
+          <input type="text" class="lg-input" placeholder="Selling price" required formControlName="price">
+          <div *ngIf="form.controls['price'].hasError('required') && form.controls['price'].touched"
+            class="error-message">This field is required.</div>
+        </div>
         <div class="fields two">
           <div class="field">
             <label>Genre

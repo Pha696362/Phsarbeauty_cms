@@ -32,6 +32,9 @@
           </div>
         </div>
         <div class="field">
+          <mat-checkbox formControlName="topGenre">Top genre</mat-checkbox>
+        </div>
+        <div class="field">
           <label>Description
           </label>
           <input type="text" placeholder="Genre detail information" formControlName="subtitle">
@@ -43,9 +46,9 @@
   <div class="dialog-footer">
     <div class="flex1"></div>
     <a mat-dialog-close class="enbutton cancel m-r16" (click)="dialogRef.close('no')">Cancel</a>
-    <button type="submit" class="enbutton primary m-r16" [disabled]="!form.valid || process"
+    <button type="submit" class="enbutton primary m-r16" [disabled]="!form.valid"
       (click)="create(form.value,true)">Save New</button>
-    <button class="enbutton primary m-r16" [disabled]="!form.valid || process" (click)="create(form.value,false)">Save
+    <button class="enbutton primary m-r16" [disabled]="!form.valid" (click)="create(form.value,false)">Save
       Close</button>
   </div>
   <app-spinner *ngIf="store?.process"></app-spinner>

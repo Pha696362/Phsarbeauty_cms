@@ -25,6 +25,7 @@ export class AddNewBookComponent implements OnInit {
   tag:AbstractControl;
   trending: AbstractControl;
   paymentType: AbstractControl;
+  price:AbstractControl;
 
   genreData:any;
   tagData:any;
@@ -50,7 +51,8 @@ export class AddNewBookComponent implements OnInit {
       trending: [BOOK_OPTIONS[0], Validators.required],
       tag:[null,Validators.required],
       date:[new Date(),Validators.required],
-      paymentType:[null,Validators.required]
+      paymentType:[null,Validators.required],
+      price:[null,Validators.required],
     })
     this.name = this.form.controls['name'];
     this.status = this.form.controls["status"];
@@ -60,6 +62,7 @@ export class AddNewBookComponent implements OnInit {
     this.tag = this.form.controls["tag"];
     this.date = this.form.controls["date"];
     this.paymentType=this.form.controls["paymentType"];
+    this.price=this.form.controls["price"];
   }
 
 
@@ -81,7 +84,7 @@ export class AddNewBookComponent implements OnInit {
   create(f: any, isNew) {
     if (this.form.valid) {
       this.form.disable();
-      const { name, genre,trending,tag,date, description,status,paymentType } = f;
+      const { name, genre,trending,tag,date, description,status,paymentType,price } = f;
       const tagKey=tag.map(m=>(m.key));
       const paymentTypeKey=paymentType.map(m=>(m.key));
       const item: IBook = {
@@ -103,7 +106,8 @@ export class AddNewBookComponent implements OnInit {
         tagKey:tagKey,
         paymentType:paymentType,
         paymentTypeKey:paymentTypeKey,
-        ratingScale:5
+        ratingScale:5,
+        price:ConvertService.toNumber(price)
       }
       this.store.addNew(this.ds.bookRef(), item, (success, error) => {
         if (success) {

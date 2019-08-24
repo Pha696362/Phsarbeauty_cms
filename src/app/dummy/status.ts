@@ -9,11 +9,10 @@ export const FILTER_OPTIONS = [
 
 
 export const BOOK_OPTIONS = [
-  { key: 1, text: "Top Genre", route: "GENRE" },
   { key: 2, text: "Top Rating", route: "RATING" },
   { key: 3, text: "New Arrival", route: "NEW_ARRIVAL" },
   { key: 4, text: "Best Novel", route: "BEST_NOVEL" },
-  { key: 4, text: "Top Free", route: "FREE" },
+  { key: 5, text: "Top Free", route: "FREE" },
 ]
 
 export const BOOK_STATUS = [

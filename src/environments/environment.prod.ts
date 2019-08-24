@@ -1,12 +1,13 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: "AIzaSyCAqPwbl99AR_JPvM6LETbPqo1ehTdxPkg",
-    authDomain: "ecrime-6aadb.firebaseapp.com",
-    databaseURL: "https://ecrime-6aadb.firebaseio.com",
-    projectId: "ecrime-6aadb",
-    storageBucket: "ecrime-6aadb.appspot.com",
-    messagingSenderId: "382522713098"
+    apiKey: "AIzaSyDzbTC9LUgCLM_IR7kfG09MfSAGb4EFwz0",
+    authDomain: "nerknovel.firebaseapp.com",
+    databaseURL: "https://nerknovel.firebaseio.com",
+    projectId: "nerknovel",
+    storageBucket: "nerknovel.appspot.com",
+    messagingSenderId: "896813699869",
+    appId: "1:896813699869:web:354b5532afab2fff"
   },
   mapKey: 'AIzaSyAeIMIEUOK0t0HCYoCvWXfeS-kf3HJBJa8'
 };
