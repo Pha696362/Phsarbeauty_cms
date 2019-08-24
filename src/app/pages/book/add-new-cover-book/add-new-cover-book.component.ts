@@ -42,6 +42,7 @@ export class AddNewCoverBookComponent implements OnInit {
 
   update() {
     this.downloadURL.subscribe(file => {
+      console.log(this.downloadURL);
       this.store.updateFileUrl(this.ds.bookRef(), this.data, this.fileName, file, (success, error) => {
         if (success) {
           this.snackBar.open('Cover has been updated.', 'done', { duration: 2500 });

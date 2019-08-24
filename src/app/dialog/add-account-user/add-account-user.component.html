@@ -177,5 +177,5 @@
     <button class="enbutton primary m-r16" [disabled]="!form.valid || store?.process"
       (click)="create(form.value,false)">រក្សាទុកនិងបិទ</button>
   </div>
-  <app-spinner *ngIf="store?.process || geo?.process"></app-spinner>
+  <app-spinner *ngIf="store?.process"></app-spinner>
 </form>

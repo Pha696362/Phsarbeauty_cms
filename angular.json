@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "eCrime": {
+    "nerknovel": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/eCrime",
+            "outputPath": "dist/nerknovel",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -79,18 +79,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "eCrime:build"
+            "browserTarget": "nerknovel:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "eCrime:build:production"
+              "browserTarget": "nerknovel:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "eCrime:build"
+            "browserTarget": "nerknovel:build"
           }
         },
         "test": {
@@ -126,7 +126,7 @@
         }
       }
     },
-    "eCrime-e2e": {
+    "nerknovel-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -135,11 +135,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "eCrime:serve"
+            "devServerTarget": "nerknovel:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "eCrime:serve:production"
+              "devServerTarget": "nerknovel:serve:production"
             }
           }
         },
@@ -155,5 +155,5 @@
       }
     }
   },
-  "defaultProject": "eCrime"
+  "defaultProject": "nerknovel"
 }

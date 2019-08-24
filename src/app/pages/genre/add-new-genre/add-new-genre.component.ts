@@ -21,6 +21,7 @@ export class AddNewGenreComponent implements OnInit {
   name: AbstractControl;
   icon: AbstractControl;
   subtitle: AbstractControl;
+  topGenre:AbstractControl;
 
   constructor(
     public dialogRef: MatDialogRef<AddNewGenreComponent>,
@@ -37,11 +38,13 @@ export class AddNewGenreComponent implements OnInit {
     this.form = this.fb.group({
       name: [null, Validators.compose([Validators.required]),checkExistDoc(this.afs,"genres","name")],
       icon:[null,Validators.required],
-      subtitle:[null]
+      subtitle:[null],
+      topGenre:[false,Validators.required]
     })
     this.name = this.form.controls['name'];
     this.icon=this.form.controls["icon"];
     this.subtitle=this.form.controls["subtitle"];
+    this.topGenre=this.form.controls["topGenre"];
   }
 
 
@@ -52,7 +55,7 @@ export class AddNewGenreComponent implements OnInit {
   create(f: any, isNew) {
     if (this.form.valid) {
       this.form.disable();
-      const {name,icon,subtitle}=f;
+      const {name,icon,subtitle,topGenre}=f;
       const item: IGenre = {
         key: this.ds.createId(),
         name: name,
@@ -63,7 +66,8 @@ export class AddNewGenreComponent implements OnInit {
         update_date: new Date(),
         update_by: this.env.user,
         icon:icon,
-        subtitle:subtitle
+        subtitle:subtitle,
+        isTop:topGenre
       }
       this.store.addNew(this.ds.genreRef(),item, (success, error) => {
         if (success) {

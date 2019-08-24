@@ -7,7 +7,7 @@
     "source": "functions"
   },
   "hosting": {
-    "public": "dist/eCrime",
+    "public": "dist/nerknovel",
     "ignore": [
       "firebase.json",
       "**/.*",

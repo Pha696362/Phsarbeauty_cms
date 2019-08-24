@@ -25,6 +25,7 @@ export interface IGenre{
   name:string;
   subtitle:string;
   icon:string;
+  isTop:boolean;
   fileName?:string;
   fileUrl?:string;
 }
@@ -70,4 +71,5 @@ export interface IBook{
   paymentType:any;
   paymentTypeKey:any;
   ratingScale:number;
+  price:number;
 }
