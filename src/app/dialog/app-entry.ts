@@ -1,3 +1,5 @@
+import { AddProductComponent } from './../pages/product/add-product/add-product.component';
+import { AddSubscriberComponent } from './../pages/subscribers/add-subscriber/add-subscriber.component';
 import { AddNewCoverBookComponent } from './../pages/book/add-new-cover-book/add-new-cover-book.component';
 import { AddCoverSlideComponent } from './../pages/slide/add-cover-slide/add-cover-slide.component';
 import { AddNewBookComponent } from './../pages/book/add-new-book/add-new-book.component';
@@ -16,4 +18,6 @@ export const APP_ENTRY_COMPONENTS=[
   AddCoverSlideComponent,
   AddNewCoverBookComponent,
   AddNewPdfBookComponent,
+  AddSubscriberComponent,
+  AddProductComponent
 ]

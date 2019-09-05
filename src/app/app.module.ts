@@ -104,6 +104,10 @@ import { AddNewBookComponent } from './pages/book/add-new-book/add-new-book.comp
 import { AddCoverSlideComponent } from './pages/slide/add-cover-slide/add-cover-slide.component';
 import { AddNewCoverBookComponent } from './pages/book/add-new-cover-book/add-new-cover-book.component';
 import { AddNewPdfBookComponent } from './pages/book/add-new-pdf-book/add-new-pdf-book.component';
+import { SubscribersComponent } from './pages/subscribers/subscribers.component';
+import { AddSubscriberComponent } from './pages/subscribers/add-subscriber/add-subscriber.component';
+import { ProductComponent } from './pages/product/product.component';
+import { AddProductComponent } from './pages/product/add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -174,6 +178,10 @@ import { AddNewPdfBookComponent } from './pages/book/add-new-pdf-book/add-new-pd
     AddCoverSlideComponent,
     AddNewCoverBookComponent,
     AddNewPdfBookComponent,
+    SubscribersComponent,
+    AddSubscriberComponent,
+    ProductComponent,
+    AddProductComponent,
   ],
   entryComponents: [
     ModalWarningComponent,

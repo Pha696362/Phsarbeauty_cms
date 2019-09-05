@@ -11,4 +11,13 @@ export const tabs = {
   books: [
     { path: '/app/books/data', label: "Data" },
   ],
+  product: [
+    { path: '/app/packages/data', label: "Data" },
+  ],
+  subscriber: [
+    { path: '/app/subscribers/approval', label: "All Account" },
+    { path: '/app/subscribers/membership', label: "Memberships" },
+    { path: '/app/subscribers/near-expire', label: "Near Expire" },
+    { path: '/app/subscribers/expired', label: "Expired" },
+  ],
 }
