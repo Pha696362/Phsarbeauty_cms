@@ -6,10 +6,16 @@ admin.initializeApp(functions.config().firebase);
 const fdb = admin.firestore();
 fdb.settings({ timestampsInSnapshots: true });
 
-import { createUserAccountFN, deleteUserAccountFN } from './userAccount';
+import { createUserAccountFN, deleteUserAccountFN, createSubscribersAccountFN } from './userAccount';
 import { onNotificationDevices } from './messaging';
 import { onEditCrimeStatistic, onAddPersonCrimeStatistic, onAddCrimeStatistic, onDeleteCrimeStatistic } from './statistic';
 import { addressObj, toNumber } from './mapping';
+
+export const createSubscribersAccount = functions.firestore
+  .document("/subscribers/{key}")
+  .onCreate((change, context) => {
+    return createSubscribersAccountFN(change, context);
+  });
 
 export const createUserAccount = functions.firestore
   .document("/users/{key}")
