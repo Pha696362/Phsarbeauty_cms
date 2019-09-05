@@ -15,6 +15,8 @@ import { AccountUsersComponent } from './pages/account-users/account-users.compo
 import { TagsComponent } from './pages/tags/tags.component';
 import { GenreComponent } from './pages/genre/genre.component';
 import { SlideComponent } from './pages/slide/slide.component';
+import { SubscribersComponent } from './pages/subscribers/subscribers.component';
+import { ProductComponent } from './pages/product/product.component';
 const routes: Routes = [
   {
     path: "auth",
@@ -46,6 +48,22 @@ const routes: Routes = [
     children: [
       { path: "", redirectTo: "overview", pathMatch: "full" },
       { path: "overview", component: HomeComponent },
+      {
+        path: "subscribers",
+        component: TabLayoutComponent,
+        children: [
+          { path: "", redirectTo: "approval", pathMatch: "full" },
+          { path: ":id", component: SubscribersComponent },
+        ]
+      },
+      {
+        path: "packages",
+        component: TabLayoutComponent,
+        children: [
+          { path: "", redirectTo: "data", pathMatch: "full" },
+          { path: "data", component: ProductComponent },
+        ]
+      },
       {
         path: "tags",
         component: TabLayoutComponent,

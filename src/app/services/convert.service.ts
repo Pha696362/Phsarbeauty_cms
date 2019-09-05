@@ -360,3 +360,13 @@ export function toClassDate(date:Date){
     minute:toNumber(moment(date).format("mm"))
   }
 }
+
+
+export function toDateExpiredDate(period:any) {
+  return moment().add(period,'month').toDate()
+}
+
+
+export function toNearExpiredDate() {
+  return moment().subtract(7,'day').toDate()
+}

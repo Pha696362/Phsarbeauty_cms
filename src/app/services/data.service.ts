@@ -1,6 +1,8 @@
+import { ConvertService, toNearExpiredDate } from './convert.service';
 import { ITag, IGenre, ISlide, IBook } from './../interfaces/bookstore';
 import { AngularFirestore } from "@angular/fire/firestore";
 import { Injectable } from "@angular/core";
+import { IProduct, ISubscriber } from '../interfaces/subscriber';
 
 @Injectable({
   providedIn: "root"
@@ -29,30 +31,109 @@ export class DataService {
   }
 
   tagRef() {
-    return this.db.collection<ITag>("tags",ref=>ref.orderBy("name"));
+    return this.db.collection<ITag>("tags", ref => ref.orderBy("name"));
   }
 
-  tagValidRef(keyword:string) {
-    return this.db.collection<ITag>("tags",ref=>ref.where("name","==",keyword));
+  tagValidRef(keyword: string) {
+    return this.db.collection<ITag>("tags", ref => ref.where("name", "==", keyword));
   }
 
   genreRef() {
-    return this.db.collection<IGenre>("genres",ref=>ref.orderBy("name"));
+    return this.db.collection<IGenre>("genres", ref => ref.orderBy("name"));
   }
-  
-  genreValidRef(keyword:string) {
-    return this.db.collection<IGenre>("genres",ref=>ref.where("name","==",keyword));
+
+  genreValidRef(keyword: string) {
+    return this.db.collection<IGenre>("genres", ref => ref.where("name", "==", keyword));
   }
 
 
   slideRef() {
-    return this.db.collection<ISlide>("slides",ref=>ref.orderBy("order"));
+    return this.db.collection<ISlide>("slides", ref => ref.orderBy("order"));
   }
-  
+
   bookRef() {
-    return this.db.collection<IBook>("books",ref=>ref.orderBy("title"));
+    return this.db.collection<IBook>("books", ref => ref.orderBy("title"));
   }
-  
+
+  productRef() {
+    return this.db.collection<IProduct>("products", ref => ref.orderBy("period"));
+  }
+
+  subscriberTypesRef(id: string) {
+    switch (id) {
+      case 'approval_accounts':
+        return this.db.collection<ISubscriber>("subscribers", ref => ref
+          .where("isPaid", "==", false)
+          .where("product.period", ">", 0)
+          .orderBy("product.period")
+          .orderBy("page_key"));
+      case 'membership':
+        return this.db.collection<ISubscriber>("subscribers", ref => ref
+          .where("isPaid", "==", true)
+          .where("product.period", ">", 0)
+          .orderBy("product.period")
+          .orderBy("page_key"));
+      case 'expired':
+        const expiredDateKey = ConvertService.toDateKey(new Date())
+        return this.db.collection<ISubscriber>("subscribers", ref => ref
+          .where("isPaid", "==", true)
+          .where("expiredDateKey", "<", expiredDateKey)
+          .orderBy("expiredDateKey")
+          .orderBy("page_key"));
+      case 'near-expire':
+        const nearExpiredDateKey = ConvertService.toDateKey(toNearExpiredDate())
+        return this.db.collection<ISubscriber>("subscribers", ref => ref
+          .where("isPaid", "==", true)
+          .where("expiredDateKey", "<", nearExpiredDateKey)
+          .orderBy("expiredDateKey")
+          .orderBy("page_key"));
+      case 'approval':
+        return this.db.collection<ISubscriber>("subscribers", ref => ref
+          .where("isPaid", "==", false)
+          .where("product", "==", null)
+          .orderBy("page_key"));
+
+      default:
+        return this.db.collection<ISubscriber>("subscribers", ref => ref.orderBy("page_key"));
+    }
+  }
+
+
+  subscriberRef() {
+    return this.db.collection<ISubscriber>("subscribers", ref => ref.orderBy("page_key"));
+  }
+
+  subscriberSearchRef() {
+    return this.db.collection("subscribers", ref => ref
+      .orderBy("phoneNumber", "desc")
+      .limit(20)
+    );
+  }
+
+  subscriberFilterRef(field: string, search: any) {
+    if (search) {
+      if (search.key) {
+        return this.db.collection("subscribers", ref =>
+          ref
+            .where("phoneNumber", ">=", search.key)
+            .orderBy(field)
+            .limit(20)
+        );
+      }
+      return this.db.collection("subscribers", ref =>
+        ref
+          .where(field, ">=", search)
+          .orderBy(field)
+          .limit(20)
+      );
+    }
+    return this.db.collection("subscribers", ref =>
+      ref
+        .orderBy(field, "desc")
+        .limit(20)
+    );
+
+  }
 
   batch() {
     return this.db.firestore.batch();
@@ -65,4 +146,6 @@ export class DataService {
   createId() {
     return this.db.createId();
   }
+
+
 }

@@ -1,241 +1,120 @@
-<!-- <ng-container *mobxAutorun>
-    <div class="dashboard-wrapper">
-        <div class="dashboard-body">
-            <div class="app-container-nav has-border-bottom">
-                <button mat-button class="options-dashboard" [matMenuTriggerFor]="menu"
-                    aria-label="Example icon-button with a menu">
-                    <span>{{store?.periodText}}</span>
-                    <i class="material-icons">arrow_drop_down</i>
-                </button>
-                <mat-menu #menu="matMenu">
-                    <div class="options-lags" (click)="$event.stopPropagation();">
-                        <app-statistic-period [fromDate]="store?.fromDate" [toDate]="store?.toDate">
-                        </app-statistic-period>
-                    </div>
-                </mat-menu>
-                <button mat-button class="options-dashboard" [matMenuTriggerFor]="menuProvince"
-                    aria-label="Example icon-button with a menu">
-                    <span>{{store?.provinceText}}</span>
-                    <i class="material-icons">arrow_drop_down</i>
-                </button>
-                <mat-menu #menuProvince="matMenu">
-                    <div class="options-lags" (click)="$event.stopPropagation();">
-                        <app-statistic-province [selected]="store?.selectedProvince" [data]="store?.provinces">
-                        </app-statistic-province>
-                    </div>
-                </mat-menu>
-                <button mat-button class="options-dashboard" [matMenuTriggerFor]="menuCategory"
-                    aria-label="Example icon-button with a menu">
-                    <span>{{store?.categoryText}}</span>
-                    <i class="material-icons">arrow_drop_down</i>
-                </button>
-                <mat-menu #menuCategory="matMenu">
-                    <div class="options-lags" (click)="$event.stopPropagation();">
-                        <app-statistic-category [data]="store?.statisticCategory"></app-statistic-category>
-                    </div>
-                </mat-menu>
-                <button mat-button class="options-dashboard" [matMenuTriggerFor]="menuSubCategory"
-                    aria-label="Example icon-button with a menu">
-                    <span>{{store?.subCategoryText}}</span>
-                    <i class="material-icons">arrow_drop_down</i>
-                </button>
-                <mat-menu #menuSubCategory="matMenu">
-                    <div class="options-lags" (click)="$event.stopPropagation();">
-                        <app-statistic-sub-category [data]="store?.statisticSubCategory">
-                        </app-statistic-sub-category>
-                    </div>
-                </mat-menu>
+<ng-container *mobxAutorun>
+    <div class="task-wrapper chapternav">
+      <mat-progress-bar
+        *ngIf="store?.loading"
+        class="top-nav-progress"
+        mode="indeterminate"
+      ></mat-progress-bar>
+      <div class="search-engine">
+      <h2>NerkNovel Billing System</h2>
+        <form
+          [formGroup]="form"
+          class="search-nav"
+          [ngClass]="{ active: formFocus }"
+        >
+          <div class="enroll-filter">
+            <mat-select
+              (selectionChange)="_selectionChange($event)"
+              formControlName="searchType"
+              [compareWith]="compareObjects"
+            >
+              <mat-option *ngFor="let item of filterBy" [value]="item">
+                {{ item.text }}
+              </mat-option>
+            </mat-select>
+          </div>
+          <input
+            type="text"
+            formControlName="search"
+            [matAutocomplete]="auto"
+            (focus)="_onFocus(true)"
+            (blur)="_onFocus(false)"
+            appFocusSearch
+            placeholder="Search Subscriber"
+          />
+          <mat-autocomplete
+            [displayWith]="displayItem"
+            #auto="matAutocomplete"
+            class="mat-result-items"
+          >
+            <div class="mat-auto-header"><strong>Subscriber</strong></div>
+            <mat-option
+              class="options-card"
+              (click)="_optionSelected(state)"
+              *ngFor="let state of store?.memberships"
+              [value]="state"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                role="presentation"
+                aria-hidden="true"
+                focusable="false"
+                style="height: 32px; width: 32px; display: block; fill: rgb(255, 180, 0);"
+              >
+                <path
+                  d="m17.61 13.4-2.49-.68c-2.76-.75-.51-2.87-2.88-3.51l-2.88-.78a.9.9 0 0 0 -1.1.62l-1.27 4.54 3.81 1.04c2.37.64.13 2.76 2.88 3.51l2.72.74 3.26.89z"
+                ></path>
+                <path
+                  d="m1.5 22a .52.52 0 0 1 -.13-.02.5.5 0 0 1 -.35-.61l5.21-19.02a.5.5 0 0 1 .61-.35l6.92 1.88a2.02 2.02 0 0 1 1.65 2.06c.08.69.13 1.15 1.23 1.45l5.98 1.63a.5.5 0 0 1 .2.86l-4.55 4.04 1.86 5.78a.5.5 0 0 1 -.61.64l-5.98-1.63a2.29 2.29 0 0 1 -1.96-2.3c-.07-.66-.11-.99-.92-1.21l-3.82-1.04a.5.5 0 1 1 .25-.97h.01l3.82 1.04a2.03 2.03 0 0 1 1.65 2.07c.08.69.13 1.15 1.23 1.45l5.1 1.39-1.67-5.22a.5.5 0 0 1 .14-.53l4.11-3.64-5.09-1.39a2.29 2.29 0 0 1 -1.96-2.3c-.07-.66-.11-.99-.92-1.21l-6.44-1.75-5.08 18.54a.5.5 0 0 1 -.48.37z"
+                  fill="#484848"
+                ></path>
+              </svg>
+              <span class="flex1 mat-space">{{state?.fullName}}</span>
+              <small>{{state?.phoneNumber}}</small>
+            </mat-option>
+            <mat-option
+              [disabled]="true"
+              class="mat-empty-result"
+              *ngIf="!loading && store?.memberships?.length === 0">
+              <img
+                src="https://mobilecenter.azureedge.net/generated/img/no-filtered-apps-5e1a9c8b30813a99f20a80479de65977.svg"
+              />
+              <h3>
+                Sorry, we couldn't find any results for "{{ search?.value }}"
+              </h3>
+            </mat-option>
+          </mat-autocomplete>
+          <button mat-icon-button (click)="_onSearch(form.value)">
+            <mat-icon aria-label="search">search</mat-icon>
+          </button>
+        </form>
+      </div>
+  
+      <div class="task-content" @explainerAnim>
+          <div class="task-item ani-col" [routerLink]="['/app/subscribers']">
+            <div class="task-icon task-icon1 orang">
+              <i class="material-icons">subscriptions</i>
             </div>
-            <div class="dashboard-statistic" *ngIf="!store?.loading">
-                <div class="ds-right-block">
-                    <div class="ds-grid-item">
-                        <div class="item-row-hd pl-3">
-                            <h3>បទល្មើសតាមខេត្តក្រុង</h3>
-                            <p>{{store?.periodText}}</p>
-                        </div>
-                        <div class="ds-chart-parent" [ngClass]="store?.provinceFilter===0?'height600':'height400'">
-                            <ngx-charts-bar-horizontal [showDataLabel]="showDataLabel" [legendTitle]="legendTitle"
-                                [roundDomains]="roundDomains" [scheme]="colorScheme" [results]="store?.statisticByZone"
-                                [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis"
-                                [showXAxisLabel]="showXAxisLabel" [view]="" [showGridLines]="showGridLines"
-                                [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
-                            </ngx-charts-bar-horizontal>
-                        </div>
-                    </div>
-                    <div class="ds-grid-item">
-                        <div class="item-row-hd">
-                            <h3>ស្ថានភាពបទល្មើសសរុបក្នុងប្រព័ន្ធ</h3>
-                        </div>
-                        <div class="summary-statistic">
-                            <h4>សរុបទាំងអស់</h4>
-                            <p><strong>{{store.totalAllCrime}}</strong>បទល្មើស</p>
-                        </div>
-                        <div class="ds-chart-parent" style="min-height: 200px; width: 100%">
-                            <ngx-charts-pie-chart class="category-chart" [scheme]="colorSchemeAllCrime"
-                                [results]="store?.statisticByAllCrime" [legend]="showLegend"
-                                [explodeSlices]="explodeSlices" [labels]="showLabels" [gradient]="gradient"
-                                [trimLabels]="trimLabels" [view]="" legendPosition="below">
-                            </ngx-charts-pie-chart>
-                        </div>
-                    </div>
-                    <div class="cnp-card">
-                        <div class="ds-grid-item">
-                            <div class="item-row-hd">
-                                <h3>ស្ថានភាពសាលដីការសរុបក្នុងប្រព័ន្ធ</h3>
-                            </div>
-                            <div class="ds-chart-parent" style="min-height: 200px; width: 100%">
-                                <div class="summary-statistic">
-                                    <h4>សរុបទាំងអស់</h4>
-                                    <p><strong>{{store.totalAllJustice}}</strong>សាលដីការ</p>
-                                </div>
-                                <ngx-charts-pie-chart *ngIf="store?.totalAllJustice>0" class="category-chart"
-                                    [scheme]="colorSchemeAllJustice" [results]="store?.statisticByAllJustice"
-                                    [legend]="showLegend" [explodeSlices]="explodeSlices" [labels]="showLabels"
-                                    [gradient]="gradient" [trimLabels]="trimLabels" [view]="" legendPosition="below">
-                                </ngx-charts-pie-chart>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ds-left-block">
-                    <div class="ds-grid-wrap">
-                        <div class="ds-grid-item no-sb">
-                            <div class="" style="margin-bottom: 10px; min-height: 200px;">
-                                <div class="ds-grid-item">
-                                    <div class="item-row-hd">
-                                        <h3>ស្ថានភាពប្រភេទបទល្មើស</h3>
-                                        <p>{{store?.periodText}}</p>
-                                    </div>
-                                    <div class="ds-chart-parent" style="min-height: 400px;padding: 24px;">
-                                        <ngx-charts-pie-chart class="sub-category-chart" [scheme]="colorScheme"
-                                            [results]="store?.statisticBySubCategory" [legend]="showLegend"
-                                            [explodeSlices]="explodeSlices" [labels]="showLabels" [gradient]="gradient"
-                                            [trimLabels]="trimLabels" legendPosition="below" [view]="">
-                                        </ngx-charts-pie-chart>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="ds-grid-item no-sb">
-                            <div class="" style="margin-bottom: 10px; min-height: 200px;">
-                                <div class="ds-grid-item">
-                                    <div class="item-row-hd">
-                                        <h3>ព័ត៌មានជន​រងគ្រោះ និងជន​សង្ស័យ</h3>
-                                        <p>{{store?.periodText}}</p>
-                                    </div>
-                                    <div class="rows">
-                                        <div class="summary-statistic">
-                                            <h4><span class="status victim"></span>ព័ត៌មានជន​រងគ្រោះសរុបទាំងអស់</h4>
-                                            <p><strong>{{store.totalVictim|number}}</strong>នាក់</p>
-                                        </div>
-                                        <div class="summary-statistic">
-                                            <h4><span class="status suspect"></span>ព័ត៌មានជន​សង្ស័យសរុបទាំងអស់</h4>
-                                            <p><strong>{{store.totalSuspect|number}}</strong>នាក់</p>
-                                        </div>
-                                    </div>
-                                    <div class="ds-chart-parent" style="min-height: 200px;padding: 24px;">
-                                        <div class="d-flex">
-                                            <div class="chart-statistic-by-suspect" style="margin-right: -23px">
-                                                <ngx-charts-bar-horizontal class="statistic-by-suspect"
-                                                    [showDataLabel]="showDataLabel" [legendTitle]="legendTitle"
-                                                    [roundDomains]="roundDomains" [scheme]="colorSchemeApple"
-                                                    [results]="store?.statisticByVictim" [gradient]="gradient"
-                                                    [xAxis]="showXAxis1" [yAxis]="showYAxis1"
-                                                    [showXAxisLabel]="showXAxisLabel1" [showGridLines]="showGridLines"
-                                                    [showYAxisLabel]="showYAxisLabel1" [xAxisLabel]="xAxisLabel"
-                                                    [yAxisLabel]="yAxisLabel">
-                                                </ngx-charts-bar-horizontal>
-                                            </div>
-                                            <div class="chart-statistic-by-suspect" style="margin-left: -23px">
-                                                <ngx-charts-bar-horizontal class="statistic-by-suspect"
-                                                    [showDataLabel]="showDataLabel" [legendTitle]="legendTitle"
-                                                    [roundDomains]="roundDomains" [scheme]="colorSchemeVictim"
-                                                    [results]="store?.statisticBySuspect" [gradient]="gradient"
-                                                    [xAxis]="showXAxis1" [yAxis]="showYAxis1"
-                                                    [showXAxisLabel]="showXAxisLabel" [view]=""
-                                                    [showGridLines]="showGridLines" [showYAxisLabel]="showYAxisLabel1"
-                                                    [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
-                                                </ngx-charts-bar-horizontal>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="dp-grid r1">
-                                <div class="ds-grid-item">
-                                    <div class="item-row-hd">
-                                        <h3>ឯកសារជំនួយស្មារតី</h3>
-                                    </div>
-                                    <div class="ds-chart-parent">
-                                        <a class="recent-parent" *ngFor="let item of HELPER">
-                                            <mat-icon>arrow_right</mat-icon>
-                                            <span> {{item?.name}}
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="ds-right-block-memo">
-                    <div class="ds-grid-item">
-                        <div class="item-row-hd">
-                            <h3>ស្ថានភាពបទល្មើស</h3>
-                            <p>{{store?.periodText}}</p>
-                        </div>
-                        <div class="summary-statistic">
-                            <h4>សរុបទាំងអស់</h4>
-                            <p><strong>{{store.totalCategory}}</strong>បទល្មើស</p>
-                        </div>
-                        <div class="ds-chart-parent" style="min-height: 200px; width: 100%">
-                            <ngx-charts-pie-chart class="category-chart" [scheme]="colorScheme"
-                                [results]="store?.statisticByCategory" [legend]="showLegend"
-                                [explodeSlices]="explodeSlices" [labels]="showLabels" [gradient]="gradient"
-                                [trimLabels]="trimLabels" [view]="" legendPosition="below">
-                            </ngx-charts-pie-chart>
-                        </div>
-                    </div>
-
-                    <div class="cnp-card">
-                        <div class="ds-grid-item">
-                            <div class="item-row-hd">
-                                <h3>ស្ថានភាពសាលដីការ</h3>
-                                <p>{{store?.periodText}}</p>
-                            </div>
-                            <div class="ds-chart-parent" style="min-height: 200px; width: 100%">
-                                <div class="summary-statistic">
-                                    <h4>សរុបទាំងអស់</h4>
-                                    <p><strong>{{store.totalJustice}}</strong>សាលដីការ</p>
-                                </div>
-                                <ngx-charts-pie-chart *ngIf="store?.totalJustice>0" class="category-chart"
-                                    [scheme]="colorSchemeJustice" [results]="store?.statisticByJustice"
-                                    [legend]="showLegend" [explodeSlices]="explodeSlices" [labels]="showLabels"
-                                    [gradient]="gradient" [trimLabels]="trimLabels" [view]="" legendPosition="below">
-                                </ngx-charts-pie-chart>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ds-grid-item">
-                        <div class="item-row-hd">
-                            <h3>បទល្មើសថ្មីៗ</h3>
-                        </div>
-                        <div class="ds-chart-parent">
-                            <a [routerLink]="['/crime-profile/' + item?.key + '/overview']" class="recent-parent"
-                                *ngFor="let item of store.data">
-                                <mat-icon>arrow_right</mat-icon>
-                                <span> {{item?.crime_no}}, {{item?.category?.name}} / {{item?.sub_category?.name}}
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+            <h2 class="task-title">Subscribers</h2>
+          </div>
+        <div class="task-item ani-col" [routerLink]="['/app/packages']">
+          <div class="task-icon task-icon1 sky">
+            <i class="material-icons">card_giftcard</i>
+          </div>
+          <h2 class="task-title">Packages</h2>
         </div>
+
+        <div class="task-item ani-col" [routerLink]="['/app/books']">
+            <div class="task-icon task-icon1 purple">
+              <i class="material-icons">local_library</i>
+            </div>
+            <h2 class="task-title">Books</h2>
+          </div>
+         
+        <div class="task-item ani-col" [routerLink]="['/app/reports']">
+          <div class="task-icon task-icon1 green">
+            <i class="material-icons">print</i>
+          </div>
+          <h2 class="task-title">Reports</h2>
+        </div>
+       
+        <div class="task-item ani-col" [routerLink]="['/app']">
+          <div class="task-icon task-icon1">
+            <i class="material-icons">home</i>
+          </div>
+          <h2 class="task-title">Home</h2>
+        </div>
+      </div>
     </div>
-    <app-spinner *ngIf="store?.loading"></app-spinner>
-</ng-container> -->
+  </ng-container>
+  

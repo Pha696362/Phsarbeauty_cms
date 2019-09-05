@@ -3,11 +3,6 @@ export const StatusObj = {
   ACTIVE: { key: 1, text: "Active" },
 };
 
-export const FILTER_OPTIONS = [
-  { key: "bookstore", text: "Bookstore" },
-];
-
-
 export const BOOK_OPTIONS = [
   { key: 2, text: "Top Rating", route: "RATING" },
   { key: 3, text: "New Arrival", route: "NEW_ARRIVAL" },
@@ -25,3 +20,10 @@ export const PAYMENT_TYPES = [
   { key: 2, text: "Subscript" },
   { key: 3, text: "Free" },
 ]
+
+export const FILTER_OPTIONS = [
+  { key: "phoneNumber", text: "Phone Number" },
+  { key: "fullName", text: "Full Name" },
+  { key: "firstName", text: "First Name" },
+  { key: "lastName", text: "Last Name" },
+];

@@ -56,27 +56,28 @@ export class AuthStore {
   }
 
   @action
-  signIn(form: any) {
+  async signIn(form: any) {
     this.process = true;
     this.error = null;
     const { email, password } = form;
-    this.auth.authRef().signInWithEmailAndPassword(email, password).then(user => {
+    return this.auth.authRef().signInWithEmailAndPassword(email, password).then(user => {
       if (user) {
-        const email = "yep@gmail.com";
-        const password = "123456";
+        // const email = "yep@gmail.com";
+        // const password = "123456";
 
-        this.api.login(`${this.api.baseUri}authenticate?email=${email}&password=${password}`).then((res)=>{
-          Utils.setLocalstorageItem('token', res.token);
+        // this.api.login(`${this.api.baseUri}authenticate?email=${email}&password=${password}`).then((res)=>{
+        //   Utils.setLocalstorageItem('token', res.token);
           
-        })
-
+        // })
         this.user = user.user;
         this.router.navigate(['/'])
         this.process = false;
+        return user;
       }
       else {
         this.error = "Invalid email and password.";
         this.process = false;
+        return null;
       }
     }).catch(error => {
       alert(error)
