@@ -17,6 +17,9 @@ import { GenreComponent } from './pages/genre/genre.component';
 import { SlideComponent } from './pages/slide/slide.component';
 import { SubscribersComponent } from './pages/subscribers/subscribers.component';
 import { ProductComponent } from './pages/product/product.component';
+import { ClientProfileComponent } from './pages/client-profile/client-profile.component';
+import { ClientOverviewComponent } from './pages/client-profile/client-overview/client-overview.component';
+import { ClientPaymentComponent } from './pages/client-profile/client-payment/client-payment.component';
 const routes: Routes = [
   {
     path: "auth",
@@ -30,6 +33,13 @@ const routes: Routes = [
     children: [
       { path: "", component: DashboardComponent },
       { path: "home", component: DashboardComponent },
+      {
+        path: "client/:id", component: ClientProfileComponent, children: [
+          { path: "overview", component: ClientOverviewComponent },
+          { path: "payment", component: ClientPaymentComponent },
+          { path: "history", component: ClientOverviewComponent },
+        ]
+      },
     ]
   },
   {

@@ -108,6 +108,11 @@ import { SubscribersComponent } from './pages/subscribers/subscribers.component'
 import { AddSubscriberComponent } from './pages/subscribers/add-subscriber/add-subscriber.component';
 import { ProductComponent } from './pages/product/product.component';
 import { AddProductComponent } from './pages/product/add-product/add-product.component';
+import { ClientProfileComponent } from './pages/client-profile/client-profile.component';
+import { ClientOverviewComponent } from './pages/client-profile/client-overview/client-overview.component';
+import { ClientPaymentComponent } from './pages/client-profile/client-payment/client-payment.component';
+import { ClientHistoryComponent } from './pages/client-profile/client-history/client-history.component';
+import { ApplyPackageComponent } from './pages/client-profile/apply-package/apply-package.component';
 
 @NgModule({
   declarations: [
@@ -182,6 +187,11 @@ import { AddProductComponent } from './pages/product/add-product/add-product.com
     AddSubscriberComponent,
     ProductComponent,
     AddProductComponent,
+    ClientProfileComponent,
+    ClientOverviewComponent,
+    ClientPaymentComponent,
+    ClientHistoryComponent,
+    ApplyPackageComponent,
   ],
   entryComponents: [
     ModalWarningComponent,

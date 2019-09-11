@@ -8,6 +8,7 @@ import { AddNewGenreComponent } from './../pages/genre/add-new-genre/add-new-gen
 import { AddNewTagComponent } from './../pages/tags/add-new-tag/add-new-tag.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { AddNewPdfBookComponent } from '../pages/book/add-new-pdf-book/add-new-pdf-book.component';
+import { ApplyPackageComponent } from '../pages/client-profile/apply-package/apply-package.component';
 
 export const APP_ENTRY_COMPONENTS=[
   AddUserComponent,
@@ -19,5 +20,6 @@ export const APP_ENTRY_COMPONENTS=[
   AddNewCoverBookComponent,
   AddNewPdfBookComponent,
   AddSubscriberComponent,
-  AddProductComponent
+  AddProductComponent,
+  ApplyPackageComponent,
 ]
