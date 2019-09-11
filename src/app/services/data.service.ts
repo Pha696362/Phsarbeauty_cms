@@ -98,6 +98,21 @@ export class DataService {
     }
   }
 
+  settingFireStore() {
+    return this.firestore().collection("options").doc("general");
+  }
+
+  sysSetting() {
+    return this.db.collection("options").doc("general");
+  }
+
+  subscriberFireRef() {
+    return this.firestore().collection("subscribers");
+  }
+
+  invoiceFireRef() {
+    return this.firestore().collection("invoices");
+  }
 
   subscriberRef() {
     return this.db.collection<ISubscriber>("subscribers", ref => ref.orderBy("page_key"));
@@ -110,7 +125,9 @@ export class DataService {
     );
   }
 
-  subscriberFilterRef(field: string, search: any) {
+  subscriberFilterRef(field: string, text: any) {
+    let search = text;
+    if(field === "phone") search = `+855${ConvertService.toNumber(search)}`
     if (search) {
       if (search.key) {
         return this.db.collection("subscribers", ref =>

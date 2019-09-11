@@ -221,6 +221,11 @@ export class ConvertService {
     return moment(time, 'hh:mm a').format('hh:mm a')
   }
 
+  static generate_invoiceNo(config) {
+    var number = moment().format('YYMMDD').toString() + (config.invoice_no + 1).toString();
+    return Number(number);
+  }
+
   static generate_testing_invoiceNo(config) {
     var number = moment().format('YYMMDD').toString() + (config.invoice_shufit + 1).toString();
     return number;
@@ -233,6 +238,10 @@ export class ConvertService {
 
   static addDays(totalDay: number) {
     return moment().add(totalDay, 'days').toDate();
+  }
+
+  static addExpiredMonth(interval: number) {
+    return moment().add(interval, 'months').toDate();
   }
 
   // static getDaySchedule(days) {

@@ -110,9 +110,7 @@ export class DashboardComponent implements OnInit {
   }
 
   _optionSelected(item: any) {
-    this.router.navigate(["/app/student/admission/overview/" + item.key]);
+    this.router.navigate(["/client/" + item.key + "/overview/"]);
   }
-
-
 
 }

@@ -22,8 +22,13 @@ export const PAYMENT_TYPES = [
 ]
 
 export const FILTER_OPTIONS = [
-  { key: "phoneNumber", text: "Phone Number" },
+  { key: "phone", text: "Phone Number" },
   { key: "fullName", text: "Full Name" },
   { key: "firstName", text: "First Name" },
   { key: "lastName", text: "Last Name" },
-];
+]; 
+
+export const PAY_STATUS = {
+  paid: { key: 1, text: 'Paid' },
+  unpaid: { key: 2, text: 'Unpaid' },
+}
