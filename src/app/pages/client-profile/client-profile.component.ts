@@ -57,7 +57,9 @@ export class ClientProfileComponent implements OnInit {
     if (this.store.FILTER_OPTIONS_TYPES) {
       this.searchType.patchValue(this.store.FILTER_OPTIONS_TYPES);
     }
-    this.store.fetchSubscriber();
+
+    const { searchType } = this.form.value;
+    this.store.subscriberSearch(searchType.key);
     this.search.valueChanges
       .pipe(
         debounceTime(300),

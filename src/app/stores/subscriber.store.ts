@@ -77,7 +77,20 @@ export class Subscriber {
 
   @action
   search(field, search) {
+    if (search.key) {
+      return this.ds.subscriberFilterRef(field, search.phone).valueChanges();
+    }
     return this.ds.subscriberFilterRef(field, search).valueChanges();
+  }
+
+  @action
+  subscriberSearch(field) {
+    this.loading = true;
+    this.ds.subscriberSearchRef(field).valueChanges().subscribe(docs => {
+        this.empty = docs.length === 0;
+        this.memberships = docs;
+        this.loading = false;
+      });
   }
 
   @action

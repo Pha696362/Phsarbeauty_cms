@@ -28,7 +28,7 @@
                 fill="#484848"></path>
             </svg>
             <span class="flex1 mat-space">{{state?.fullName}}</span>
-            <small>{{state?.phoneNumber}}</small>
+            <small>{{state?.phone}}</small>
           </mat-option>
           <mat-option [disabled]="true" class="mat-empty-result" *ngIf="!loading && store?.memberships?.length === 0">
             <img
