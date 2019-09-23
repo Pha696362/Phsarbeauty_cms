@@ -5,6 +5,8 @@ import { MatSnackBar, MatDialog } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 import { tabs } from 'src/app/dummy/tabs';
 import { Product } from 'src/app/stores/product.store';
+import { EditProductComponent } from './edit-product/edit-product.component';
+import { AddCoverProductComponent } from './add-cover-product/add-cover-product.component';
 
 @Component({
   selector: 'app-product',
@@ -34,25 +36,25 @@ export class ProductComponent implements OnInit {
     dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
   }
 
-  // cover(item) {
-  //   let dialogRef = this.dialog.open(AddCoverSlideComponent, {
-  //     data: item,
-  //     width: '35vw',
-  //     height: '100vh',
-  //     role: 'dialog',
-  //   });
-  //   dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
-  // }
+  cover(item) {
+    let dialogRef = this.dialog.open(AddCoverProductComponent, {
+      data: item,
+      width: '35vw',
+      height: '100vh',
+      role: 'dialog',
+    });
+    dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
+  }
 
-  // edit(item: IGenre) {
-  //   // let dialogRef = this.dialog.open(EditProvinceComponent, {
-  //   //   data: {...item,dbName:this.dbName},
-  //   //   width: '35vw',
-  //   //   height: '100vh',
-  //   //   role: 'dialog',
-  //   // });
-  //   // dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
-  // }
+  edit(item: any) {
+    let dialogRef = this.dialog.open(EditProductComponent, {
+      data: item,
+      width: '35vw',
+      height: '100vh',
+      role: 'dialog',
+    });
+    dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
+  }
 
   delete(item: any) {
     let dialogRef = this.dialog.open(DeleteComponent, {

@@ -12,11 +12,11 @@ import { StatusObj } from 'src/app/dummy/status';
 import { Subscriber } from 'src/app/stores/subscriber.store';
 
 @Component({
-  selector: 'app-add-subscriber',
-  templateUrl: './add-subscriber.component.html',
-  styleUrls: ['./add-subscriber.component.scss']
+  selector: 'app-edit-subscribers',
+  templateUrl: './edit-subscribers.component.html',
+  styleUrls: ['./edit-subscribers.component.scss']
 })
-export class AddSubscriberComponent implements OnInit {
+export class EditSubscribersComponent implements OnInit {
   @ViewChild("focusInput") inputEl: ElementRef;
   form: FormGroup;
   phone: AbstractControl;
@@ -27,7 +27,7 @@ export class AddSubscriberComponent implements OnInit {
 
   products: any;
   constructor(
-    public dialogRef: MatDialogRef<AddSubscriberComponent>,
+    public dialogRef: MatDialogRef<EditSubscribersComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
     public env: Environment,
@@ -39,13 +39,13 @@ export class AddSubscriberComponent implements OnInit {
 
   async buildForm() {
     this.form = this.fb.group({
-      phone: [null, Validators.compose([Validators.required]), checkExistDoc(this.afs, "subscribers", "phoneNumber")],
-      firstName: [null, Validators.required],
-      lastName: [null, Validators.required],
+      // phone: [null, Validators.compose([]), checkExistDoc(this.afs, "subscribers", "phoneNumber")],
+      firstName: [this.data.firstName, Validators.required],
+      lastName: [this.data.lastName, Validators.required],
       // product: [null,],
-      email: [null],
+      email: [this.data.email],
     })
-    this.phone = this.form.controls['phone'];
+    // this.phone = this.form.controls['phone'];
     this.firstName = this.form.controls["period"];
     this.lastName = this.form.controls["lastName"];
     // this.product = this.form.controls["product"];
@@ -64,39 +64,25 @@ export class AddSubscriberComponent implements OnInit {
   }
 
 
-  create(f: any, isNew) {
+  create(f: any) {
     if (this.form.valid) {
       this.form.disable();
-      const { phone, firstName, lastName, product, email, } = f;
-      const { period } = product;
-      const expiredDate = toDateExpiredDate(period);
+      const { firstName, lastName, email, } = f;
       const item: ISubscriber = {
-        key: this.ds.createId(),
-        status: StatusObj.ACTIVE,
-        page_key: ConvertService.pageKey(),
-        create_date: new Date(),
-        create_by: this.env.user,
+        key: this.data.key,
         update_date: new Date(),
         update_by: this.env.user,
         firstName: firstName,
         lastName: lastName,
         fullName: `${lastName} ${firstName}`,
-        phone: `+855${ConvertService.toNumber(phone)}`,
-        phoneNumber: `0${ConvertService.toNumber(phone)}`,
         email: email,
-        isPaid: false,
-        product: null,
-        expiredDate: null,
-        expiredDateKey: null,
       }
-      this.store.addNew(item, (success, error) => {
+      this.store.update(this.ds.subscriberRef(), item, (success, error) => {
         if (success) {
-          if (!isNew)
-            this.dialogRef.close();
-          this.snackBar.open('Membership has been created.', 'done', { duration: 2500 });
+          this.dialogRef.close();
+          this.snackBar.open('Membership has been updated.', 'done', { duration: 2500 });
           this.form.enable();
           this.form.reset();
-          this.inputEl.nativeElement.focus();
         }
         else {
           alert(error)

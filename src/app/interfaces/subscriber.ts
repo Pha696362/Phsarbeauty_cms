@@ -24,13 +24,13 @@ export interface ISubscriber{
   firstName:string;
   lastName:string;
   fullName:string;
-  phone:string;
-  phoneNumber:string;
+  phone?:string;
+  phoneNumber?:string;
   email?:string;
-  isPaid:boolean;
+  isPaid?:boolean;
   product?:any;
-  active_by:any;
-  active_date:Date;
-  expiredDate:Date;
-  expiredDateKey:number;
+  active_by?:any;
+  active_date?:Date;
+  expiredDate?:Date;
+  expiredDateKey?:number;
 }

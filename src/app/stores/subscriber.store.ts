@@ -52,7 +52,6 @@ export class Subscriber {
         if (isPaid && expiredDateKey >= ConvertService.dateKey()) this.isMember = true;
       }
 
-      console.log(this.isMember)
       this.loading = false;
     })
   }

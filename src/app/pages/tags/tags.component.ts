@@ -6,6 +6,7 @@ import { Bookstore } from './../../stores/bookstore';
 import { tabs } from './../../dummy/tabs';
 import { Component, OnInit } from '@angular/core';
 import { ITag } from 'src/app/interfaces/bookstore';
+import { EditTagsComponent } from './edit-tags/edit-tags.component';
 
 @Component({
   selector: 'app-tags',
@@ -35,13 +36,13 @@ export class TagsComponent implements OnInit {
   }
 
   edit(item: ITag) {
-    // let dialogRef = this.dialog.open(EditProvinceComponent, {
-    //   data: {...item,dbName:this.dbName},
-    //   width: '35vw',
-    //   height: '100vh',
-    //   role: 'dialog',
-    // });
-    // dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
+    let dialogRef = this.dialog.open(EditTagsComponent, {
+      data: item,
+      width: '35vw',
+      height: '100vh',
+      role: 'dialog',
+    });
+    dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
   }
 
   delete(item: ITag) {

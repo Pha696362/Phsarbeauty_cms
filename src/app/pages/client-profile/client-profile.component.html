@@ -54,6 +54,12 @@
           <span class="text-group">Payment</span>
         </div>
         <div class="group-mat-button">
+          <button [disabled]="store?.loading" mat-button mat-fab routerLinkActive="active" (click)="profile()">
+            <mat-icon aria-label="Transcript">person</mat-icon>
+          </button>
+          <span class="text-group">Profile</span>
+        </div>
+        <div class="group-mat-button">
           <button [disabled]="store?.loading" mat-button mat-fab routerLinkActive="active"
             [routerLink]="['/client/' + store?.subscriberKey + '/history']">
             <mat-icon aria-label="Transcript">remove_from_queue</mat-icon>

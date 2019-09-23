@@ -6,6 +6,8 @@ import { DeleteComponent } from './../../components/delete/delete.component';
 import { Component, OnInit } from '@angular/core';
 import { tabs } from 'src/app/dummy/tabs';
 import { Subscriber } from 'src/app/stores/subscriber.store';
+import { AddCoverSubscribersComponent } from './add-cover-subscribers/add-cover-subscribers.component';
+import { EditSubscribersComponent } from './edit-subscribers/edit-subscribers.component';
 
 @Component({
   selector: 'app-subscribers',
@@ -40,25 +42,25 @@ export class SubscribersComponent implements OnInit {
     dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
   }
 
-  // cover(item) {
-  //   let dialogRef = this.dialog.open(AddCoverSlideComponent, {
-  //     data: item,
-  //     width: '35vw',
-  //     height: '100vh',
-  //     role: 'dialog',
-  //   });
-  //   dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
-  // }
+  cover(item) {
+    let dialogRef = this.dialog.open(AddCoverSubscribersComponent, {
+      data: item,
+      width: '35vw',
+      height: '100vh',
+      role: 'dialog',
+    });
+    dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
+  }
 
-  // edit(item: IGenre) {
-  //   // let dialogRef = this.dialog.open(EditProvinceComponent, {
-  //   //   data: {...item,dbName:this.dbName},
-  //   //   width: '35vw',
-  //   //   height: '100vh',
-  //   //   role: 'dialog',
-  //   // });
-  //   // dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
-  // }
+  edit(item: any) {
+    let dialogRef = this.dialog.open(EditSubscribersComponent, {
+      data: item,
+      width: '35vw',
+      height: '100vh',
+      role: 'dialog',
+    });
+    dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
+  }
 
   delete(item: any) {
     let dialogRef = this.dialog.open(DeleteComponent, {

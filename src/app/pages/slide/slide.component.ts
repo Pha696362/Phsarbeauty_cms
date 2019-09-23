@@ -7,6 +7,7 @@ import { Bookstore } from './../../stores/bookstore';
 import { tabs } from './../../dummy/tabs';
 import { Component, OnInit } from '@angular/core';
 import { IGenre } from 'src/app/interfaces/bookstore';
+import { EditSlideComponent } from './edit-slide/edit-slide.component';
 
 @Component({
   selector: 'app-slide',
@@ -46,13 +47,13 @@ export class SlideComponent implements OnInit {
   }
 
   edit(item: IGenre) {
-    // let dialogRef = this.dialog.open(EditProvinceComponent, {
-    //   data: {...item,dbName:this.dbName},
-    //   width: '35vw',
-    //   height: '100vh',
-    //   role: 'dialog',
-    // });
-    // dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
+    let dialogRef = this.dialog.open(EditSlideComponent, {
+      data: item,
+      width: '35vw',
+      height: '100vh',
+      role: 'dialog',
+    });
+    dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
   }
 
   delete(item: IGenre) {

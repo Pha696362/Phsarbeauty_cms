@@ -113,6 +113,14 @@ import { ClientOverviewComponent } from './pages/client-profile/client-overview/
 import { ClientPaymentComponent } from './pages/client-profile/client-payment/client-payment.component';
 import { ClientHistoryComponent } from './pages/client-profile/client-history/client-history.component';
 import { ApplyPackageComponent } from './pages/client-profile/apply-package/apply-package.component';
+import { EditTagsComponent } from './pages/tags/edit-tags/edit-tags.component';
+import { EditGenreComponent } from './pages/genre/edit-genre/edit-genre.component';
+import { EditSlideComponent } from './pages/slide/edit-slide/edit-slide.component';
+import { EditBookComponent } from './pages/book/edit-book/edit-book.component';
+import { EditProductComponent } from './pages/product/edit-product/edit-product.component';
+import { AddCoverProductComponent } from './pages/product/add-cover-product/add-cover-product.component';
+import { EditSubscribersComponent } from './pages/subscribers/edit-subscribers/edit-subscribers.component';
+import { AddCoverSubscribersComponent } from './pages/subscribers/add-cover-subscribers/add-cover-subscribers.component';
 
 @NgModule({
   declarations: [
@@ -192,6 +200,14 @@ import { ApplyPackageComponent } from './pages/client-profile/apply-package/appl
     ClientPaymentComponent,
     ClientHistoryComponent,
     ApplyPackageComponent,
+    EditTagsComponent,
+    EditGenreComponent,
+    EditSlideComponent,
+    EditBookComponent,
+    EditProductComponent,
+    AddCoverProductComponent,
+    EditSubscribersComponent,
+    AddCoverSubscribersComponent,
   ],
   entryComponents: [
     ModalWarningComponent,

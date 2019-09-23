@@ -33,7 +33,6 @@ export class Bookstore {
   fetchData(ref: AngularFirestoreCollection) {
     this.loading = true;
     ref.valueChanges().subscribe(docs => {
-      console.log(docs)
       this.data = docs;
       this.empty = docs.length === 0;
       this.loading = false;
