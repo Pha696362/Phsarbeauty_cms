@@ -16,7 +16,7 @@ export class AddNewPdfBookComponent implements OnInit {
   uploadPercent: Observable<number>;
   downloadURL: Observable<string>;
   fileName: string;
-
+  validType: boolean = true;
   constructor(
     public dialogRef: MatDialogRef<AddNewPdfBookComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -30,14 +30,20 @@ export class AddNewPdfBookComponent implements OnInit {
   ngOnInit() { }
 
   uploadFile(event) {
+    this.validType = true;
     const { key } = this.data;
     const file = event.target.files[0];
-    const filePath = `books/${key}/${file.name}`;
-    this.fileName = filePath;
-    const fileRef = this.storage.ref(filePath);
-    const task = this.storage.upload(filePath, file);
-    this.uploadPercent = task.percentageChanges();
-    task.snapshotChanges().pipe(finalize(() => this.downloadURL = fileRef.getDownloadURL())).subscribe()
+    if (file.type === "application/epub+zip") {
+
+      const filePath = `books/${key}/${file.name}`;
+      this.fileName = filePath;
+      const fileRef = this.storage.ref(filePath);
+      const task = this.storage.upload(filePath, file);
+      this.uploadPercent = task.percentageChanges();
+      task.snapshotChanges().pipe(finalize(() => this.downloadURL = fileRef.getDownloadURL())).subscribe();
+    } else {
+      this.validType = false;
+    }
   }
 
   update() {

@@ -59,13 +59,13 @@
           </button>
           <span class="text-group">Profile</span>
         </div>
-        <div class="group-mat-button">
+        <!-- <div class="group-mat-button">
           <button [disabled]="store?.loading" mat-button mat-fab routerLinkActive="active"
             [routerLink]="['/client/' + store?.subscriberKey + '/history']">
             <mat-icon aria-label="Transcript">remove_from_queue</mat-icon>
           </button>
           <span class="text-group">History</span>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -97,7 +97,7 @@
                 fill="#484848"></path>
             </svg>
             <span class="flex1 mat-space">{{state?.fullName}}</span>
-            <small>{{state?.phoneNumber}}</small>
+            <small>{{state?.phone}}</small>
           </mat-option>
           <mat-option [disabled]="true" class="mat-empty-result" *ngIf="!loading && store?.memberships?.length === 0">
             <img

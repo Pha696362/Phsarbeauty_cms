@@ -118,9 +118,8 @@ export class DataService {
     return this.db.collection<ISubscriber>("subscribers", ref => ref.orderBy("page_key"));
   }
 
-  subscriberSearchRef() {
-    return this.db.collection("subscribers", ref => ref
-      .orderBy("phoneNumber", "desc")
+  subscriberSearchRef(field) {
+    return this.db.collection("subscribers", ref => ref.orderBy(field, "desc")
       .limit(20)
     );
   }
