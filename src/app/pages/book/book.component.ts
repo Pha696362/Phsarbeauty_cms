@@ -9,6 +9,7 @@ import { tabs } from './../../dummy/tabs';
 import { Component, OnInit } from '@angular/core';
 import { IGenre, IBook } from 'src/app/interfaces/bookstore';
 import { AddNewPdfBookComponent } from './add-new-pdf-book/add-new-pdf-book.component';
+import { EditBookComponent } from './edit-book/edit-book.component';
 
 @Component({
   selector: 'app-book',
@@ -68,13 +69,13 @@ export class BookComponent implements OnInit {
   }
 
   edit(item: IGenre) {
-    // let dialogRef = this.dialog.open(EditProvinceComponent, {
-    //   data: {...item,dbName:this.dbName},
-    //   width: '35vw',
-    //   height: '100vh',
-    //   role: 'dialog',
-    // });
-    // dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
+    let dialogRef = this.dialog.open(EditBookComponent, {
+      data: item,
+      width: '35vw',
+      height: '100vh',
+      role: 'dialog',
+    });
+    dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
   }
 
   delete(item: IBook) {

@@ -8,17 +8,17 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-add-new-cover-book',
-  templateUrl: './add-new-cover-book.component.html',
-  styleUrls: ['./add-new-cover-book.component.scss']
+  selector: 'app-add-cover-product',
+  templateUrl: './add-cover-product.component.html',
+  styleUrls: ['./add-cover-product.component.scss']
 })
-export class AddNewCoverBookComponent implements OnInit {
+export class AddCoverProductComponent implements OnInit {
   uploadPercent: Observable<number>;
   downloadURL: Observable<string>;
   fileName: string;
 
   constructor(
-    public dialogRef: MatDialogRef<AddNewCoverBookComponent>,
+    public dialogRef: MatDialogRef<AddCoverProductComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private storage: AngularFireStorage,
     public env: Environment,
@@ -27,12 +27,13 @@ export class AddNewCoverBookComponent implements OnInit {
     private ds: DataService
   ) { }
 
+
   ngOnInit() { }
 
   uploadFile(event) {
     const { key } = this.data;
     const file = event.target.files[0];
-    const filePath = `books/${key}/${file.name}`;
+    const filePath = `packages/${key}/${file.name}`;
     this.fileName = filePath;
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
@@ -42,7 +43,7 @@ export class AddNewCoverBookComponent implements OnInit {
 
   update() {
     this.downloadURL.subscribe(file => {
-      this.store.updateFileUrl(this.ds.bookRef(), this.data, this.fileName, file, (success, error) => {
+      this.store.updateFileUrl(this.ds.productRef(), this.data, this.fileName, file, (success, error) => {
         if (success) {
           this.snackBar.open('Cover has been updated.', 'done', { duration: 2500 });
           this.dialogRef.close();

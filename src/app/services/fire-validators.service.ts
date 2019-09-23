@@ -62,8 +62,28 @@ export class FireValidatorsService {
 
 }
 
-
-
+export function checkExistOnEdit(afs: AngularFirestore, collection: string, field: string,oldValue:string) {
+  return (control: AbstractControl) => {
+    const value = control.value;
+    if (value !== null && value !== "" && value !== undefined) {
+      return afs
+        .collection(collection, ref => ref
+          .where(field, "==", value))
+        .valueChanges()
+        .pipe(
+          debounceTime(300),
+          take(1),
+          map(arr => {
+            if(oldValue===value){
+              return null;
+            }
+            const val = arr.length >0 ? { nameAvailable: true } : null;
+            return val;
+          })
+        );
+    }
+  };
+}
 
 export function checkExistDoc(afs: AngularFirestore, collection: string, field: string) {
   return (control: AbstractControl) => {

@@ -4,10 +4,10 @@ export interface IBookstore {
 
 export interface ITag{
   key: string;
-  status: any;
-  page_key: number;
-  create_date: Date;
-  create_by: object;
+  status?: any;
+  page_key?: number;
+  create_date?: Date;
+  create_by?: object;
   update_date?: Date;
   update_by?: object;
   name:string;
@@ -16,10 +16,10 @@ export interface ITag{
 
 export interface IGenre{
   key: string;
-  status: any;
-  page_key: number;
-  create_date: Date;
-  create_by: object;
+  status?: any;
+  page_key?: number;
+  create_date?: Date;
+  create_by?: object;
   update_date?: Date;
   update_by?: object;
   name:string;
@@ -33,10 +33,10 @@ export interface IGenre{
 
 export interface ISlide{
   key: string;
-  status: any;
-  page_key: number;
-  create_date: Date;
-  create_by: object;
+  status?: any;
+  page_key?: number;
+  create_date?: Date;
+  create_by?: object;
   update_date?: Date;
   update_by?: object;
   order:number;

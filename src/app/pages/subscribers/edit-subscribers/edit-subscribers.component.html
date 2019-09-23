@@ -1,7 +1,7 @@
 <form [formGroup]="form" class="dialog-wrapper">
   <div class="dialog-header">
     <div class="title">
-      Add new membership
+      Update profile
     </div>
     <div class="flex1"></div>
     <a mat-dialog-close class="close-dialog" (click)="dialogRef.close('no')">
@@ -11,7 +11,7 @@
   <div class="dialog-content">
     <div class="form-wrapper">
       <div class="ui form">
-          <div class="field">
+        <!-- <div class="field">
               <label>Phone number
                 <span class="rq-sign">*</span>
               </label>
@@ -20,7 +20,7 @@
                 class="error-message">This field is required.</div>
               <div *ngIf="form.controls['phone'].hasError('nameAvailable')" class="error-message">This name is taken. Try
                 another.</div>
-            </div>
+            </div> -->
         <div class="fields two">
           <div class="field">
             <label>First name
@@ -29,16 +29,16 @@
             <input type="text" class="lg-input" placeholder="First name" required formControlName="firstName">
             <div *ngIf="form.controls['firstName'].hasError('required') && form.controls['firstName'].touched"
               class="error-message">This field is required.</div>
-          
+
           </div>
           <div class="field">
-              <label>Last name
-                <span class="rq-sign">*</span>
-              </label>
-              <input type="text" class="lg-input" placeholder="Last name" required formControlName="lastName">
-              <div *ngIf="form.controls['lastName'].hasError('required') && form.controls['lastName'].touched"
-                class="error-message">This field is required.</div>
-            </div>
+            <label>Last name
+              <span class="rq-sign">*</span>
+            </label>
+            <input type="text" class="lg-input" placeholder="Last name" required formControlName="lastName">
+            <div *ngIf="form.controls['lastName'].hasError('required') && form.controls['lastName'].touched"
+              class="error-message">This field is required.</div>
+          </div>
         </div>
         <div class="field">
           <label>Email</label>
@@ -64,10 +64,7 @@
   <div class="dialog-footer">
     <div class="flex1"></div>
     <a mat-dialog-close class="enbutton cancel m-r16" (click)="dialogRef.close('no')">Cancel</a>
-    <button type="submit" class="enbutton primary m-r16" [disabled]="!form.valid" (click)="create(form.value,true)">Save
-      New</button>
-    <button class="enbutton primary m-r16" [disabled]="!form.valid" (click)="create(form.value,false)">Save
-      Close</button>
+    <button type="submit" class="enbutton primary m-r16" [disabled]="!form.valid" (click)="create(form.value)">Update</button>
   </div>
   <app-spinner *ngIf="store?.process"></app-spinner>
 </form>

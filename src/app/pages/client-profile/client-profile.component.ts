@@ -9,6 +9,7 @@ import { MappingService } from "src/app/services/mapping.service";
 import { PrintService } from 'src/app/services/print.service';
 import { FILTER_OPTIONS } from 'src/app/dummy/status';
 import { Subscriber } from 'src/app/stores/subscriber.store';
+import { EditSubscribersComponent } from '../subscribers/edit-subscribers/edit-subscribers.component';
 
 @Component({
   selector: 'app-client-profile',
@@ -126,6 +127,16 @@ export class ClientProfileComponent implements OnInit {
 
   _linkPage(item) {
     this.router.navigate(["/client/" + item.key + "/overview/"]);
+  }
+
+  profile() {
+    let dialogRef = this.dialog.open(EditSubscribersComponent, {
+      data: this.store.subscriber,
+      width: '35vw',
+      height: '100vh',
+      role: 'dialog',
+    });
+    dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
   }
 
 }
