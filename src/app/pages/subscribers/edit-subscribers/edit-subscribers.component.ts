@@ -72,9 +72,9 @@ export class EditSubscribersComponent implements OnInit {
         key: this.data.key,
         update_date: new Date(),
         update_by: this.env.user,
-        firstName: firstName,
-        lastName: lastName,
-        fullName: `${lastName} ${firstName}`,
+        firstName: firstName.toUpperCase(),
+        lastName: lastName.toUpperCase(),
+        fullName: `${lastName.toUpperCase()} ${firstName.toUpperCase()}`,
         email: email,
       }
       this.store.update(this.ds.subscriberRef(), item, (success, error) => {
