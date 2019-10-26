@@ -16,9 +16,9 @@ export const BOOK_STATUS = [
 ]
 
 export const PAYMENT_TYPES = [
-  { key: 1, text: "Buy" },
-  { key: 2, text: "Subscript" },
-  { key: 3, text: "Free" },
+  // { key: 1, text: "Buy" },
+  { key: 1, text: "Subscript" },
+  { key: 2, text: "Free" },
 ]
 
 export const FILTER_OPTIONS = [
