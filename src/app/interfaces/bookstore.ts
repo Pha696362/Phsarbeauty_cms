@@ -34,7 +34,7 @@ export interface IAbout{
   value?:any;
   mission?:any;
 }
-export interface IContact{
+export interface IEmbulance{
   key: string;
   status?: any;
   page_key?: number;
@@ -44,7 +44,19 @@ export interface IContact{
   update_by?: object;
   name:string;
   phone?:any;
-  email?:any;
+
+}
+export interface IFiretruck{
+  key: string;
+  status?: any;
+  page_key?: number;
+  create_date?: Date;
+  create_by?: object;
+  update_date?: Date;
+  update_by?: object;
+  name:string;
+  phone?:any;
+
 }
 
 
@@ -85,17 +97,19 @@ export interface IContent{
   update_date?: Date;
   update_by?: object;
   name:string;
-  videos:string;
+  editname?:any;
   createname:string;
   reference:string;
-  description:string;
   category:any;
-  type:any;
+  // type:any;
+  fileurl?:any;
+  advertiseType: any;
+  advertiseTypeKey: any;
   
  
  
 }
-export interface IVideos{
+export interface ITvnews{
   key: string;
   status?: any;
   page_key?: number;
@@ -105,11 +119,32 @@ export interface IVideos{
   update_by?: object;
   name:string;
   order:number;
-  duration:string;
-  description:string;
   videos:any;
-  paymentType: any;
-  paymentTypeKey: any;
+  
+ 
+}
+export interface IEntertainment{
+  key: string;
+  status?: any;
+  page_key?: number;
+  create_date?: Date;
+  create_by?: object;
+  update_date?: Date;
+  update_by?: object;
+  name:string;
+  order:number;
+  videos:any;
+}
+
+export interface IPhonenumber{
+  key: string;
+  status?: any;
+  page_key?: number;
+  create_date?: Date;
+  create_by?: object;
+  update_date?: Date;
+  update_by?: object;
+  name:string;
  
 }
 
@@ -146,6 +181,27 @@ export interface ISlide{
   fileName?:string;
   fileUrl?:string;
 }
+
+
+export interface IAdvertise{
+  key: string;
+  status?: any;
+  page_key?: number;
+  create_date?: Date;
+  create_by?: object;
+  update_date?: Date;
+  update_by?: object;
+  book?:any;
+  fileurl?:any;
+  name:string;
+  fileName?:string;
+  fileUrl?:string;
+  advertiseType: any;
+  advertiseTypeKey: any;
+  
+
+}
+
 
 
 export interface IBook{

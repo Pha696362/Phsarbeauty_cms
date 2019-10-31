@@ -92,17 +92,6 @@ import { HttpModule } from '@angular/http';
 import { ApiService } from './services/api.service';
 import { DateStringPipe } from './pipes/date-string.pipe';
 import { DateResolveDatePipe } from './pipes/date-resolve-date.pipe';
-import { TagsComponent } from './pages/tags/tags.component';
-import { AddNewTagComponent } from './pages/tags/add-new-tag/add-new-tag.component';
-import { GenreComponent } from './pages/genre/genre.component';
-import { AddNewGenreComponent } from './pages/genre/add-new-genre/add-new-genre.component';
-import { SlideComponent } from './pages/slide/slide.component';
-import { AddNewSlideComponent } from './pages/slide/add-new-slide/add-new-slide.component';
-import { BookComponent } from './pages/book/book.component';
-import { AddNewBookComponent } from './pages/book/add-new-book/add-new-book.component';
-import { AddCoverSlideComponent } from './pages/slide/add-cover-slide/add-cover-slide.component';
-import { AddNewCoverBookComponent } from './pages/book/add-new-cover-book/add-new-cover-book.component';
-import { AddNewPdfBookComponent } from './pages/book/add-new-pdf-book/add-new-pdf-book.component';
 import { SubscribersComponent } from './pages/subscribers/subscribers.component';
 import { AddSubscriberComponent } from './pages/subscribers/add-subscriber/add-subscriber.component';
 import { ProductComponent } from './pages/product/product.component';
@@ -112,42 +101,53 @@ import { ClientOverviewComponent } from './pages/client-profile/client-overview/
 import { ClientPaymentComponent } from './pages/client-profile/client-payment/client-payment.component';
 import { ClientHistoryComponent } from './pages/client-profile/client-history/client-history.component';
 import { ApplyPackageComponent } from './pages/client-profile/apply-package/apply-package.component';
-import { EditTagsComponent } from './pages/tags/edit-tags/edit-tags.component';
-import { EditGenreComponent } from './pages/genre/edit-genre/edit-genre.component';
-import { EditSlideComponent } from './pages/slide/edit-slide/edit-slide.component';
-import { EditBookComponent } from './pages/book/edit-book/edit-book.component';
 import { EditProductComponent } from './pages/product/edit-product/edit-product.component';
 import { AddCoverProductComponent } from './pages/product/add-cover-product/add-cover-product.component';
 import { EditSubscribersComponent } from './pages/subscribers/edit-subscribers/edit-subscribers.component';
 import { AddCoverSubscribersComponent } from './pages/subscribers/add-cover-subscribers/add-cover-subscribers.component';
-import { CourseComponent } from './pages/course/course.component';
-import { AddNewCourseComponent } from './pages/course/add-new-course/add-new-course.component';
-import { EditCourseComponent } from './pages/course/edit-course/edit-course.component';
 import { CategoryComponent } from './pages/category/category.component';
 import { AddCategoryComponent } from './pages/category/add-category/add-category.component';
 import { EditCategoryComponent } from './pages/category/edit-category/edit-category.component';
 import { AddConverCategoryComponent } from './pages/category/add-conver-category/add-conver-category.component';
-import { AddNewCourseCoverComponent } from './pages/course/add-new-course-cover/add-new-course-cover.component';
-import { CourseDetailComponent } from './pages/course/course-detail/course-detail.component';
-import { AddNewVideosComponent } from './pages/course/add-new-videos/add-new-videos.component';
-import { EditVideosComponent } from './pages/course/edit-videos/edit-videos.component';
 import { AddAboutUsComponent } from './pages/about/add-about-us/add-about-us.component';
 import { AboutComponent } from './pages/about/about.component';
 import { EditAboutUsComponent } from './pages/about/edit-about-us/edit-about-us.component';
-import { ContactComponent } from './pages/contact/contact.component';
-import { AddNewContactComponent } from './pages/contact/add-new-contact/add-new-contact.component';
-import { EditNewContactComponent } from './pages/contact/edit-new-contact/edit-new-contact.component';
 import { ContentComponent } from './pages/content/content.component';
 import { TypesNewsComponent } from './pages/types-news/types-news.component';
 import { AddTypeNewsComponent } from './pages/types-news/add-type-news/add-type-news.component';
 import { AddNewContentComponent } from './pages/content/add-new-content/add-new-content.component';
+import { FilemanagerComponent } from './pages/filemanager/filemanager.component';
+import { UplaodFilemanagerComponent } from './pages/filemanager/uplaod-filemanager/uplaod-filemanager.component';
+import { QuillModule } from 'ngx-quill';
+import { AdvertisementComponent } from './pages/advertisement/advertisement.component';
+import { AddNewAdvertisementComponent } from './pages/advertisement/add-new-advertisement/add-new-advertisement.component';
+import { AdvertiseimageComponent } from './pages/advertiseimage/advertiseimage.component';
+import { UploadAdvertiseImagesComponent } from './pages/advertiseimage/upload-advertise-images/upload-advertise-images.component';
+import { EditAdvertisementComponent } from './pages/advertisement/edit-advertisement/edit-advertisement.component';
+import { EditContentComponent } from './pages/content/edit-content/edit-content.component';
+import { TvNewsComponent } from './pages/tv-news/tv-news.component';
+import { AddTvNewsComponent } from './pages/tv-news/add-tv-news/add-tv-news.component';
+import { EditTvNewsComponent } from './pages/tv-news/edit-tv-news/edit-tv-news.component';
+import { EntertainmentComponent } from './pages/entertainment/entertainment.component';
+import { AddEntertainmentComponent } from './pages/entertainment/add-entertainment/add-entertainment.component';
+import { EditEntertainmentComponent } from './pages/entertainment/edit-entertainment/edit-entertainment.component';
+import { EmbulanceComponent } from './pages/embulance/embulance.component';
+import { AddEmbulanceComponent } from './pages/embulance/add-embulance/add-embulance.component';
+import { EditEmbulanceComponent } from './pages/embulance/edit-embulance/edit-embulance.component';
+import { AddFireTruckComponent } from './pages/fire-truck/add-fire-truck/add-fire-truck.component';
+import { EditFireTruckComponent } from './pages/fire-truck/edit-fire-truck/edit-fire-truck.component';
+import { FireTruckComponent } from './pages/fire-truck/fire-truck.component';
+import { PhoneComponent } from './pages/phone/phone.component';
+import { EditPhonenumberComponent } from './pages/phone/edit-phonenumber/edit-phonenumber.component';
+
+
 
 
 
 
 @NgModule({
   declarations: [
-    
+   
     AppComponent,
     DashboardComponent,
     HomeComponent,
@@ -204,17 +204,6 @@ import { AddNewContentComponent } from './pages/content/add-new-content/add-new-
     DisableModalComponent,
     DateStringPipe,
     DateResolveDatePipe,
-    TagsComponent,
-    AddNewTagComponent,
-    GenreComponent,
-    AddNewGenreComponent,
-    SlideComponent,
-    AddNewSlideComponent,
-    BookComponent,
-    AddNewBookComponent,
-    AddCoverSlideComponent,
-    AddNewCoverBookComponent,
-    AddNewPdfBookComponent,
     SubscribersComponent,
     AddSubscriberComponent,
     ProductComponent,
@@ -224,41 +213,53 @@ import { AddNewContentComponent } from './pages/content/add-new-content/add-new-
     ClientPaymentComponent,
     ClientHistoryComponent,
     ApplyPackageComponent,
-    EditTagsComponent,
-    EditGenreComponent,
-    EditSlideComponent,
-    EditBookComponent,
     EditProductComponent,
     AddCoverProductComponent,
     EditSubscribersComponent,
     AddCoverSubscribersComponent,
-    CourseComponent,
-    EditCourseComponent,
-    AddNewCourseComponent,
     CategoryComponent,
     AddCategoryComponent,
     EditCategoryComponent,
     AddConverCategoryComponent,
-    AddNewCourseCoverComponent,
-    CourseDetailComponent,
-    AddNewVideosComponent,
-    EditVideosComponent,
     AddAboutUsComponent,
     AboutComponent,
     EditAboutUsComponent,
-    ContactComponent,
-    AddNewContactComponent,
-    EditNewContactComponent,
+    FireTruckComponent,
     ContentComponent,
     TypesNewsComponent,
     AddTypeNewsComponent,
     AddNewContentComponent,
+    FilemanagerComponent,
+    UplaodFilemanagerComponent,
+    AdvertisementComponent,
+    AddNewAdvertisementComponent,
+    AdvertiseimageComponent,
+    UploadAdvertiseImagesComponent,
+    EditAdvertisementComponent,
+    EditContentComponent,
+    TvNewsComponent,
+    AddTvNewsComponent,
+    EditTvNewsComponent,
+    EntertainmentComponent,
+    AddEntertainmentComponent,
+    EditEntertainmentComponent,
+    EmbulanceComponent,
+    AddEmbulanceComponent,
+    EditEmbulanceComponent,
+    AddFireTruckComponent,
+    EditFireTruckComponent,
+    PhoneComponent,
+    EditPhonenumberComponent,
+   
+   
+
+
+
 
 
   ],
   entryComponents: [
-    AddNewCourseCoverComponent,
-    AddNewContactComponent,
+    AdvertiseimageComponent,
     ModalWarningComponent,
     DeleteComponent,
     ConfirmSuccessComponent,
@@ -266,23 +267,34 @@ import { AddNewContentComponent } from './pages/content/add-new-content/add-new-
     ForgotPasswordComponent,
     APP_ENTRY_COMPONENTS,
     AddAccountUserComponent,
-    EditCourseComponent,
-    AddNewCourseComponent,
     AddCategoryComponent,
     EditCategoryComponent,
     AddConverCategoryComponent,
-    AddNewVideosComponent,
-    EditVideosComponent,
     AddAboutUsComponent,
     EditAboutUsComponent,
-    EditNewContactComponent,
     AddTypeNewsComponent,
     AddNewContentComponent,
+    UplaodFilemanagerComponent,
+    FilemanagerComponent,
+    AddNewAdvertisementComponent,
+    UploadAdvertiseImagesComponent,
+    EditAdvertisementComponent,
+    EditContentComponent,
+    AddTvNewsComponent,
+    EditTvNewsComponent,
+    AddEntertainmentComponent,
+    EditEntertainmentComponent,
+    AddEmbulanceComponent,
+    EditEmbulanceComponent,
+    AddFireTruckComponent,
+    EditFireTruckComponent,
+    EditPhonenumberComponent,
+    
 
 
   ],
   imports: [
-    BrowserModule,
+  BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpModule,
@@ -303,6 +315,8 @@ import { AddNewContentComponent } from './pages/content/add-new-content/add-new-
     InfiniteScrollModule,
     NgxCaptchaModule,
     NgxChartsModule,
+
+    QuillModule.forRoot({}),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [

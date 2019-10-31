@@ -22,18 +22,18 @@
           <div *ngIf="form.controls['name'].hasError('nameAvailable')" class="error-message">This name is taken. Try
             another.</div>
         </div>
-        
+
         <div class="field">
           <label>Description
             <span class="rq-sign">*</span>
           </label>
-          <textarea formControlName="description" placeholder="description"></textarea>
-          <div *ngIf="form.controls['description'].hasError('required') && form.controls['description'].touched"
-            class="error-message">This field is required.</div>
-        </div>
 
-       
+          <button mat-button [disabled]="disableBtn" (click)="showFileManager()">Add file from gallery</button>
         
+          <quill-editor #editor [modules]="modules" (onContentChanged)="onContentChanged($event)"
+            (onEditorCreated)="getEditorInstance($event)" formControlName="editname"></quill-editor>
+        </div>
+       
         <div class="field">
           <label>Category
             <span class="rq-sign">*</span>
@@ -50,8 +50,8 @@
           </div>
         </div>
 
-        <div class="field">
-          <label>Type of content
+        <!-- <div class="field">
+          <label>Type of news
             <span class="rq-sign">*</span>
           </label>
           <mat-select [compareWith]="compareObjects" formControlName="type">
@@ -64,35 +64,53 @@
             class="error-message">
             This field is required.
           </div>
+        </div> -->
+
+        
+       
+        <div class="fields two">
+          <div class="field">
+            <label>Create by name
+              <span class="rq-sign">*</span>
+            </label>
+            <input type="text" #focusInput placeholder="Enter create name" required formControlName="createname">
+            <div *ngIf="form.controls['createname'].hasError('required') && form.controls['createname'].touched"
+              class="error-message">This field is required.</div>
+            <div *ngIf="form.controls['name'].hasError('nameAvailable')" class="error-message">This name is taken. Try
+              another.</div>
+          </div>
+          <div class="field">
+            <label>Reference
+              <span class="rq-sign">*</span>
+            </label>
+            <input type="text" #focusInput placeholder="Enter content title" required formControlName="reference">
+            <div *ngIf="form.controls['reference'].hasError('required') && form.controls['name'].touched"
+              class="error-message">This field is required.</div>
+            <div *ngIf="form.controls['reference'].hasError('nameAvailable')" class="error-message">This reference is
+              taken. Try
+              another.</div>
+          </div>
         </div>
+        <div class="fields two">
+
         <div class="field">
-          <label>Vides_Id
-            <span class="rq-sign">*</span>
+          <label>Select mages Advertisement
           </label>
-          <input type="text" #focusInput placeholder="Enter tag videos" required formControlName="videos">
-          <div *ngIf="form.controls['videos'].hasError('required') && form.controls['videos'].touched"
-            class="error-message">This field is required.</div>
+          <button mat-button [disabled]="disableBtn" (click)="showimage()">Add file from gallery</button>
+          {{fileurl}}
         </div>
+
         <div class="field">
-          <label>Create by name
-            <span class="rq-sign">*</span>
-          </label>
-          <input type="text" #focusInput placeholder="Enter create name" required formControlName="createname">
-          <div *ngIf="form.controls['createname'].hasError('required') && form.controls['createname'].touched"
-            class="error-message">This field is required.</div>
-          <div *ngIf="form.controls['name'].hasError('nameAvailable')" class="error-message">This name is taken. Try
-            another.</div>
+          <label> Status Advertisement <span class="rq-sign">*</span></label>
+          <mat-selection-list class="mat-book" #tags formControlName="advertiseType">
+            <mat-list-option *ngFor="let item of paymentData" [value]="item">
+              {{item?.text}}
+            </mat-list-option>
+          </mat-selection-list>
         </div>
-        <div class="field">
-          <label>Reference
-            <span class="rq-sign">*</span>
-          </label>
-          <input type="text" #focusInput placeholder="Enter content title" required formControlName="reference">
-          <div *ngIf="form.controls['reference'].hasError('required') && form.controls['name'].touched"
-            class="error-message">This field is required.</div>
-          <div *ngIf="form.controls['reference'].hasError('nameAvailable')" class="error-message">This reference is taken. Try
-            another.</div>
+
         </div>
+       
       </div>
     </div>
 

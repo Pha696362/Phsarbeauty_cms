@@ -4,7 +4,7 @@
             <!-- <img [src]="logo" alt="PHSAR TECH"> -->
         </div>
         <div class="sbar-brand-name">
-            CMS
+            COMBOR
         </div>
 
     </div>
@@ -16,7 +16,7 @@
                     <i class="material-icons">&#xE88A;</i>
                 </div>
                 <div class="item-name">
-                    CMS Overview
+                    COMBODIA Overview
                 </div>
             </div>
             <div class="sitting" [matMenuTriggerFor]="menusitting">
@@ -42,6 +42,7 @@
     </div>
     <div class="sidebar-list-wrapper">
         <mat-accordion [multi]="true">
+<!--             
             <mat-expansion-panel [expanded]="expansions.scholarship" (closed)="onClosed(6)" (opened)="onOpened(6)">
                 <mat-expansion-panel-header expandedHeight="58px" collapsedHeight="78px"
                     [class.active]="expansions?.scholarship">
@@ -75,30 +76,54 @@
                     </div>
                         
                 </div>
-            </mat-expansion-panel>
+            </mat-expansion-panel> -->
+
+            <mat-expansion-panel [expanded]="expansions.hr" (closed)="onClosed(7)" (opened)="onOpened(7)">
+                    <mat-expansion-panel-header expandedHeight="58px" collapsedHeight="78px"
+                        [class.active]="expansions?.hr">
+                        <mat-panel-title>
+                            <!-- គ្រប់គ្រងអត្ថបទ -->
+                            Contents
+                        </mat-panel-title>
+                        <mat-panel-description *ngIf="!expansions?.hr">content,
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div class="list-content">
+                        <div class="list-item">
+                            <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/content']">
+                                <div class="icon">
+                                    <i class="material-icons">card_giftcard</i>
+                                </div>
+                                <div class="item-name">
+                                    Contents
+                                </div>
+                            </div>
+                        </div>
+                        
+                         <div class="list-item"> 
+                          <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/tvnews']">
+                                <div class="icon">
+                                    <i class="material-icons"> subscriptions</i>
+                                </div>
+                                <div class="item-name">
+                                    TV-News
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </mat-expansion-panel> 
             <mat-expansion-panel [expanded]="expansions.apo" (closed)="onClosed(3)" (opened)="onOpened(3)">
                 <mat-expansion-panel-header expandedHeight="58px" collapsedHeight="78px"
                     [class.active]="expansions?.apo">
                     <mat-panel-title>
                         <!-- ឈ្មោះនៃប្រភេទព័ត៌មាន -->
-                        Category
+                        Category of news
                     </mat-panel-title>
-                    <mat-panel-description *ngIf="!expansions?.apo">Slide, Category, Types of News
+                    <mat-panel-description *ngIf="!expansions?.apo"> Category, Types of News
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div class="list-content">
-                  
-                    <div class="list-item">
-                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/slides']">
-                            <div class="icon">
-                                <i class="material-icons">slideshow</i>
-                            </div>
-                            <div class="item-name">
-                                Slides
-                            </div>
-                        </div>
-                    </div>
-                  
+
                     <div class="list-item">
                         <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/category']">
                             <div class="icon">
@@ -110,17 +135,17 @@
                         </div>
                     </div>
                     
-                    <!-- <div class="list-item">
-                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/course']">
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/phonenumber']">
                             <div class="icon">
                                 <i class="material-icons">book</i>
                             </div>
                             <div class="item-name">
-                                Course
+                                Edit Phonenumber
                             </div>
                         </div>
-                    </div> -->
-                    <div class="list-item">
+                    </div>
+                    <!-- <div class="list-item">
                         <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/types']">
                             <div class="icon">
                                 <i class="material-icons">info</i>
@@ -129,47 +154,71 @@
                                 Type of News
                             </div>
                         </div>
+                    </div> -->
+
+                </div>
+            </mat-expansion-panel>
+            
+            <mat-expansion-panel [expanded]="expansions.apo" (closed)="onClosed(3)" (opened)="onOpened(3)">
+                <mat-expansion-panel-header expandedHeight="58px" collapsedHeight="78px"
+                    [class.active]="expansions?.apo">
+                    <mat-panel-title>
+                        <!-- ឈ្មោះនៃប្រភេទព័ត៌មាន -->
+                        DrawerBar
+                    </mat-panel-title>
+                    <mat-panel-description *ngIf="!expansions?.apo">Advertisement
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="list-content">
+                  
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/advertisement']">
+                            <div class="icon">
+                                <i class="material-icons">announcement</i>
+                            </div>
+                            <div class="item-name">
+                                Advertisement
+                            </div>
+                        </div>
+                    </div>
+                  
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/entertainment']">
+                            <div class="icon">
+                                <i class="material-icons">subscriptions</i>
+                            </div>
+                            <div class="item-name">
+                                
+                            ព័ត៌មានកំសាន្ត
+                            </div>
+                        </div>
+                    </div>
+                    
+                 <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/emergencycars']">
+                            <div class="icon">
+                                <i class="material-icons">book</i>
+                            </div>
+                            <div class="item-name">
+                                រថយន្តសង្គ្រោះបន្ទាន់
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/firetruck']">
+                            <div class="icon">
+                                <i class="material-icons">info</i>
+                            </div>
+                            <div class="item-name">
+                                រថយន្តពន្លត់អគ្គីភ័យ
+                            </div>
+                        </div>
                     </div>
 
                 </div>
             </mat-expansion-panel>
 
-             <mat-expansion-panel [expanded]="expansions.hr" (closed)="onClosed(7)" (opened)="onOpened(7)">
-                <mat-expansion-panel-header expandedHeight="58px" collapsedHeight="78px"
-                    [class.active]="expansions?.hr">
-                    <mat-panel-title>
-                        <!-- គ្រប់គ្រងអត្ថបទ -->
-                        Contents
-                    </mat-panel-title>
-                    <mat-panel-description *ngIf="!expansions?.hr">content,
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-                <div class="list-content">
-                    <div class="list-item">
-                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/content']">
-                            <div class="icon">
-                                <i class="material-icons">subscriptions</i>
-                            </div>
-                            <div class="item-name">
-                                Contents
-                            </div>
-                        </div>
-                    </div>
-                    
-                     <div class="list-item"> 
-                      <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/packages']">
-                            <div class="icon">
-                                <i class="material-icons">card_giftcard</i>
-                            </div>
-                            <div class="item-name">
-                                Packages
-                            </div>
-                        </div> 
-                    </div>
-
-
-                </div>
-            </mat-expansion-panel> 
+           
             
         </mat-accordion>
     </div>

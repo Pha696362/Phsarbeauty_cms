@@ -1,14 +1,15 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: "AIzaSyBQHn9gxaHJRxbNZRjOl2fJAYzNAARUVpw",
-    authDomain: "c-ms-6b2cf.firebaseapp.com",
-    databaseURL: "https://c-ms-6b2cf.firebaseio.com",
-    projectId: "c-ms-6b2cf",
-    storageBucket: "c-ms-6b2cf.appspot.com",
-    messagingSenderId: "762849957040",
-    appId: "1:762849957040:web:fff64b57967c8f00b3d775",
-    measurementId: "G-JVSHX54PQ6"
+   
+    apiKey: "AIzaSyBxZxeec1QA-vQtrBuKcr0nKgZz0tkU3Ok",
+    authDomain: "thecambodiareviews-d2ccc.firebaseapp.com",
+    databaseURL: "https://thecambodiareviews-d2ccc.firebaseio.com",
+    projectId: "thecambodiareviews-d2ccc",
+    storageBucket: "thecambodiareviews-d2ccc.appspot.com",
+    messagingSenderId: "908629667416",
+    appId: "1:908629667416:web:594905db57e283828e642d",
+    measurementId: "G-3F4W30TFRN"
   },
   mapKey: 'AIzaSyAeIMIEUOK0t0HCYoCvWXfeS-kf3HJBJa8'
 };

@@ -20,6 +20,11 @@ export const PAYMENT_TYPES = [
   { key: 1, text: "Subscript" },
   { key: 2, text: "Free" },
 ]
+export const Advertise_Status = [
+  // { key: 1, text: "Buy" },
+  { key: 1, text: "Active" },
+  { key: 2, text: "Disactive" },
+]
 
 export const FILTER_OPTIONS = [
   { key: "phone", text: "Phone Number" },

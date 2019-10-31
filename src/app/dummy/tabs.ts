@@ -17,17 +17,38 @@ export const tabs = {
   course: [
     { path: '/app/course/data', label: "Data" },
   ],
+  tvnews: [
+    { path: '/app/tvnews/data', label: "Data" },
+  ],
+  entertainment: [
+    { path: '/app/entertainment/data', label: "Data" },
+  ],
+  embulance: [
+    { path: '/app/embulance/data', label: "Data" },
+  ],
+  firetruck: [
+    { path: '/app/firetruck/data', label: "Data" },
+  ],
   genres: [
     { path: '/app/genres/data', label: "Data" },
   ],
   slides: [
     { path: '/app/slides/data', label: "Data" },
   ],
+  advertise: [
+    { path: '/app/advertise/data', label: "Data" },
+  ],
   books: [
     { path: '/app/books/data', label: "Data" },
   ],
   product: [
     { path: '/app/packages/data', label: "Data" },
+  ],
+  content: [
+    { path: '/app/content/data', label: "Data" },
+  ],
+  phonenumber: [
+    { path: '/app/phonenumber/data', label: "Data" },
   ],
   subscriber: [
     { path: '/app/subscribers/approval', label: "All Account" },

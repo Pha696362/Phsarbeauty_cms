@@ -2,7 +2,7 @@
   <div class="task-wrapper chapternav">
     <mat-progress-bar *ngIf="store?.loading" class="top-nav-progress" mode="indeterminate"></mat-progress-bar>
     <div class="search-engine">
-      <h2>Content Management System</h2>
+      <h2>Combodia Review</h2>
       <form [formGroup]="form" class="search-nav" [ngClass]="{ active: formFocus }">
         <div class="enroll-filter">
           <mat-select (selectionChange)="_selectionChange($event)" formControlName="searchType"
@@ -45,24 +45,25 @@
     </div>
 
     <div class="task-content" @explainerAnim>
-      <div class="task-item ani-col" [routerLink]="['/app/subscribers']">
+      
+      <div class="task-item ani-col" [routerLink]="['/app/entertainment']">
         <div class="task-icon task-icon1 orang">
           <i class="material-icons">subscriptions</i>
         </div>
-        <h2 class="task-title">Subscribers</h2>
+        <h2 class="task-title">ព័ត៌មានកំសាន្ត</h2>
       </div>
-      <div class="task-item ani-col" [routerLink]="['/app/packages']">
+      <div class="task-item ani-col" [routerLink]="['/app/emergencycars']">
         <div class="task-icon task-icon1 sky">
           <i class="material-icons">card_giftcard</i>
         </div>
-        <h2 class="task-title">Packages</h2>
+        <h2 class="task-title">រថយន្តសង្គ្រោះបន្ទាន់</h2>
       </div>
 
-      <div class="task-item ani-col" [routerLink]="['/app/about']">
+      <div class="task-item ani-col" [routerLink]="['/app/content']">
         <div class="task-icon task-icon1 purple">
           <i class="material-icons">local_library</i>
         </div>
-        <h2 class="task-title">About</h2>
+        <h2 class="task-title">មាតិកា</h2>
       </div>
 
       <div class="task-item ani-col" [routerLink]="['/app/category']">

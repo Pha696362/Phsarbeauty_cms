@@ -1,4 +1,4 @@
-import { BookComponent } from './pages/book/book.component';
+
 import { MapsComponent } from './pages/maps/maps.component';
 import { HomeComponent } from "./pages/home/home.component";
 import { AppLayoutComponent } from "./shared/app-layout/app-layout.component";
@@ -12,21 +12,26 @@ import { SigninComponent } from "./pages/signin/signin.component";
 import { TabLayoutComponent } from "./shared/tab-layout/tab-layout.component";
 import { UserComponent } from './pages/user/user.component';
 import { AccountUsersComponent } from './pages/account-users/account-users.component';
-import { TagsComponent } from './pages/tags/tags.component';
-import { GenreComponent } from './pages/genre/genre.component';
-import { SlideComponent } from './pages/slide/slide.component';
+
+
+
 import { SubscribersComponent } from './pages/subscribers/subscribers.component';
 import { ProductComponent } from './pages/product/product.component';
 import { ClientProfileComponent } from './pages/client-profile/client-profile.component';
 import { ClientOverviewComponent } from './pages/client-profile/client-overview/client-overview.component';
 import { ClientPaymentComponent } from './pages/client-profile/client-payment/client-payment.component';
-import { CourseComponent } from './pages/course/course.component';
 import { CategoryComponent } from './pages/category/category.component';
-import { CourseDetailComponent } from './pages/course/course-detail/course-detail.component';
 import { AboutComponent } from './pages/about/about.component';
-import { ContactComponent } from './pages/contact/contact.component';
 import { ContentComponent } from './pages/content/content.component';
 import { TypesNewsComponent } from './pages/types-news/types-news.component';
+import { AdvertisementComponent } from './pages/advertisement/advertisement.component';
+import { TvNewsComponent } from './pages/tv-news/tv-news.component';
+import { EntertainmentComponent } from './pages/entertainment/entertainment.component';
+import { EmbulanceComponent } from './pages/embulance/embulance.component';
+import { FireTruckComponent } from './pages/fire-truck/fire-truck.component';
+import { PhoneComponent } from './pages/phone/phone.component';
+
+
 
 
 const routes: Routes = [
@@ -83,23 +88,8 @@ const routes: Routes = [
           { path: "data", component: ProductComponent },
         ]
       },
-      {
-        path: "tags",
-        component: TabLayoutComponent,
-        children: [
-          { path: "", redirectTo: "data", pathMatch: "full" },
-          { path: "data", component: TagsComponent },
-        ]
-      },
-      {
-        path: "course",
-        component: TabLayoutComponent,
-        children: [
-          { path: "", redirectTo: "data", pathMatch: "full" },
-          { path: "data", component: CourseComponent },
-          { path: ":id", component: CourseDetailComponent },
-        ]
-      },
+
+
       {
         path: "category",
         component: TabLayoutComponent,
@@ -108,46 +98,32 @@ const routes: Routes = [
           { path: "data", component: CategoryComponent },
         ]
       },
-      {
-        path: "slides",
-        component: TabLayoutComponent,
-        children: [
-          { path: "", redirectTo: "data", pathMatch: "full" },
-          { path: "data", component: SlideComponent },
-        ]
-      },
+
       {
         path: "about",
         component: TabLayoutComponent,
         children: [
           { path: "", redirectTo: "data", pathMatch: "full" },
-          { path: "data", component: AboutComponent},
+          { path: "data", component: AboutComponent },
         ]
       },
+      // {
+      //   path: "contact",
+      //   component: TabLayoutComponent,
+      //   children: [
+      //     { path: "", redirectTo: "data", pathMatch: "full" },
+      //     { path: "data", component: ContactComponent },
+      //   ]
+      // },
       {
-        path: "contact",
+        path: "tvnews",
         component: TabLayoutComponent,
         children: [
           { path: "", redirectTo: "data", pathMatch: "full" },
-          { path: "data", component: ContactComponent},
+          { path: "data", component: TvNewsComponent },
         ]
       },
-      {
-        path: "genres",
-        component: TabLayoutComponent,
-        children: [
-          { path: "", redirectTo: "data", pathMatch: "full" },
-          { path: "data", component: GenreComponent },
-        ]
-      },
-      {
-        path: "books",
-        component: TabLayoutComponent,
-        children: [
-          { path: "", redirectTo: "data", pathMatch: "full" },
-          { path: ":id", component: BookComponent },
-        ]
-      },
+
       {
         path: "users",
         component: TabLayoutComponent,
@@ -164,21 +140,62 @@ const routes: Routes = [
           { path: "all", component: AccountUsersComponent },
         ]
       },
-// news post
-{
-  path: "types",
-  component: TabLayoutComponent,
-  children: [
-    { path: "", redirectTo: "data", pathMatch: "full" },
-    { path: ":id", component: TypesNewsComponent },
-  ]
-},
+      // news post
+      {
+        path: "types",
+        component: TabLayoutComponent,
+        children: [
+          { path: "", redirectTo: "data", pathMatch: "full" },
+          { path: ":id", component: TypesNewsComponent },
+        ]
+      },
       {
         path: "content",
         component: TabLayoutComponent,
         children: [
           { path: "", redirectTo: "data", pathMatch: "full" },
           { path: ":id", component: ContentComponent },
+        ]
+      },
+
+      {
+        path: "advertisement",
+        component: TabLayoutComponent,
+        children: [
+          { path: "", redirectTo: "data", pathMatch: "full" },
+          { path: ":id", component: AdvertisementComponent },
+        ]
+      },
+      {
+        path: "entertainment",
+        component: TabLayoutComponent,
+        children: [
+          { path: "", redirectTo: "data", pathMatch: "full" },
+          { path: ":id", component: EntertainmentComponent },
+        ]
+      },
+      {
+        path: "emergencycars",
+        component: TabLayoutComponent,
+        children: [
+          { path: "", redirectTo: "data", pathMatch: "full" },
+          { path: ":id", component: EmbulanceComponent },
+        ]
+      },
+      {
+        path: "firetruck",
+        component: TabLayoutComponent,
+        children: [
+          { path: "", redirectTo: "data", pathMatch: "full" },
+          { path: ":id", component: FireTruckComponent },
+        ]
+      },
+      {
+        path: "phonenumber",
+        component: TabLayoutComponent,
+        children: [
+          { path: "", redirectTo: "data", pathMatch: "full" },
+          { path: ":id", component: PhoneComponent },
         ]
       },
     ]
@@ -190,7 +207,11 @@ const routes: Routes = [
 
 
 
-providers: [AuthGuard],
+
+
+
+
+  providers: [AuthGuard],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

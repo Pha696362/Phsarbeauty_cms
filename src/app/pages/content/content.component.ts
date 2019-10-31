@@ -6,6 +6,7 @@ import { DataService } from 'src/app/services/data.service';
 import { AddNewContentComponent } from './add-new-content/add-new-content.component';
 import { DeleteComponent } from 'src/app/components/delete/delete.component';
 import { IContent } from 'src/app/interfaces/bookstore';
+import { EditContentComponent } from './edit-content/edit-content.component';
 
 @Component({
   selector: 'app-content',
@@ -27,35 +28,25 @@ export class ContentComponent implements OnInit {
   create() {
     let dialogRef = this.dialog.open(AddNewContentComponent, {
       data: null,
-      width: '35vw',
+      width: '70vw',
+      height: '100vh',
+      role: 'dialog',
+    });
+    dialogRef.updatePosition({ top: '0', right: '0', bottom: '0'});
+  }
+
+  edit(item: IContent) {
+    let dialogRef = this.dialog.open(EditContentComponent, {
+      data: item,
+      width: '70vw',
       height: '100vh',
       role: 'dialog',
     });
     dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
   }
 
-  // edit(item: ICourse) {
-  //   let dialogRef = this.dialog.open(EditCourseComponent, {
-  //     data: item,
-  //     width: '35vw',
-  //     height: '100vh',
-  //     role: 'dialog',
-  //   });
-  //   dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
-  // }
+ 
 
-  // cover(item) {
-  //   let dialogRef = this.dialog.open(AddNewCourseCoverComponent, {
-  //     data: item,
-  //     width: '35vw',
-  //     height: '100vh',
-  //     role: 'dialog',
-  //   });
-  //   dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
-  // }
-
-
-  
 
   delete(item: IContent) {
     let dialogRef = this.dialog.open(DeleteComponent, {

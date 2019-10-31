@@ -1,5 +1,5 @@
 import { ConvertService, toNearExpiredDate } from './convert.service';
-import { ITag, IGenre, ISlide, IBook, ICategory, ICourse, IAbout, IContact, ITypes, IContent } from './../interfaces/bookstore';
+import { ITag, IGenre, ISlide, IBook, ICategory, ICourse, IAbout, ITypes, IContent, IAdvertise, ITvnews, IEmbulance, IFiretruck, IPhonenumber } from './../interfaces/bookstore';
 import { AngularFirestore } from "@angular/fire/firestore";
 import { Injectable } from "@angular/core";
 import { IProduct, ISubscriber } from '../interfaces/subscriber';
@@ -15,11 +15,11 @@ export class DataService {
   }
 
   userRef() {
-    return this.db.collection("users");
+    return this.db.collection("user");
   }
 
   userDocRef(key: string) {
-    return this.db.collection("users").doc<any>(key);
+    return this.db.collection("user").doc<any>(key);
   }
 
   environmentRef() {
@@ -38,28 +38,22 @@ export class DataService {
   aboutRef() {
     return this.db.collection<IAbout>("about", ref => ref.orderBy("name"));
   }
-  contactRef() {
-    return this.db.collection<IContact>("contact", ref => ref.orderBy("name"));
+  phonenumberRef() {
+    return this.db.collection<IPhonenumber>("phonenumber", ref => ref.orderBy("name"));
+  }
+  embulanceRef() {
+    return this.db.collection<IEmbulance>("embulance", ref => ref.orderBy("name"));
+  }
+  firetruckRef() {
+    return this.db.collection<IFiretruck>("firetruck", ref => ref.orderBy("name"));
   }
 
   categoryRef() {
     return this.db.collection<ICategory>("category", ref => ref.orderBy("name"));
   }
 
-  courseRef() {
-    return this.db.collection<ICourse>("courses", ref => ref.orderBy("name"));
-  }
-  courseDocRef(doc) {
-    return this.db.collection<ICourse>("courses", ref => ref.orderBy("name")).doc(doc);
-  }
-
-  videoRef(coursekey) {
-    return this.db.collection("videos", ref => ref.where('course.key', '==', coursekey));
-  }
-
-  videocRef() {
-    return this.db.collection("videos");
-  }
+  
+ 
 
 
   tagValidRef(keyword: string) {
@@ -77,6 +71,10 @@ export class DataService {
 
   slideRef() {
     return this.db.collection<ISlide>("slides", ref => ref.orderBy("order"));
+  }
+
+  advertiseRef() {
+    return this.db.collection<IAdvertise>("advertise", ref => ref.orderBy("name"));
   }
 
   bookRef() {
@@ -194,8 +192,27 @@ export class DataService {
   typenewsRef() {
     return this.db.collection<ITypes>("types", ref => ref.orderBy("name"));
   }
+  tvnewsRef() {
+    return this.db.collection<ITvnews>("tvnews", ref => ref.orderBy("name"));
+  }
   contentRef() {
     return this.db.collection<IContent>("content", ref => ref.orderBy("name"));
   }
+  entertainmentRef() {
+    return this.db.collection<ITvnews>("tvnews", ref => ref.orderBy("name"));
+  }
 
+flileFolderRef() {
+  return this.db.collection('file_folder');
 }
+flileRef() {
+  return this.db.collection('file_manager');
+}
+AdvertiseFolderRef() {
+  return this.db.collection('advertise_folder');
+}
+advertisementRef() {
+  return this.db.collection('advertise_manager');
+}
+}
+

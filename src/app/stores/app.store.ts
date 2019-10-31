@@ -5,6 +5,8 @@ import { AuthStore } from './auth.store';
 import { BaseStore } from './base.store';
 import { Subscriber } from './subscriber.store';
 import { Product } from './product.store';
+import { FileManagerStore } from './filemanager.store';
+import { AdvertisementStore } from './advertisement.store';
 
 export const APP_STORES = [
   Environment,
@@ -13,5 +15,7 @@ export const APP_STORES = [
   Bookstore,
   BaseStore,
   Subscriber,
-  Product
+  Product,
+  FileManagerStore,
+  AdvertisementStore,
 ];
