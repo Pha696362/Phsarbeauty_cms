@@ -71,7 +71,7 @@ export class EditSubscribersComponent implements OnInit {
       const item: ISubscriber = {
         key: this.data.key,
         update_date: new Date(),
-        update_by: this.env.user,
+        update_by: this.env.users,
         firstName: firstName.toUpperCase(),
         lastName: lastName.toUpperCase(),
         fullName: `${lastName.toUpperCase()} ${firstName.toUpperCase()}`,

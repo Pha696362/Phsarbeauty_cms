@@ -85,10 +85,9 @@ export class EditContentComponent implements OnInit {
   create(f: any, isNew) {
     if (this.form.valid) {
       this.form.disable();
-      const { advertiseType}=f;
-      const advertiseTypeKey=advertiseType.map(m=>(m.key));
-      const {name,category,type,createname,reference,editname}=f;
 
+      const {name,category,type,createname,reference,editname,advertiseType}=f;
+      const advertiseTypeKey = advertiseType?advertiseType.map(m => (m.key)):null
       const item: IContent = {
         key: this.data.key,
         name: name,
@@ -98,10 +97,10 @@ export class EditContentComponent implements OnInit {
         category: category,
         // type:type,
         create_date: new Date(),
-        create_by: this.env.user,
+        create_by: this.env.users,
         page_key:ConvertService.pageKey(),
         update_date: new Date(),
-        update_by: this.env.user,
+        update_by: this.env.users,
         fileurl:this.fileurl?this.fileurl:null,
         advertiseType:advertiseType,
         advertiseTypeKey:advertiseTypeKey,

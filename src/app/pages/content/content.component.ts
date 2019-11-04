@@ -28,7 +28,7 @@ export class ContentComponent implements OnInit {
   create() {
     let dialogRef = this.dialog.open(AddNewContentComponent, {
       data: null,
-      width: '70vw',
+      width: '85vw',
       height: '100vh',
       role: 'dialog',
     });
@@ -38,7 +38,7 @@ export class ContentComponent implements OnInit {
   edit(item: IContent) {
     let dialogRef = this.dialog.open(EditContentComponent, {
       data: item,
-      width: '70vw',
+      width: '85vw',
       height: '100vh',
       role: 'dialog',
     });

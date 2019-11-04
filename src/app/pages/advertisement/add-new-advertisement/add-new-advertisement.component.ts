@@ -19,6 +19,7 @@ import { AdvertiseimageComponent } from '../../advertiseimage/advertiseimage.com
   styleUrls: ['./add-new-advertisement.component.scss']
 })
 export class AddNewAdvertisementComponent implements OnInit {
+  disableBtn;
   @ViewChild("focusInput") inputEl: ElementRef;
   form: FormGroup;
   name: AbstractControl;
@@ -73,10 +74,10 @@ export class AddNewAdvertisementComponent implements OnInit {
         advertiseType:advertiseType,
         advertiseTypeKey:advertiseTypeKey,
         create_date: new Date(),
-        create_by: this.env.user,
+        create_by: this.env.users,
         page_key:ConvertService.pageKey(),
         update_date: new Date(),
-        update_by: this.env.user,
+        update_by: this.env.users,
       }
       this.store.addNew(this.ds.advertiseRef(),item, (success, error) => {
         if (success) {

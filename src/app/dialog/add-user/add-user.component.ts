@@ -169,7 +169,7 @@ export class AddUserComponent implements OnInit {
               key: uid,
               status: status[0],
               create_date: new Date(),
-              create_by: this.store.user,
+              create_by: this.store.users,
               province: province,
               district: district,
               commune: commune,

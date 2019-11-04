@@ -51,7 +51,7 @@ export class ApplyPackageComponent implements OnInit {
   _save(f: any) {
     if (this.form.valid) {
       this.form.disable();
-      this.store.savePaidSubscriber(f.note, this.data, this.store.subscriber, this.env.user ,(success, error) => {
+      this.store.savePaidSubscriber(f.note, this.data, this.store.subscriber, this.env.users ,(success, error) => {
           if (success) {
             this.dialogRef.close();
             this.snackBar.open("Invoice have been paid successful.", "done", {

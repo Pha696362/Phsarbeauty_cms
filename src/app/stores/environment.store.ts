@@ -6,7 +6,7 @@ import { IUser } from '../interfaces/user';
 
 @Injectable()
 export class Environment {
-  @observable user = null;
+  @observable users = null;
   @observable sysConfig = null;
   @observable role = null;
   @observable province = null;
@@ -58,9 +58,9 @@ export class Environment {
   fetchUser(key) {
     this.loading = true;
     this.ds.userRef().doc<any>(key).valueChanges().subscribe(doc => {
-      if(doc){
+      if (doc) {
         const { role, province } = doc;
-        this.user = doc;
+        this.users = doc;
         this.province = province;
         this.role = role;
       }
@@ -71,23 +71,22 @@ export class Environment {
   @action
   fetchUserDoc(callback) {
     this.loading = true;
-    this.user = null;
-    this.auth.canActiveRef().subscribe(user => {
-      if (user) {
-        this.user = {
-          key: user.uid,
-          name: user.displayName?user.displayName:"Unknown",
-          email: user.email,
-        }
-
-        const { uid } = user;
+    this.users = null;
+    this.auth.canActiveRef().subscribe(users => {
+      if (users) {
+        // this.users = {
+        //   key: users.uid,
+        //   name: users.displayName ? users.displayName : "Unknown",
+        //   email: users.email,
+        // }ƒ
+        const { uid } = users;
         this.ds.userRef().doc<any>(uid).valueChanges().subscribe(doc => {
-          const { role, province } = doc;
-          this.user = doc;
-          this.province = province;
-          this.role = role;
+          // const { role, province } = doc;
+          // this.users = doc;
+          // this.province = province;
+          // this.role = role;
           this.loading = false;
-          callback(this.user)
+          callback(this.users)
         });
       }
     });
@@ -96,13 +95,12 @@ export class Environment {
   @action
   fetchCanActive() {
     this.loading = true;
-    this.auth.canActiveRef().subscribe(user => {
-      if (user) {
-        this.user = {
-          key: user.uid,
-          name: user.displayName?user.displayName:"Unknown",
-          email: user.email,
-        }
+    this.auth.canActiveRef().subscribe(users => {
+      if (users) {
+        this.ds.userRef().doc<any>(users.uid).valueChanges().subscribe(doc => {
+          this.users = doc;
+          this.loading = false;
+        });
       }
       this.loading = false;
     })
@@ -119,9 +117,9 @@ export class Environment {
   }
 
   @action
-  addUser(user: IUser, callback) {
+  addUser(users: IUser, callback) {
     this.process = true;
-    this.ds.userRef().doc(user.key).set(user).then(() => {
+    this.ds.userRef().doc(users.key).set(users).then(() => {
       this.process = false;
       callback(true, null)
     }).catch(error => {
@@ -131,9 +129,9 @@ export class Environment {
   }
 
   @action
-  updateUser(user: IUser, callback) {
+  updateUser(users: IUser, callback) {
     this.process = true;
-    this.ds.userRef().doc(user.key).update(user).then(() => {
+    this.ds.userRef().doc(users.key).update(users).then(() => {
       this.process = false;
       callback(true, null)
     }).catch(error => {
@@ -143,9 +141,9 @@ export class Environment {
   }
 
   @action
-  deleteUser(user: IUser, callback) {
+  deleteUser(users: IUser, callback) {
     this.process = true;
-    this.ds.userRef().doc(user.key).delete().then(() => {
+    this.ds.userRef().doc(users.key).delete().then(() => {
       this.process = false;
       callback(true, null)
     }).catch(error => {

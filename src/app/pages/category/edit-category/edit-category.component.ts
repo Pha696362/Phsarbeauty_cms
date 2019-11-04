@@ -50,9 +50,10 @@ export class EditCategoryComponent implements OnInit {
       const item: ICategory = {
         key: this.data.key,
         name: name,
-        // description:description,
+
         update_date: new Date(),
-        update_by: this.env.user,
+        create_by: this.env.users,
+        update_by: this.env.users,
       }
       this.store.update(this.ds.categoryRef(), item, (success, error) => {
         if (success) {

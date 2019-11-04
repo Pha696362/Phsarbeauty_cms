@@ -17,6 +17,7 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./edit-advertisement.component.scss']
 })
 export class EditAdvertisementComponent implements OnInit {
+  disableBtn;
   @ViewChild("focusInput") inputEl: ElementRef;
   form: FormGroup;
   name: AbstractControl;
@@ -72,10 +73,10 @@ export class EditAdvertisementComponent implements OnInit {
         advertiseType:advertiseType,
         advertiseTypeKey:advertiseTypeKey,
         create_date: new Date(),
-        create_by: this.env.user,
+        create_by: this.env.users,
         page_key:ConvertService.pageKey(),
         update_date: new Date(),
-        update_by: this.env.user,
+        update_by: this.env.users,
       }
       this.store.update(this.ds.advertiseRef(),item, (success, error) => {
         if (success) {

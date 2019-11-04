@@ -53,10 +53,10 @@ export class EditPhonenumberComponent implements OnInit {
         name: name,
         status: StatusObj.ACTIVE,
         create_date: new Date(),
-        create_by: this.env.user,
+        create_by: this.env.users,
         page_key:ConvertService.pageKey(),
         update_date: new Date(),
-        update_by: this.env.user,
+        update_by: this.env.users,
       }
       this.store.update(this.ds.phonenumberRef(),item, (success, error) => {
         if (success) {

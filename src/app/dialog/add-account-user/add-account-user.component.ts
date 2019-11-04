@@ -196,7 +196,7 @@ export class AddAccountUserComponent implements OnInit {
         status: status[0],
         page_key: ConvertService.pageKey(),
         create_date: new Date(),
-        create_by: this.store.user,
+        create_by: this.store.users,
       }
 
       this.store.addUser(formData, (success, error) => {
