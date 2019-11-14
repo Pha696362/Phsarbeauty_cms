@@ -1,10 +1,10 @@
 <aside class="sidebar">
     <div class="sidebar-brand" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/']">
         <div class="brand-logo">
-            <!-- <img [src]="logo" alt="PHSAR TECH"> -->
+            <img [src]="logo" alt="PHSAR TECH">
         </div>
         <div class="sbar-brand-name">
-            COMBOR
+            Cambodia
         </div>
 
     </div>
@@ -42,14 +42,14 @@
     </div>
     <div class="sidebar-list-wrapper">
         <mat-accordion [multi]="true">
-<!--             
+
             <mat-expansion-panel [expanded]="expansions.scholarship" (closed)="onClosed(6)" (opened)="onOpened(6)">
                 <mat-expansion-panel-header expandedHeight="58px" collapsedHeight="78px"
                     [class.active]="expansions?.scholarship">
                     <mat-panel-title>
                         Information
                     </mat-panel-title>
-                    
+
                     <mat-panel-description *ngIf="!expansions?.scholarship">About Us, Contact
                     </mat-panel-description>
                 </mat-expansion-panel-header>
@@ -64,8 +64,8 @@
                             </div>
                         </div>
                     </div>
-                     <div class="list-item"> 
-                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/contact']">
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/phonenumber']">
                             <div class="icon">
                                 <i class="material-icons">perm_contact_calendar</i>
                             </div>
@@ -74,44 +74,47 @@
                             </div>
                         </div>
                     </div>
-                        
+
                 </div>
-            </mat-expansion-panel> -->
+            </mat-expansion-panel>
 
             <mat-expansion-panel [expanded]="expansions.hr" (closed)="onClosed(7)" (opened)="onOpened(7)">
-                    <mat-expansion-panel-header expandedHeight="58px" collapsedHeight="78px"
-                        [class.active]="expansions?.hr">
-                        <mat-panel-title>
-                            <!-- គ្រប់គ្រងអត្ថបទ -->
-                            Contents
-                        </mat-panel-title>
-                        <mat-panel-description *ngIf="!expansions?.hr">content,
-                        </mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <div class="list-content">
-                        <div class="list-item">
-                            <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/content']">
-                                <div class="icon">
-                                    <i class="material-icons">card_giftcard</i>
-                                </div>
-                                <div class="item-name">
-                                    Contents
-                                </div>
+
+                <mat-expansion-panel-header expandedHeight="58px" collapsedHeight="78px"
+                    [class.active]="expansions?.scholarship">
+                    <mat-panel-title>
+                        Create Content
+                    </mat-panel-title>
+
+                    <mat-panel-description *ngIf="!expansions?.scholarship">Content, TV-News
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <div class="list-content">
+
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/content/']">
+                            <div class="icon">
+                                <i class="material-icons">card_giftcard</i>
+                            </div>
+                            <div class="item-name">
+                                Contents
                             </div>
                         </div>
-                        
-                         <div class="list-item"> 
-                          <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/tvnews']">
-                                <div class="icon">
-                                    <i class="material-icons"> subscriptions</i>
-                                </div>
-                                <div class="item-name">
-                                    TV-News
-                                </div>
-                            </div> 
+                    </div>
+
+                    <div class="list-item">
+                        <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/tvnews']">
+                            <div class="icon">
+                                <i class="material-icons"> subscriptions</i>
+                            </div>
+                            <div class="item-name">
+                                TV-News
+                            </div>
                         </div>
                     </div>
-                </mat-expansion-panel> 
+                </div>
+            </mat-expansion-panel>
             <mat-expansion-panel [expanded]="expansions.apo" (closed)="onClosed(3)" (opened)="onOpened(3)">
                 <mat-expansion-panel-header expandedHeight="58px" collapsedHeight="78px"
                     [class.active]="expansions?.apo">
@@ -134,17 +137,17 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="list-item">
+
+                    <!-- <div class="list-item">
                         <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/phonenumber']">
                             <div class="icon">
                                 <i class="material-icons">book</i>
                             </div>
                             <div class="item-name">
-                                Edit Phonenumber
+                                Contact
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- <div class="list-item">
                         <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/types']">
                             <div class="icon">
@@ -158,7 +161,7 @@
 
                 </div>
             </mat-expansion-panel>
-            
+
             <mat-expansion-panel [expanded]="expansions.apo" (closed)="onClosed(3)" (opened)="onOpened(3)">
                 <mat-expansion-panel-header expandedHeight="58px" collapsedHeight="78px"
                     [class.active]="expansions?.apo">
@@ -170,31 +173,32 @@
                     </mat-panel-description>
                 </mat-expansion-panel-header>
                 <div class="list-content">
-                  
+
                     <div class="list-item">
                         <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/advertisement']">
                             <div class="icon">
                                 <i class="material-icons">announcement</i>
                             </div>
                             <div class="item-name">
-                                Advertisement
+                                <!-- Advertisement -->
+                                ការផ្សាយពាណិជ្ជកម្ម
                             </div>
                         </div>
                     </div>
-                  
+
                     <div class="list-item">
                         <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/entertainment']">
                             <div class="icon">
                                 <i class="material-icons">subscriptions</i>
                             </div>
                             <div class="item-name">
-                                
-                            ព័ត៌មានកំសាន្ត
+
+                                ព័ត៌មានកំសាន្ត
                             </div>
                         </div>
                     </div>
-                    
-                 <div class="list-item">
+
+                    <div class="list-item">
                         <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/emergencycars']">
                             <div class="icon">
                                 <i class="material-icons">book</i>
@@ -203,7 +207,7 @@
                                 រថយន្តសង្គ្រោះបន្ទាន់
                             </div>
                         </div>
-                    </div> 
+                    </div>
                     <div class="list-item">
                         <div class="list-item-row" routerLinkActive="active" [routerLink]="['/app/firetruck']">
                             <div class="icon">
@@ -218,8 +222,8 @@
                 </div>
             </mat-expansion-panel>
 
-           
-            
+
+
         </mat-accordion>
     </div>
     <div class="sidebar-footer">

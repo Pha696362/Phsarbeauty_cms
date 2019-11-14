@@ -34,8 +34,8 @@ export class AddTvNewsComponent implements OnInit {
 
   buildForm(): void {
     this.form = this.fb.group({
-      name: [null, Validators.compose([Validators.required]),checkExistDoc(this.afs,"tvnews","name")],
-      videos:[null,Validators.required],
+      name: [null,],
+      videos:[null,],
       order:[null],
 
     })

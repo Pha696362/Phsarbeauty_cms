@@ -34,7 +34,7 @@ export interface IAbout{
   value?:any;
   mission?:any;
 }
-export interface IEmbulance{
+export interface IAmbulance{
   key: string;
   status?: any;
   page_key?: number;
@@ -100,11 +100,10 @@ export interface IContent{
   editname?:any;
   createname:string;
   reference:string;
-  category:any;
-  // type:any;
+  category?:any;
   fileurl?:any;
-  advertiseType: any;
-  advertiseTypeKey: any;
+  advertiseType?: any;
+  advertiseTypeKey?: any;
   
  
  
@@ -136,7 +135,7 @@ export interface IEntertainment{
   videos:any;
 }
 
-export interface IPhonenumber{
+export interface IContact{
   key: string;
   status?: any;
   page_key?: number;
@@ -145,6 +144,9 @@ export interface IPhonenumber{
   update_date?: Date;
   update_by?: object;
   name:string;
+  phonenumber:number;
+  email?:any;
+  address?:any;
  
 }
 

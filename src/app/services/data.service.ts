@@ -1,8 +1,9 @@
 import { ConvertService, toNearExpiredDate } from './convert.service';
-import { ITag, IGenre, ISlide, IBook, ICategory, ICourse, IAbout, ITypes, IContent, IAdvertise, ITvnews, IEmbulance, IFiretruck, IPhonenumber } from './../interfaces/bookstore';
+import { ITag, IGenre, ISlide, IBook, ICategory, ICourse, IAbout, ITypes, IContent, IAdvertise, ITvnews, IAmbulance, IFiretruck } from './../interfaces/bookstore';
 import { AngularFirestore } from "@angular/fire/firestore";
 import { Injectable } from "@angular/core";
 import { IProduct, ISubscriber } from '../interfaces/subscriber';
+import { IContact } from 'src/app/interfaces/bookstore';
 
 @Injectable({
   providedIn: "root"
@@ -38,11 +39,11 @@ export class DataService {
   aboutRef() {
     return this.db.collection<IAbout>("about", ref => ref.orderBy("name"));
   }
-  phonenumberRef() {
-    return this.db.collection<IPhonenumber>("phonenumber", ref => ref.orderBy("name"));
+  contactRef() {
+    return this.db.collection<IContact>("contact", ref => ref.orderBy("name"));
   }
   embulanceRef() {
-    return this.db.collection<IEmbulance>("embulance", ref => ref.orderBy("name"));
+    return this.db.collection<IAmbulance>("ambulance", ref => ref.orderBy("name"));
   }
   firetruckRef() {
     return this.db.collection<IFiretruck>("firetruck", ref => ref.orderBy("name"));
@@ -195,9 +196,19 @@ export class DataService {
   tvnewsRef() {
     return this.db.collection<ITvnews>("tvnews", ref => ref.orderBy("name"));
   }
-  contentRef() {
+  // contentRef() {
+  //   return this.db.collection<IContent>("content", ref => ref.orderBy("name"));
+  // }
+  contentRef(categorykey) {
+    return this.db.collection("content", ref => ref.where('category.key', '==', categorykey));
+  }
+
+  contentcRef() {
     return this.db.collection<IContent>("content", ref => ref.orderBy("name"));
   }
+
+
+
   entertainmentRef() {
     return this.db.collection<ITvnews>("tvnews", ref => ref.orderBy("name"));
   }
@@ -206,7 +217,7 @@ flileFolderRef() {
   return this.db.collection('file_folder');
 }
 flileRef() {
-  return this.db.collection('file_manager');
+  return this.db.collection("file_manager", ref => ref.orderBy("create_date","desc"));
 }
 AdvertiseFolderRef() {
   return this.db.collection('advertise_folder');

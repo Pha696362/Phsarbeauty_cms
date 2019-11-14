@@ -5,7 +5,7 @@ import { MatSnackBar, MatDialog } from '@angular/material';
 import { DataService } from 'src/app/services/data.service';
 import { EditFireTruckComponent } from './edit-fire-truck/edit-fire-truck.component';
 import { AddFireTruckComponent } from './add-fire-truck/add-fire-truck.component';
-import { IEmbulance, IFiretruck } from 'src/app/interfaces/bookstore';
+import {  IFiretruck } from 'src/app/interfaces/bookstore';
 import { DeleteComponent } from 'src/app/components/delete/delete.component';
 
 @Component({

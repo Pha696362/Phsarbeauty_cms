@@ -11,12 +11,16 @@ import { Bookstore } from 'src/app/stores/bookstore';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { DataService } from 'src/app/services/data.service';
 
+
 @Component({
   selector: 'app-edit-advertisement',
   templateUrl: './edit-advertisement.component.html',
   styleUrls: ['./edit-advertisement.component.scss']
 })
 export class EditAdvertisementComponent implements OnInit {
+  modules = {}
+  quillEditorRef;
+  maxUploadFileSize = 1000000;
   disableBtn;
   @ViewChild("focusInput") inputEl: ElementRef;
   form: FormGroup;
@@ -37,7 +41,9 @@ export class EditAdvertisementComponent implements OnInit {
     private ds:DataService,
     private dialog: MatDialog,
  
-  ) { }
+  ) { 
+   
+  }
 
   buildForm(): void {
     this.form = this.fb.group({
@@ -68,7 +74,6 @@ export class EditAdvertisementComponent implements OnInit {
       const item: IAdvertise = {
         key: this.data.key,
         name: name,
-       
         fileurl:this.fileurl?this.fileurl:null,
         advertiseType:advertiseType,
         advertiseTypeKey:advertiseTypeKey,
@@ -82,7 +87,7 @@ export class EditAdvertisementComponent implements OnInit {
         if (success) {
           if (!isNew)
             this.dialogRef.close();
-          this.snackBar.open('Advertisement has been created.', 'done', { duration: 2500 });
+          this.snackBar.open('Advertisement has been update.', 'done', { duration: 2500 });
           this.form.enable();
           this.form.reset();
           // this.inputEl.nativeElement.focus();

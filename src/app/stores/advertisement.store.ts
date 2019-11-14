@@ -48,6 +48,7 @@ export class AdvertisementStore {
             if(data){
                 this.data = data;
             }
+        
             this.loading = false
         })
     }

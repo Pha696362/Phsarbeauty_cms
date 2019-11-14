@@ -13,7 +13,7 @@
     <div class="form-wrapper">
       <div class="ui form">
         <div class="field">
-          <label>Name
+          <label>Title
             <span class="rq-sign">*</span>
           </label>
           <input type="text" #focusInput placeholder="Enter content title" required formControlName="name">
@@ -25,83 +25,39 @@
 
         <div class="field">
           <label>Description
-            <span class="rq-sign">*</span>
+            <!-- <span class="rq-sign">*</span> -->
           </label>
 
-          <button mat-button [disabled]="disableBtn" (click)="showFileManager()">Add file from gallery</button>
+          <button style="background-color: #F5F6F7" mat-button [disabled]="disableBtn" (click)="showFileManager()">Add file from gallery</button>
         
-          <quill-editor #editor [modules]="modules" (onContentChanged)="onContentChanged($event)"
+          <quill-editor  #editor [modules]="modules" (onContentChanged)="onContentChanged($event)"
             (onEditorCreated)="getEditorInstance($event)" formControlName="editname"></quill-editor>
         </div>
-       
-        <div class="field">
-          <label>Category
-            <span class="rq-sign">*</span>
-          </label>
-          <mat-select [compareWith]="compareObjects" formControlName="category">
-            <mat-option *ngFor="let item of category_lists" [value]="item">
-              {{item?.name}}
-            </mat-option>
-          </mat-select>
-
-          <div *ngIf="form.controls['category'].hasError('required') && form.controls['category'].touched"
-            class="error-message">
-            This field is required.
-          </div>
-        </div>
-
-        <!-- <div class="field">
-          <label>Type of news
-            <span class="rq-sign">*</span>
-          </label>
-          <mat-select [compareWith]="compareObjects" formControlName="type">
-            <mat-option *ngFor="let item of type_lists" [value]="item">
-              {{item?.name}}
-            </mat-option>
-          </mat-select>
-
-          <div *ngIf="form.controls['type'].hasError('required') && form.controls['type'].touched"
-            class="error-message">
-            This field is required.
-          </div>
-        </div> -->
-
-        
-       
-        <div class="fields two">
-          <div class="field">
-            <label>Create by name
-              <span class="rq-sign">*</span>
-            </label>
-            <input type="text" #focusInput placeholder="Enter create name" required formControlName="createname">
-            <div *ngIf="form.controls['createname'].hasError('required') && form.controls['createname'].touched"
-              class="error-message">This field is required.</div>
-            <div *ngIf="form.controls['name'].hasError('nameAvailable')" class="error-message">This name is taken. Try
-              another.</div>
-          </div>
+    
           <div class="field">
             <label>Reference
-              <span class="rq-sign">*</span>
+              <!-- <span class="rq-sign">*</span> -->
             </label>
-            <input type="text" #focusInput placeholder="Enter content title" required formControlName="reference">
-            <div *ngIf="form.controls['reference'].hasError('required') && form.controls['name'].touched"
-              class="error-message">This field is required.</div>
-            <div *ngIf="form.controls['reference'].hasError('nameAvailable')" class="error-message">This reference is
-              taken. Try
-              another.</div>
+          
+            <input type="text" #focusInput placeholder="Enter content title"  formControlName="reference">
+
+         
+           
           </div>
-        </div>
+     
         <div class="fields two">
 
         <div class="field">
           <label>Select mages Advertisement
           </label>
-          <button mat-button [disabled]="disableBtn" (click)="showimage()">Add file from gallery</button>
+          <button style="background-color: #F5F6F7" mat-button [disabled]="disableBtn" (click)="showimage()">Add file from gallery</button>
           {{fileurl}}
         </div>
 
         <div class="field">
-          <label> Status Advertisement <span class="rq-sign">*</span></label>
+          <label> Status Advertisement 
+            <!-- <span class="rq-sign">*</span> -->
+          </label>
           <mat-selection-list class="mat-book" #tags formControlName="advertiseType">
             <mat-list-option *ngFor="let item of paymentData" [value]="item">
               {{item?.text}}

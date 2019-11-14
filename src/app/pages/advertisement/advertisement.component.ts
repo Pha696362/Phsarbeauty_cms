@@ -58,7 +58,7 @@ export class AdvertisementComponent implements OnInit {
 
   delete(item: IAdvertise) {
     let dialogRef = this.dialog.open(DeleteComponent, {
-      data: { title: 'Delete Genre', memo: 'If genre is using by other function in system you cannot delete it.', name: item.name },
+      data: { title: 'Delete Advertisement', memo: 'If advertisement is using by other function in system you cannot delete it.', name: item.name },
       width: '35vw',
       disableClose: true,
       role: 'dialog',
@@ -67,7 +67,7 @@ export class AdvertisementComponent implements OnInit {
       if (result === 'yes') {
         this.store.delete(this.ds.advertiseRef(), item, (success, error) => {
           if (success) {
-            this.snackBar.open('Genre has been deleted.', 'done', { duration: 2000 });
+            this.snackBar.open('Advertisement has been deleted.', 'done', { duration: 2000 });
           }
           else {
             this.snackBar.open(error, 'Error')

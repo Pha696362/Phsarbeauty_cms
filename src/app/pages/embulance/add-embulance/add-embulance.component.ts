@@ -7,7 +7,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { DataService } from 'src/app/services/data.service';
 import { StatusObj } from 'src/app/dummy/status';
 import { ConvertService } from 'src/app/services/convert.service';
-import {  IEmbulance } from 'src/app/interfaces/bookstore';
+import {  IAmbulance } from 'src/app/interfaces/bookstore';
 import { checkExistDoc } from 'src/app/services/fire-validators.service';
 
 @Component({
@@ -34,8 +34,8 @@ export class AddEmbulanceComponent implements OnInit {
 
   buildForm(): void {
     this.form = this.fb.group({
-      name: [null, Validators.compose([Validators.required]),checkExistDoc(this.afs,"embulance","name")],
-      phone:[null, Validators.compose([Validators.required]),checkExistDoc(this.afs,"embulance","phone")],
+      name: [null,],
+      phone:[null,],
 
     })
     this.name = this.form.controls['name'];
@@ -52,7 +52,7 @@ export class AddEmbulanceComponent implements OnInit {
     if (this.form.valid) {
       this.form.disable();
       const {name,phone}=f;
-      const item: IEmbulance = {
+      const item: IAmbulance = {
         key: this.ds.createId(),
         name: name,
         phone: phone,
@@ -68,7 +68,7 @@ export class AddEmbulanceComponent implements OnInit {
         if (success) {
           if (!isNew)
             this.dialogRef.close();
-          this.snackBar.open('Embulance has been created.', 'done', { duration: 2500 });
+          this.snackBar.open('Ambulance has been created.', 'done', { duration: 2500 });
           this.form.enable();
           this.form.reset();
           this.inputEl.nativeElement.focus();

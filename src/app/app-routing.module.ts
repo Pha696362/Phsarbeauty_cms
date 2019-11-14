@@ -30,6 +30,7 @@ import { EntertainmentComponent } from './pages/entertainment/entertainment.comp
 import { EmbulanceComponent } from './pages/embulance/embulance.component';
 import { FireTruckComponent } from './pages/fire-truck/fire-truck.component';
 import { PhoneComponent } from './pages/phone/phone.component';
+import { ContentdetailComponent } from './pages/content/contentdetail/contentdetail.component';
 
 
 
@@ -154,7 +155,8 @@ const routes: Routes = [
         component: TabLayoutComponent,
         children: [
           { path: "", redirectTo: "data", pathMatch: "full" },
-          { path: ":id", component: ContentComponent },
+          { path: "data", component: ContentComponent},
+          { path: ":id", component: ContentdetailComponent }, 
         ]
       },
 
@@ -204,6 +206,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
+
 
 
 

@@ -139,6 +139,8 @@ import { EditFireTruckComponent } from './pages/fire-truck/edit-fire-truck/edit-
 import { FireTruckComponent } from './pages/fire-truck/fire-truck.component';
 import { PhoneComponent } from './pages/phone/phone.component';
 import { EditPhonenumberComponent } from './pages/phone/edit-phonenumber/edit-phonenumber.component';
+import { AddNewPhoneComponent } from './pages/phone/add-new-phone/add-new-phone.component';
+import { ContentdetailComponent } from './pages/content/contentdetail/contentdetail.component';
 
 
 
@@ -250,9 +252,9 @@ import { EditPhonenumberComponent } from './pages/phone/edit-phonenumber/edit-ph
     EditFireTruckComponent,
     PhoneComponent,
     EditPhonenumberComponent,
+    AddNewPhoneComponent,
+    ContentdetailComponent,
    
-   
-
 
 
 
@@ -289,7 +291,9 @@ import { EditPhonenumberComponent } from './pages/phone/edit-phonenumber/edit-ph
     AddFireTruckComponent,
     EditFireTruckComponent,
     EditPhonenumberComponent,
-    
+    AddNewPhoneComponent,
+
+
 
 
   ],

@@ -12,7 +12,11 @@ import { IContent } from 'src/app/interfaces/bookstore';
 import { tabs } from 'src/app/dummy/tabs';
 import { FilemanagerComponent } from '../../filemanager/filemanager.component';
 import { AdvertiseimageComponent } from '../../advertiseimage/advertiseimage.component';
-
+import Quill from 'quill'
+import ImageResize from 'quill-image-resize-module'
+ import { ImageDrop } from 'quill-image-drop-module';
+Quill.register('modules/imageResize', ImageResize)
+Quill.register('modules/imageDrop', ImageDrop);
 
 @Component({
   selector: 'app-add-new-content',
@@ -31,8 +35,7 @@ export class AddNewContentComponent implements OnInit {
   createname: AbstractControl;
   editname: AbstractControl;
   reference: AbstractControl;
-  category: AbstractControl;
-  // type: AbstractControl;
+  // category: AbstractControl;
   advertiseType: AbstractControl;
   category_lists = [];
   type_lists = [];
@@ -48,7 +51,35 @@ export class AddNewContentComponent implements OnInit {
     private afs: AngularFirestore,
     private ds: DataService,
     private dialog: MatDialog,
-  ) { }
+  ) {
+
+    this.modules = {
+      imageResize: {},
+      imageDrop: true,
+      syntax: false,
+      toolbar: [
+        ['bold', 'italic', 'underline', 'strike'],
+        ['blockquote', 'code-block'],
+
+        [{ 'header': 1 }, { 'header': 2 }],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        [{ 'script': 'sub' }, { 'script': 'super' }],
+        [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
+        [{ 'direction': 'rtl' }],                         // text direction
+
+        [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+        [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+        [{ 'font': [] }],
+        [{ 'align': [] }],
+
+        ['clean'],                                         // remove formatting button
+
+        ['link', 'video']
+      ]
+    }
+  }
 
   buildForm(): void {
     this.form = this.fb.group({
@@ -57,13 +88,12 @@ export class AddNewContentComponent implements OnInit {
       reference: [null,],
       editname: [null, Validators.required],
       description: [null,],
-      category: [null,],
+      // category: [null,],
       advertiseType: [null,],
-      // type: [null,],
+
     })
     this.name = this.form.controls['name'];
-    // this.type = this.form.controls['type'];
-    this.category = this.form.controls['category'];
+    // this.category = this.form.controls['category'];
     this.createname = this.form.controls['createname'];
     this.reference = this.form.controls['reference'];
     this.editname = this.form.controls['editname'];
@@ -71,10 +101,10 @@ export class AddNewContentComponent implements OnInit {
   }
 
   async ngOnInit() {
-
+    console.log(this.data)
     this.buildForm();
     this.category_lists = await this.store.fetchCategory();
-    this.category.patchValue(this.category_lists[0]);
+    // this.category.patchValue(this.category_lists[0]);
     this.type_lists = await this.store.fetchTypes();
     // console.log(this.type_lists);
     // this.type.patchValue(this.type_lists[0]);
@@ -86,19 +116,18 @@ export class AddNewContentComponent implements OnInit {
   create(f: any, isNew) {
     if (this.form.valid) {
       this.form.disable();
-      const { advertiseType, name, category, createname, reference, editname } = f;
+      const { advertiseType, name, createname, reference, editname } = f;
       // console.log(advertiseType)
-      
-      const advertiseTypeKey = advertiseType?advertiseType.map(m => (m.key)):null
-       
+
+      const advertiseTypeKey = advertiseType ? advertiseType.map(m => (m.key)) : null
+
       const item: IContent = {
         key: this.ds.createId(),
         name: name,
         editname: editname,
         createname: createname,
         reference: reference,
-        category: category,
-        // type:type,
+        category: this.data,
         create_date: new Date(),
         create_by: this.env.users,
         page_key: ConvertService.pageKey(),
@@ -108,8 +137,8 @@ export class AddNewContentComponent implements OnInit {
         advertiseType: advertiseType,
         advertiseTypeKey: advertiseTypeKey,
       }
-      // console.log(item)
-      this.store.addNew(this.ds.contentRef(), item, (success, error) => {
+      console.log(item)
+      this.store.addNew(this.ds.contentcRef(), item, (success, error) => {
         if (success) {
           if (!isNew)
             this.dialogRef.close();

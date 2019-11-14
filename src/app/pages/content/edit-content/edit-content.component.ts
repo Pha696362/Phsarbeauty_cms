@@ -12,7 +12,10 @@ import { FilemanagerComponent } from '../../filemanager/filemanager.component';
 import { Advertise_Status } from 'src/app/dummy/status';
 import { AdvertiseimageComponent } from '../../advertiseimage/advertiseimage.component';
 import { AddNewContentComponent } from '../add-new-content/add-new-content.component';
+import Quill from 'quill'
+import ImageResize from 'quill-image-resize-module'
 
+Quill.register('modules/imageResize', ImageResize)
 @Component({
   selector: 'app-edit-content',
   templateUrl: './edit-content.component.html',
@@ -27,92 +30,116 @@ export class EditContentComponent implements OnInit {
   @ViewChild("focusInput") inputEl: ElementRef;
   form: FormGroup;
   name: AbstractControl;
-  createname:AbstractControl;
-  editname:AbstractControl;
-  reference:AbstractControl;
-  category: AbstractControl;
-  // type: AbstractControl;
-  advertiseType:AbstractControl;
+  createname: AbstractControl;
+  editname: AbstractControl;
+  reference: AbstractControl;
+  // category: AbstractControl;
+  advertiseType: AbstractControl;
   category_lists = [];
   type_lists = [];
-  paymentData=Advertise_Status;
+  paymentData = Advertise_Status;
   fileurl;
   constructor(
-    public dialogRef: MatDialogRef<EditContentComponent>,
+    public dialogRef: MatDialogRef<AddNewContentComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
     public env: Environment,
     private snackBar: MatSnackBar,
-    public store:Bookstore,
-    private afs:AngularFirestore,
-    private ds:DataService,
+    public store: Bookstore,
+    private afs: AngularFirestore,
+    private ds: DataService,
     private dialog: MatDialog,
-  ) { }
+  ) {
+
+    this.modules = {
+      imageResize: {},
+      imageDrop: true,
+      syntax: false,
+      toolbar: [
+        ['bold', 'italic', 'underline', 'strike'],
+        ['blockquote', 'code-block'],
+
+        [{ 'header': 1 }, { 'header': 2 }],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        [{ 'script': 'sub' }, { 'script': 'super' }],
+        [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
+        [{ 'direction': 'rtl' }],                         // text direction
+
+        [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+        [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+        [{ 'font': [] }],
+        [{ 'align': [] }],
+
+        ['clean'],                                         // remove formatting button
+
+        ['link', 'video']
+      ]
+    }
+  }
 
   buildForm(): void {
     this.form = this.fb.group({
       name: [this.data.name],
-      createname:[this.data.createname],
-      reference:[this.data.reference],
-      editname:[this.data.editname],
+      createname: [this.data.createname],
+      reference: [this.data.reference],
+      editname: [this.data.editname],
       description: [this.data.description],
-      category: [this.data.category],
+      // category: [null,],
       advertiseType: [this.data.advertiseType],
-      // type: [null,],
+
     })
     this.name = this.form.controls['name'];
-    // this.type = this.form.controls['type'];
-    this.category = this.form.controls['category'];
+    // this.category = this.form.controls['category'];
     this.createname = this.form.controls['createname'];
     this.reference = this.form.controls['reference'];
     this.editname = this.form.controls['editname'];
-    this.advertiseType = this.form.controls['advertiseType'];
-    // this.type=this.form.controls['type'];
+    this.advertiseType = this.form.controls['advertiseType']
   }
 
   async ngOnInit() {
+    console.log(this.data)
     this.buildForm();
     this.category_lists = await this.store.fetchCategory();
-    this.category.patchValue(this.category_lists[0]);
+    // this.category.patchValue(this.category_lists[0]);
     this.type_lists = await this.store.fetchTypes();
     // console.log(this.type_lists);
     // this.type.patchValue(this.type_lists[0]);
   }
-  
+
   compareObjects(o1: any, o2: any): boolean {
     if (o2) return o1.key === o2.key;
   }
   create(f: any, isNew) {
     if (this.form.valid) {
       this.form.disable();
+      const { advertiseType, name, createname, reference, editname } = f;
+      // console.log(advertiseType)
 
-      const {name,category,type,createname,reference,editname,advertiseType}=f;
-      const advertiseTypeKey = advertiseType?advertiseType.map(m => (m.key)):null
+      const advertiseTypeKey = advertiseType ? advertiseType.map(m => (m.key)) : null
+
       const item: IContent = {
         key: this.data.key,
         name: name,
-        editname:editname,
-        createname:createname,
-        reference:reference,
-        category: category,
-        // type:type,
-        create_date: new Date(),
-        create_by: this.env.users,
-        page_key:ConvertService.pageKey(),
+        editname: editname,
+        createname: createname,
+        reference: reference,
+       
         update_date: new Date(),
         update_by: this.env.users,
-        fileurl:this.fileurl?this.fileurl:null,
-        advertiseType:advertiseType,
-        advertiseTypeKey:advertiseTypeKey,
+        fileurl: this.fileurl ? this.fileurl : null,
+        advertiseType: advertiseType,
+        advertiseTypeKey: advertiseTypeKey,
       }
-      this.store.addNew(this.ds.contentRef(),item, (success, error) => {
+      console.log(item)
+      this.store.update(this.ds.contentcRef(), item, (success, error) => {
         if (success) {
           if (!isNew)
-          this.dialogRef.close();
-          this.snackBar.open('Content has been created.', 'done', { duration: 2500 });
+            this.dialogRef.close();
+          this.snackBar.open('Content has been update.', 'done', { duration: 2500 });
           this.form.enable();
           this.form.reset();
-          // this.inputEl.nativeElement.focus();
         }
         else {
           alert(error)
@@ -151,18 +178,18 @@ export class EditContentComponent implements OnInit {
     this.quillEditorRef = editorInstance;
     // console.log(this.quillEditorRef)
     const toolbar = editorInstance.getModule('toolbar');
-    
+
   }
   addImage() {
     const range = this.quillEditorRef.getSelection(true);
-   
+
     this.quillEditorRef.insertEmbed(range.index, 'image', 'https://cloud.githubusercontent.com/assets/2264672/20601381/a51753d4-b258-11e6-92c2-1d79efa5bede.png', 'user')
   }
   onContentChanged(editorInstance: any) {
     const range = editorInstance.text;
-  
+
     var regex = /https?:\/\/[^\s]+/g;
-    
+
   }
 
   imageHandler = (image, callback) => {
@@ -174,34 +201,34 @@ export class EditContentComponent implements OnInit {
 
 
 
-//advertisement
-showimage() {
-  // this.disableBtn = true
-  let dialogRef = this.dialog.open(AdvertiseimageComponent, {
-    data: null,
-    panelClass: 'cs-overlay-panel',
-    width: '60vw',
-    height: '100vh',
-    disableClose: true,
-    role: 'dialog',
-    hasBackdrop: false,
-  });
-  dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
-  dialogRef.afterClosed().subscribe(result => {
-    // console.log(result)
-    // const range = this.quillEditorRef.getSelection(true);
-    if (result) {
-      for (const file of result) {
-        // console.log(file.url)
-        this.fileurl= file.url
-        // this.quillEditorRef.insertEmbed(range.index, 'image', file.url, 'user')
+  //advertisement
+  showimage() {
+    // this.disableBtn = true
+    let dialogRef = this.dialog.open(AdvertiseimageComponent, {
+      data: null,
+      panelClass: 'cs-overlay-panel',
+      width: '60vw',
+      height: '100vh',
+      disableClose: true,
+      role: 'dialog',
+      hasBackdrop: false,
+    });
+    dialogRef.updatePosition({ top: '0', right: '0', bottom: '0' });
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log(result)
+      // const range = this.quillEditorRef.getSelection(true);
+      if (result) {
+        for (const file of result) {
+          // console.log(file.url)
+          this.fileurl = file.url
+          // this.quillEditorRef.insertEmbed(range.index, 'image', file.url, 'user')
+        }
       }
-    }
 
 
-    // this.disableBtn = false;
-  });
-}
+      // this.disableBtn = false;
+    });
+  }
 
 
 

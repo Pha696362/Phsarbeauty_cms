@@ -1,7 +1,7 @@
 <form [formGroup]="form" class="dialog-wrapper">
   <div class="dialog-header">
     <div class="title">
-      Update Contact
+      Add new  Contact
     </div>
     <div class="flex1"></div>
     <a mat-dialog-close class="close-dialog" (click)="dialogRef.close('no')">
@@ -63,9 +63,10 @@
   <div class="dialog-footer">
     <div class="flex1"></div>
     <a mat-dialog-close class="enbutton cancel m-r16" (click)="dialogRef.close('no')">Cancel</a>
-   
+    <button type="submit" class="enbutton primary m-r16" [disabled]="!form.valid || store?.process"
+      (click)="create(form.value,true)">Save New</button>
     <button class="enbutton primary m-r16" [disabled]="!form.valid || store?.process"
-      (click)="create(form.value,false)">Update</button>
+      (click)="create(form.value,false)">Save Close</button>
   </div>
   <app-spinner *ngIf="store?.process"></app-spinner>
 </form>

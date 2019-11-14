@@ -34,8 +34,8 @@ export class AddFireTruckComponent implements OnInit {
 
   buildForm(): void {
     this.form = this.fb.group({
-      name: [null, Validators.compose([Validators.required]),checkExistDoc(this.afs,"embulance","name")],
-      phone:[null, Validators.compose([Validators.required]),checkExistDoc(this.afs,"embulance","phone")],
+      name: [null,],
+      phone:[null,],
 
     })
     this.name = this.form.controls['name'];

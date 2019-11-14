@@ -14,9 +14,7 @@ export const tabs = {
   category: [
     { path: '/app/category/data', label: "Data" },
   ],
-  course: [
-    { path: '/app/course/data', label: "Data" },
-  ],
+  
   tvnews: [
     { path: '/app/tvnews/data', label: "Data" },
   ],
@@ -47,9 +45,7 @@ export const tabs = {
   content: [
     { path: '/app/content/data', label: "Data" },
   ],
-  phonenumber: [
-    { path: '/app/phonenumber/data', label: "Data" },
-  ],
+  
   subscriber: [
     { path: '/app/subscribers/approval', label: "All Account" },
     { path: '/app/subscribers/membership', label: "Memberships" },

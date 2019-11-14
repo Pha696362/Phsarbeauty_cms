@@ -1,14 +1,20 @@
 <ng-container *mobxAutorun>
   <div class="page-section">
     <div class="action-bar">
+       
       <div class="nav-content">
-        <h3 class="head-title">Content</h3>
+         
+        <h3 class="head-title">
+           
+          Please select category for add contents
+         
+        </h3>
         <div class="flex1"></div>
-        <div class="action-list-item">
+        <!-- <div class="action-list-item">
           <div class="action-item">
             <button mat-button (click)="create()" class="enbutton primary">Add new Content</button>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <nav mat-tab-nav-bar> 
@@ -45,16 +51,15 @@
           </div>
           <div class="card-content">
             <ng-container *ngFor="let item of store?.data ;let i=index">
-              <div class="card-item"  >
-                <div class="card-col5"[routerLink]="['/app/course/' + item?.key]" >
+              <div class="card-item">
+                <div class="card-col5" >
                   <div class="flex-block">
-                    <span>{{i+1}}</span>
+                    <span >{{i+1}}</span>
                   </div>
                 </div>
                 <div class="card-col45">
-                  <div class="flex-block">
-                      <img *ngIf="item?.fileUrl" [src]="item?.fileUrl" />
-                      <strong>{{item?.name}}</strong>
+                  <div class="flex-block link">
+                      <strong [routerLink]="['/app/content/'+ item?.key]" >{{item?.name}}</strong>
                   </div>
                 </div>
                 <div class="card-col20">
@@ -67,24 +72,7 @@
                     {{item?.create_date?.toDate() | date:'short'}}
                   </div>
                 </div>
-                <div class="card-col10">
-                  <div class="card-list-action">
-                    <button mat-icon-button [matMenuTriggerFor]="menu">
-                      <i class="material-icons">more_vert</i>
-                    </button>
-                    <mat-menu #menu="matMenu">
-                        
-                      <button mat-menu-item (click)="edit(item)">
-                        <mat-icon>edit</mat-icon>
-                        <span>Edit</span>
-                      </button>
-                      <button mat-menu-item (click)="delete(item)">
-                        <mat-icon>delete</mat-icon>
-                        <span>Delete</span>
-                      </button>
-                    </mat-menu>
-                  </div>
-                </div>
+              
               </div>
             </ng-container>
           </div>

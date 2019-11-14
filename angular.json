@@ -47,6 +47,7 @@
 
             ],
             "scripts": [
+              "./node_modules/quill/dist/quill.min.js",
               "./node_modules/moment/min/moment.min.js",
               "./node_modules/jquery/dist/jquery.min.js",
               "src/jQuery.print.js"

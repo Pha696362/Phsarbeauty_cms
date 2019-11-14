@@ -1,15 +1,15 @@
 <nav class="nav-header">
     <div class="app-container">
         <div class="brand-name" [routerLink]="['/app']">
-            <!-- <img src="../../../assets/images/logo.jpg" /> -->
+            <img src="../../../assets/images/logo.jpg" />
         </div>
         <div class="d-flex" style="flex-direction: column; flex:1">
             <div class="d-flex">
                 <span class="brand-name" [routerLink]="['/app']">COMBODIA REVIEW</span>
-                <button mat-button mat-icon-button [matMenuTriggerFor]="menumsg" class="cs-mat-menu-item">
+                <!-- <button mat-button mat-icon-button [matMenuTriggerFor]="menumsg" class="cs-mat-menu-item">
                     <mat-icon>mail</mat-icon>
-                </button>
-                <mat-menu #menumsg="matMenu" class="cs-matmenu-content" backdropClass="cs-matmenu-backdrop">
+                </button> -->
+                <!-- <mat-menu #menumsg="matMenu" class="cs-matmenu-content" backdropClass="cs-matmenu-backdrop">
                     <div class="mat-menu-bar" (click)="$event.stopPropagation();">
                         <h3 class="m-title">Memo</h3>
                     </div>
@@ -18,14 +18,14 @@
 
                         </mat-list>
                     </div>
-                </mat-menu>
-
+                </mat-menu> -->
+<!-- 
                 <button mat-button mat-icon-button [matMenuTriggerFor]="menunoti" class="cs-mat-menu-item">
                     <mat-icon>notifications</mat-icon>
-                </button>
+                </button> -->
 
                 <mat-menu #menunoti="matMenu" class="cs-matmenu-content" backdropClass="cs-matmenu-backdrop">
-                    <div class="mat-menu-bar" (click)="$event.stopPropagation();">
+                    <!-- <div class="mat-menu-bar" (click)="$event.stopPropagation();">
                         <h3 class="m-title">Notifications</h3>
                         <button mat-icon-button>
                             <mat-icon aria-label="settings">settings</mat-icon>
@@ -35,7 +35,7 @@
 
                         <p class="text-center p-4">No Notifications</p>
 
-                    </div>
+                    </div> -->
                 </mat-menu>
 
 

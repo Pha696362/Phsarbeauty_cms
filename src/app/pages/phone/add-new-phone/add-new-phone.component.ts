@@ -1,27 +1,30 @@
 import { Component, OnInit, ViewChild, ElementRef, Inject } from '@angular/core';
+import {  IContact } from 'src/app/interfaces/bookstore';
+import { StatusObj } from 'src/app/dummy/status';
+import { ConvertService } from 'src/app/services/convert.service';
 import { FormGroup, AbstractControl, FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
+import { EditPhonenumberComponent } from '../edit-phonenumber/edit-phonenumber.component';
 import { Environment } from 'src/app/stores/environment.store';
 import { Bookstore } from 'src/app/stores/bookstore';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { DataService } from 'src/app/services/data.service';
-import { IAmbulance } from 'src/app/interfaces/bookstore';
-import { StatusObj } from 'src/app/dummy/status';
-import { ConvertService } from 'src/app/services/convert.service';
 
 @Component({
-  selector: 'app-edit-embulance',
-  templateUrl: './edit-embulance.component.html',
-  styleUrls: ['./edit-embulance.component.scss']
+  selector: 'app-add-new-phone',
+  templateUrl: './add-new-phone.component.html',
+  styleUrls: ['./add-new-phone.component.scss']
 })
-export class EditEmbulanceComponent implements OnInit {
+export class AddNewPhoneComponent implements OnInit {
   @ViewChild("focusInput") inputEl: ElementRef;
   form: FormGroup;
   name: AbstractControl;
-  phone:AbstractControl;
-
+  phonenumber:AbstractControl;
+  email:AbstractControl;
+  address:AbstractControl;
+  
   constructor(
-    public dialogRef: MatDialogRef<EditEmbulanceComponent>,
+    public dialogRef: MatDialogRef<AddNewPhoneComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
     public env: Environment,
@@ -33,30 +36,35 @@ export class EditEmbulanceComponent implements OnInit {
 
   buildForm(): void {
     this.form = this.fb.group({
-      name: [this.data.name],
-      phone:[this.data.phone],
-
+      name: [null,],
+      phonenumber:[null,],
+      email:[null],
+      address:[null,],
+      
     })
     this.name = this.form.controls['name'];
-    this.phone = this.form.controls['phone'];
+    this.phonenumber= this.form.controls['phonenumber'];
+    this.email= this.form.controls['email'];
+    this.address= this.form.controls['address'];
 
+    
   }
 
 
   ngOnInit() {
     this.buildForm();
-    console.log('this.env.users', this.env.users);
   }
 
   create(f: any, isNew) {
     if (this.form.valid) {
       this.form.disable();
-      const {name,phone}=f;
-      const item: IAmbulance = {
-        key: this.data.key,
+      const {name,phonenumber,email,address}=f;
+      const item: IContact = {
+        key: this.ds.createId(),
         name: name,
-        phone: phone,
-
+        phonenumber:phonenumber,
+        email:email,
+        address:address,
         status: StatusObj.ACTIVE,
         create_date: new Date(),
         create_by: this.env.users,
@@ -64,15 +72,13 @@ export class EditEmbulanceComponent implements OnInit {
         update_date: new Date(),
         update_by: this.env.users,
       }
-      this.store.update(this.ds.embulanceRef(),item, (success, error) => {
+      this.store.addNew(this.ds.contactRef(),item, (success, error) => {
         if (success) {
           if (!isNew)
             this.dialogRef.close();
-          this.snackBar.open('Embulance has been update.', 'done', { duration: 2500 });
+          this.snackBar.open('Contact has been created.', 'done', { duration: 2500 });
           this.form.enable();
           this.form.reset();
-          this.inputEl.nativeElement.focus();
-          
         }
         else {
           alert(error)

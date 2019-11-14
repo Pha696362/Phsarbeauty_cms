@@ -13,12 +13,17 @@ import { FilemanagerComponent } from '../../filemanager/filemanager.component';
 import { AdvertiseimageComponent } from '../../advertiseimage/advertiseimage.component';
 
 
+
+
 @Component({
   selector: 'app-add-new-advertisement',
   templateUrl: './add-new-advertisement.component.html',
   styleUrls: ['./add-new-advertisement.component.scss']
 })
 export class AddNewAdvertisementComponent implements OnInit {
+  modules = {}
+  quillEditorRef;
+  maxUploadFileSize = 1000000;
   disableBtn;
   @ViewChild("focusInput") inputEl: ElementRef;
   form: FormGroup;
@@ -39,7 +44,9 @@ export class AddNewAdvertisementComponent implements OnInit {
     private ds:DataService,
     private dialog: MatDialog,
  
-  ) { }
+  ) {
+    
+   }
 
   buildForm(): void {
     this.form = this.fb.group({
